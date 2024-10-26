@@ -83,7 +83,6 @@ public class RegistrationController {
 
         return "redirect:/login?success"; // Sau khi đăng ký, điều hướng sang trang đăng nhập
     }
-
     @PostMapping("/login")
     public String loginPost(@RequestParam String username,
                             @RequestParam String password,
@@ -107,20 +106,16 @@ public class RegistrationController {
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         // Lấy thông tin xác thực từ SecurityContext
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
         if (auth != null) {
             // Hủy bỏ xác thực (xóa SecurityContext)
             SecurityContextHolder.clearContext();
-
             // Invalidate session
             request.getSession().invalidate();
-
             // Xóa cookie JSESSIONID và remember-me
             Cookie jsessionidCookie = new Cookie("JSESSIONID", null);
             jsessionidCookie.setPath("/");
             jsessionidCookie.setMaxAge(0);
             response.addCookie(jsessionidCookie);
-
         }
         // Chuyển hướng về trang đăng nhập sau khi đăng xuất thành công
         return "redirect:/login?logout";

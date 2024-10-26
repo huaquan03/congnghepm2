@@ -1,8 +1,11 @@
 package com.hust.seller.security;
 import com.hust.seller.entity.Role;
 import com.hust.seller.entity.User;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,5 +40,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
                 .collect(Collectors.toList());
+    }
+    public String getCurrentUser(HttpServletRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            return authentication.getName(); // Lấy tên đăng nhập (username)
+        }
+        return null; // Không có người dùng nào đang đăng nhập
     }
 }

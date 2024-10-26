@@ -52,6 +52,7 @@ public class UserService {
     public Optional<User> findByToken(String token){
         return userRepository.findByToken(token);
     }
+    public Optional<User> findByUsername(String username){return userRepository.findByUsername(username);}
     public void updatePassword(User user,String password){
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         String EncoderPassword=passwordEncoder.encode(password);
