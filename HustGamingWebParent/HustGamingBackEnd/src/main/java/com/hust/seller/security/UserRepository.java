@@ -14,6 +14,7 @@ import java.util.Optional;
         Optional<User> findByUsername(String username);
         Optional<User> findByToken(String token);
         List<User> findByRoles_RoleName(String roleName);
+        Optional<User> findByUserID(int id);
 
     }
 

@@ -13,16 +13,19 @@ public class Cart {
     private int cartID;
     @Column(name="CustomerID")
     private String customerID;
-    @Column(name="CreatedAt")
-    private LocalDateTime ceatedAt;
-
-   public Cart(){}
-
-    public Cart(String customerID, LocalDateTime ceatedAt) {
+    @Column(name="Created_at")
+    private LocalDateTime created_at;
+    public Cart(){};
+    public Cart(String customerID, LocalDateTime created_at) {
         this.customerID = customerID;
-        this.ceatedAt = ceatedAt;
+        this.created_at = created_at;
     }
-
+    public int getCartID() {
+        return cartID;
+    }
+    public void setCartID(int cartID) {
+        this.cartID = cartID;
+    }
     public String getCustomerID() {
         return customerID;
     }
@@ -31,13 +34,11 @@ public class Cart {
         this.customerID = customerID;
     }
 
-    public LocalDateTime getCeatedAt() {
-        return ceatedAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCeatedAt(LocalDateTime ceatedAt) {
-        this.ceatedAt = ceatedAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
-
-
 }

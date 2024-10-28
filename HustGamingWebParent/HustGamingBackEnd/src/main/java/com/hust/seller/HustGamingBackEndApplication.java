@@ -13,4 +13,5 @@ public class HustGamingBackEndApplication {
 		SpringApplication.run(HustGamingBackEndApplication.class, args);
 	}
 
+
 }

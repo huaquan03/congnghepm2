@@ -23,16 +23,12 @@ public class UserService {
 
     public void sendResetEmail(User user, String token) {
         String recipientEmail = user.getEmail();
-
-
         String resetUrl = "http://localhost:8080/reset-password?token=" + token;
-
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recipientEmail);
         message.setSubject("Reset mật khẩu của bạn");
         message.setText("Để reset mật khẩu, vui lòng nhấp vào link sau: \n" + resetUrl);
         message.setFrom("quant5ml10@gmail.com");
-
         // Gửi email
         mailSender.send(message);
 

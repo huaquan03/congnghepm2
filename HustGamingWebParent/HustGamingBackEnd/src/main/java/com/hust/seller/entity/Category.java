@@ -8,9 +8,9 @@ import jakarta.persistence.*;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="CategoryId")
+    @Column(name="CategoryID")
     private int categoryId;
-    @Column(name="CategoryName")
+    @Column(name="Category_name")
     private String categoryName;
 
     public Category(String categoryName) {

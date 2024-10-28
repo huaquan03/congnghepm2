@@ -19,8 +19,8 @@ public class Review {
     private int rating;
     @Column(name="Comment")
     private String comment;
-    @Column(name="ReviewDate")
-    private LocalDateTime reiewDate;
+    @Column(name="Review_date")
+    private LocalDateTime reviewDate;
 
     public Review(int productID, int buyerID, String comment) {
         this.productID = productID;
@@ -48,8 +48,8 @@ public class Review {
         return comment;
     }
 
-    public LocalDateTime getReiewDate() {
-        return reiewDate;
+    public LocalDateTime getReviewDate() {
+        return reviewDate;
     }
 
     public void setReviewID(int reviewID) {
@@ -72,7 +72,7 @@ public class Review {
         this.comment = comment;
     }
 
-    public void setReiewDate(LocalDateTime reiewDate) {
-        this.reiewDate = reiewDate;
+    public void setReviewDate(LocalDateTime reviewDate) {
+        this.reviewDate = reviewDate;
     }
 }

@@ -54,10 +54,14 @@ public class RegistrationController {
             // Xử lý lỗi nếu email đã tồn tại
             return "error/emailexsist";
         }
+        if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
+            // Xử lý lỗi nếu email đã tồn tại
+            return "error/emailexsist";
+        }
+
         // Tạo đối tượng User mới
         User user = new User();
         user.setUsername(userDTO.getUsername());
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword())); // Mã hóa mật khẩu
         user.setEmail(userDTO.getEmail());
         user.setFullName(userDTO.getFullName());
         user.setAddress(userDTO.getAddress());
@@ -84,9 +88,7 @@ public class RegistrationController {
         return "redirect:/login?success"; // Sau khi đăng ký, điều hướng sang trang đăng nhập
     }
     @PostMapping("/login")
-    public String loginPost(@RequestParam String username,
-                            @RequestParam String password,
-                            Model model) {
+    public String loginPost(@RequestParam String username, @RequestParam String password, Model model) {
         try {
             // Tạo đối tượng xác thực
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);

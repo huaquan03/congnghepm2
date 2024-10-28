@@ -32,6 +32,8 @@ public class User {
     private String token;
     @Column(name="Token_expire")
     private LocalDateTime token_expire;
+    @Column(name="Money")
+    private Double money;
 
 
     public User(String username, String password, String email, String full_name, String address, String phone_number) {
@@ -139,4 +141,37 @@ public class User {
     public void setToken_expire(LocalDateTime token_expire) {
         this.token_expire = token_expire;
     }
+
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public boolean isIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
+    }
+
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money) {
+        this.money = money;
+    }
+
 }

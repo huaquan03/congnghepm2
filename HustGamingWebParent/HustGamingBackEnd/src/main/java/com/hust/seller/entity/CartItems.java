@@ -23,6 +23,14 @@ public class CartItems {
     }
     public CartItems(){}
 
+    public int getCartItemID() {
+        return cartItemID;
+    }
+
+    public void setCartItemID(int cartItemID) {
+        this.cartItemID = cartItemID;
+    }
+
     public int getCartID() {
         return cartID;
     }

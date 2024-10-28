@@ -12,53 +12,59 @@ public class OrderDetail {
     private int orderDetailID;
     @Column(name="OrderID")
     private int orderID;
-    @Column(name="ProductID")
-    private int productID;
-    @Column(name="Quantity")
-    private  int quantity;
-    @Column(name="UnitPrice")
-    private int unitPrice;
 
-    public OrderDetail(int orderID, int productID, int quantity, int unitPrice) {
+    @Column(name="Totalprice")
+     private float totalPrice;
+    @Column (name="Status")
+    private String status;
+    @Column(name="ShopID")
+    private int shopID;
+
+    public OrderDetail(int orderID, float totalPrice, String status, int shopID) {
         this.orderID = orderID;
-        this.productID = productID;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.shopID = shopID;
     }
-public OrderDetail(){}
-    public int getOrderID() {
-        return orderID;
-    }
+    public OrderDetail(){};
 
-    public int getProductID() {
-        return productID;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public int getUnitPrice() {
-        return unitPrice;
+    public int getOrderDetailID() {
+        return orderDetailID;
     }
 
     public void setOrderDetailID(int orderDetailID) {
         this.orderDetailID = orderDetailID;
     }
 
+    public int getOrderID() {
+        return orderID;
+    }
+
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public void setUnitPrice(int unitPrice) {
-        this.unitPrice = unitPrice;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getShopID() {
+        return shopID;
+    }
+
+    public void setShopID(int shopID) {
+        this.shopID = shopID;
     }
 }
