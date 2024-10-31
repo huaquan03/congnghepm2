@@ -40,14 +40,15 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/seller/**").hasAnyRole("SELLER", "ADMIN")
-                        .requestMatchers("/customer/**").hasAnyRole("CUSTOMER", "ADMIN")
+                        .requestMatchers("/seller/**").hasAnyRole("SELLER")
+                        .requestMatchers("/customer/**").hasAnyRole("CUSTOMER")
                         .requestMatchers("/login", "/register", "/forgot-password","/","/error/**","reset-password").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .successHandler(new CustomAuthenticationSuccessHandler()) // Sử dụng Custom Authentication Success Handler
+                        .failureHandler(new CustomAuthenticationFailureHandler())
                         .permitAll()  // Cho phép tất cả mọi người truy cập trang login
                 )
                 .logout(logout -> logout

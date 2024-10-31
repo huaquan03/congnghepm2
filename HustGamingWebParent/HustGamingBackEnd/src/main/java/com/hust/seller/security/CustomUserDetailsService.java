@@ -2,6 +2,7 @@ package com.hust.seller.security;
 import com.hust.seller.entity.Role;
 import com.hust.seller.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,14 +29,16 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
+        if (!user.getActive()) {
+            System.out.println("Is user active? " + user.getActive());
+            throw new DisabledException("Tài khoản đã bị khoá."); // Ném ngoại lệ DisabledException nếu tài khoản bị khóa
+        }
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
                 mapRolesToAuthorities(user.getRoles())
         );
     }
-
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName()))

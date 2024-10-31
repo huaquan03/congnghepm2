@@ -5,34 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-<div class="container mt-5">
-    <h1 class="text-center">Đăng nhập</h1>
-    <div th:if="${param.error}" class="alert alert-danger text-center">
-        Sai tên đăng nhập hoặc mật khẩu. Vui lòng thử lại.
+<body class="bg-gray-100">
+<div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
     </div>
 
-    <!-- Thay đổi thuộc tính action và method -->
-    <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="username">Tên đăng nhập</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên đăng nhập" required>
+    <!-- Display error message -->
+    <div class="sm:mx-auto sm:w-full sm:max-w-md mt-6">
+        <div th:if="${session.error != null}" class="text-center text-red-500 font-semibold">
+            <p th:text="${session.error}"></p>
         </div>
-        <div class="form-group">
-            <label for="password">Mật khẩu</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-        <p class="text-center mt-3">Chưa có tài khoản? <a th:href="@{/register}">Đăng ký ngay</a></p>
-        <p class="text-center mt-3"> <a th:href="@{/forgot-password}">Quen mat khau?</a></p>
-    </form>
-</div>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+            <!-- Form for login -->
+            <form th:action="@{/login}" method="post" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Tên đăng nhập</label>
+                    <input type="text" id="username" name="username" required class="block w-full mt-1 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Mật khẩu</label>
+                    <input type="password" id="password" name="password" required class="block w-full mt-1 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <div>
+                    <button type="submit" class="w-full flex justify-center rounded-md bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        Đăng nhập
+                    </button>
+                </div>
+
+                <div class="text-center mt-4 text-sm text-gray-500">
+                    <p>Chưa có tài khoản?
+                        <a th:href="@{/register}" class="font-medium text-indigo-600 hover:text-indigo-500">Đăng ký ngay</a>
+                    </p>
+                    <p class="mt-2">
+                        <a th:href="@{/forgot-password}" class="font-medium text-indigo-600 hover:text-indigo-500">Quên mật khẩu?</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>

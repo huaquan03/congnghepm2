@@ -60,10 +60,6 @@ public class AdminController {
         return "admin/profile";
     }
 
-    @GetMapping("/sellers")
-    public String showUsers() {
-        return "admin/seller";
-    }
 
     @GetMapping("/edit/{id}")
     public String editUserForm(@PathVariable("id") int userId, Model model) {
@@ -78,6 +74,7 @@ public class AdminController {
             userDTO.setFullName(user.getFullName());
             userDTO.setAddress(user.getAddress());
             userDTO.setPhoneNumber(user.getPhoneNumber());
+
             model.addAttribute("userDTO", userDTO);
             model.addAttribute("user", user); // Có thể dùng trong form nếu cần
             return "admin/edit"; // Tên file HTML chứa form chỉnh sửa
@@ -104,7 +101,6 @@ public class AdminController {
             user.setAddress(userDTO.getAddress());
             user.setPhoneNumber(userDTO.getPhoneNumber());
             user.setEmail(userDTO.getEmail());
-
             if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
                 user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             }
@@ -114,7 +110,5 @@ public class AdminController {
             return "error/emailexsist";
         }
     }
-
-
 }
 

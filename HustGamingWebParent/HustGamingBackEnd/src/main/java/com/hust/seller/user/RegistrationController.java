@@ -55,7 +55,7 @@ public class RegistrationController {
             return "error/emailexsist";
         }
         if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
-            // Xử lý lỗi nếu email đã tồn tại
+            // Xử lý lỗi nếu username đã tồn tại
             return "error/emailexsist";
         }
 
@@ -72,9 +72,9 @@ public class RegistrationController {
             case "ROLE_SELLER":
                 role = roleRepository.findByRoleName("ROLE_SELLER").orElseThrow();
                 break;
-            case "ROLE_ADMIN":
-                role = roleRepository.findByRoleName("ROLE_ADMIN").orElseThrow();
-                break;
+//            case "ROLE_ADMIN":
+//                role = roleRepository.findByRoleName("ROLE_ADMIN").orElseThrow();
+//                break;
             default:
                 role = roleRepository.findByRoleName("ROLE_CUSTOMER").orElseThrow();
                 break;
@@ -83,6 +83,7 @@ public class RegistrationController {
 
         // Lưu người dùng vào cơ sở dữ liệu
         user.setActive(true);
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userRepository.save(user);
 
         return "redirect:/login?success"; // Sau khi đăng ký, điều hướng sang trang đăng nhập
@@ -176,10 +177,6 @@ public class RegistrationController {
         model.addAttribute("message", "Đặt lại mật khẩu thành công.");
         return "login"; // Chuyển hướng về trang đăng nhập sau khi đặt lại mật khẩu thành công
     }
-
-
-
-
 
 }
 

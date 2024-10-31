@@ -70,7 +70,7 @@
     </div>
 </nav>
 <div class="container mt-5">
-    <h2>Users with Role: Seller</h2>
+    <h2>Users with Role: Customer</h2>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -81,7 +81,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${seller}">
+        <tr th:each="user : ${customer}">
             <td th:text="${user.getUserID}">1</td>
             <td th:text="${user.getUsername}">Username</td>
             <td th:text="${user.getEmail}">Email</td>
@@ -90,9 +90,9 @@
             </td>
             <td>
                 <!-- Nút Edit -->
-                <a th:href="@{/admin/sellers/edit/{id}(id=${user.getUserID})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/admin/customers/edit/{id}(id=${user.getUserID})}" class="btn btn-primary">Edit</a>
                 <!-- Nút Delete -->
-                <a th:href="@{/admin/sellers/delete/{id}(id=${user.getUserID})}" class="btn btn-danger"
+                <a th:href="@{/admin/customers/delete/{id}(id=${user.getUserID})}" class="btn btn-danger"
                    onclick="return confirm('Are you sure you want to delete this user?');">
                     Delete
                 </a>

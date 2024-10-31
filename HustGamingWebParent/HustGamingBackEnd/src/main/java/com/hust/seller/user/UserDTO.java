@@ -8,6 +8,8 @@ public class UserDTO {
     private String address;
     private String phoneNumber;
     private String role;
+    private Boolean Active;
+
 
     public UserDTO() {
     }
@@ -67,4 +69,11 @@ public class UserDTO {
         this.role = role;
     }
 
+    public Boolean getActive() {
+        return Active;
+    }
+
+    public void setActive(Boolean active) {
+        this.Active = active;
+    }
 }
