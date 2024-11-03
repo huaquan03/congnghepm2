@@ -25,29 +25,23 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/admin/}">Hust Gaming</a>
+        <a class="navbar-brand" th:href="@{/seller/}">Seller HOME</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/sellers}">Seller</a>
+                    <a class="nav-link" th:href="@{/seller/shop}">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/categories}">Categories</a>
+                    <a class="nav-link" th:href="@{/seller/products}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/products}">Products</a>
+                    <a class="nav-link" th:href="@{/seller/orders}">Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/customers}">Customers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/orders}">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/settings}">Settings</a>
+                    <a class="nav-link" th:href="@{/seller/reviews}">Reviews</a>
                 </li>
             </ul>
             <span class="navbar-text user-info">
@@ -61,7 +55,7 @@
                         <i class="bi bi-person"></i> <span >Option</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" th:href="@{/admin/profile}">Profile</a></li>
+                        <li><a class="dropdown-item" th:href="@{/seller/profile}">Profile</a></li>
                         <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </li>
@@ -71,47 +65,32 @@
 </nav>
 
 <div class="container mt-5">
-    <h2 class="text-center">Chỉnh sửa thông tin tài khoản cuar Seller</h2>
-    <form th:action="@{/admin/customers/edit/{id}(id=${user.getUserID})}" th:object="${userDTO}" method="post">
+    <h2 class="text-center"> thông tin cua hang cua ban</h2>
+    <form th:action="@{/seller/shop/edit/{id}(id=${shop.getShopID})}" th:object="${shop}" method="post" >
 
-        <!-- Username Field (disabled for non-editable) -->
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Username" disabled>
+            <label for="shopID">ID Shop</label>
+            <input type="text" class="form-control" id="shopID" th:field="*{shopID}" placeholder="shopID" readonly>
         </div>
 
-        <!-- Password Field -->
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" disabled>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="name">
         </div>
 
-        <!-- Email Field -->
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email" disabled>
+            <label for="sellerID">Seller ID</label>
+            <input type="text" class="form-control" id="sellerID" th:field="*{sellerID}" placeholder="sellerID" readonly >
         </div>
 
-        <!-- Full Name Field -->
-        <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" class="form-control" id="fullName" th:field="*{fullName}" placeholder="Full Name" disabled>
-        </div>
-
-        <!-- Address Field -->
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="Address" disabled>
+            <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="address" >
         </div>
 
-        <!-- Phone Number Field -->
         <div class="form-group">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Phone Number" disabled>
-        </div>
-        <div class="form-group">
-            <label for="Active">Is_Active</label>
-            <input type="text" class="form-control" id="Active" th:field="*{Active}" placeholder="Is_Active" >
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status" th:field="*{status}" placeholder="status" >
         </div>
 
         <!-- Submit Button -->

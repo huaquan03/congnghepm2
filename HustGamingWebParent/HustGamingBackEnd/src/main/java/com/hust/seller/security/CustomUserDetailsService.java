@@ -44,11 +44,14 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
                 .collect(Collectors.toList());
     }
-    public String getCurrentUser(HttpServletRequest request) {
+   // lay ra nguoi dung hien tai
+    public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            return authentication.getName(); // Lấy tên đăng nhập (username)
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            return userRepository.findByUsername(username).orElse(null); // Tìm `User` từ `username`
         }
-        return null; // Không có người dùng nào đang đăng nhập
+        return null;
     }
+
 }

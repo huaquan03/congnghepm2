@@ -17,12 +17,15 @@ public class Shop {
     private String address;
     @Column(name = "Status")
     private boolean status;
+    @Column(name = "Image")
+    private String image;
 
     public Shop(String name, int sellerID, String address) {
         this.name = name;
         this.sellerID = sellerID;
         this.address = address;
     }
+    public Shop(){}
 
     public int getShopID() {
         return shopID;
@@ -62,6 +65,14 @@ public class Shop {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

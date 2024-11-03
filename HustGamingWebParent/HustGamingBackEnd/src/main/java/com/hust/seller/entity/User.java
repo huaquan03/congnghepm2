@@ -34,7 +34,8 @@ public class User {
     private LocalDateTime token_expire;
     @Column(name="Money")
     private Double money;
-
+    @Column(name = "Image")
+    private String image;
 
     public User(String username, String password, String email, String full_name, String address, String phone_number) {
         this.username = username;
@@ -148,5 +149,13 @@ public class User {
 
     public void setMoney(Double money) {
         this.money = money;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

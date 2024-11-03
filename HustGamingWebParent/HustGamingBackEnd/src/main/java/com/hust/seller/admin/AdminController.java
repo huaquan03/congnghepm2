@@ -34,18 +34,12 @@ public class AdminController {
         this.passwordEncoder=passwordEncoder;
     }
 
-    public String getfullname(HttpServletRequest httpServletRequest) {
-        String username = customUserDetailsService.getCurrentUser(httpServletRequest);
-        Optional<User> user = userService.findByUsername(username);
-        User user1 = user.get();
-        String name = user1.getFullName();
-        return name;
-    }
+
 
     @GetMapping("/")
-    public String adminHome(Model model, HttpServletRequest httpServletRequest) {
-        AdminController adminController = new AdminController(adminService, customUserDetailsService, userService,userRepository,passwordEncoder);
-        String fullname = adminController.getfullname(httpServletRequest);
+    public String adminHome(Model model) {
+        User currentUser = customUserDetailsService.getCurrentUser();
+        String fullname = currentUser.getFullName();
         model.addAttribute("nameuser", fullname);
         return "admin/home";
     }
@@ -53,8 +47,8 @@ public class AdminController {
     @GetMapping("/profile")
     public String showProfile(Model model, HttpServletRequest httpServletRequest) {
         List<User> admins = adminService.findUserByRole("ROLE_ADMIN");
-        AdminController adminController = new AdminController(adminService, customUserDetailsService, userService,userRepository,passwordEncoder);
-        String fullname = adminController.getfullname(httpServletRequest);
+        User currentUser = customUserDetailsService.getCurrentUser();
+        String fullname = currentUser.getFullName();
         model.addAttribute("admin", admins);
         model.addAttribute("nameuser", fullname);
         return "admin/profile";
