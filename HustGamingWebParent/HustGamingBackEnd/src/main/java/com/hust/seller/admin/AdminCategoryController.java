@@ -2,7 +2,7 @@ package com.hust.seller.admin;
 
 import com.hust.seller.entity.Category;
 import com.hust.seller.entity.Product;
-import com.hust.seller.security.CatergoryRepository;
+import com.hust.seller.security.CategoryRepository;
 import com.hust.seller.security.CustomUserDetailsService;
 import com.hust.seller.security.UserRepository;
 import com.hust.seller.user.UserService;
@@ -21,20 +21,20 @@ public class AdminCategoryController {
     private UserService userService;
     private CustomUserDetailsService customUserDetailsService;
     private UserRepository userRepository;
-    private CatergoryRepository catergoryRepository;
+    private CategoryRepository categoryRepository;
     private PasswordEncoder passwordEncoder;
 
-    public AdminCategoryController(AdminService adminService, UserService userService, CustomUserDetailsService customUserDetailsService, UserRepository userRepository, PasswordEncoder passwordEncoder,CatergoryRepository catergoryRepository) {
+    public AdminCategoryController(AdminService adminService, UserService userService, CustomUserDetailsService customUserDetailsService, UserRepository userRepository, PasswordEncoder passwordEncoder,CategoryRepository categoryRepository) {
         this.adminService = adminService;
         this.userService = userService;
         this.customUserDetailsService = customUserDetailsService;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.catergoryRepository=catergoryRepository;
+        this.categoryRepository=categoryRepository;
     }
     @GetMapping("")
     public String showCategory(Model model){
-        List<Category> categories=catergoryRepository.findAll();
+        List<Category> categories=categoryRepository.findAll();
         model.addAttribute("categories",categories);
         return "admin/category";
     }
@@ -49,26 +49,26 @@ public class AdminCategoryController {
     public String createNewCategory(@ModelAttribute("category") Category category){
         Category category1=new Category();
         category1.setCategoryName(category.getCategoryName());
-        catergoryRepository.save(category1);
+        categoryRepository.save(category1);
         return "admin/success";
     }
     @GetMapping("/edit/{id}")
     public String showEditCategory(@PathVariable("id") int categoryId, Model model){
-        Category category=catergoryRepository.findByCategoryId(categoryId);
+        Category category=categoryRepository.findByCategoryId(categoryId);
         model.addAttribute("category",category);
         return "admin/editcategory";
     }
     @PostMapping("/edit/{id}")
     public String editCategory(@ModelAttribute("category") Category category,@PathVariable("id") int categoryId ){
-        Category category1=catergoryRepository.findByCategoryId(categoryId);
+        Category category1=categoryRepository.findByCategoryId(categoryId);
         category1.setCategoryName(category.getCategoryName());
-       catergoryRepository.save(category1);
+       categoryRepository.save(category1);
         return "admin/success";
     }
     @GetMapping("/delete/{id}")
     public String deleteCategory(@ModelAttribute("category") Category category,@PathVariable("id") int categoryId){
-        Category category1=catergoryRepository.findByCategoryId(categoryId);
-        catergoryRepository.delete(category1);
+        Category category1=categoryRepository.findByCategoryId(categoryId);
+        categoryRepository.delete(category1);
         return "admin/success";
     }
 

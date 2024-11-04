@@ -57,7 +57,6 @@ public class SellerController {
             userDTO.setFullName(user.getFullName());
             userDTO.setAddress(user.getAddress());
             userDTO.setPhoneNumber(user.getPhoneNumber());
-
             model.addAttribute("userDTO", userDTO);
             model.addAttribute("user", user); // Có thể dùng trong form nếu cần
             return "seller/edit"; // Tên file HTML chứa form chỉnh sửa

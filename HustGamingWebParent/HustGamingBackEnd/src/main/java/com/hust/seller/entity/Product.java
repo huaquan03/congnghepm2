@@ -11,7 +11,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name="ProductID")
     private int productID;
-    @Column(name="ProductName")
+    @Column(name="Product_name")
     private String productName;
     @Column(name="Description")
     private String description;
@@ -21,8 +21,6 @@ public class Product {
     private int quantity;
     @Column(name="CategoryID")
     private int categoryID;
-    @Column(name="SellerID")
-    private int sellerID;
     @Column(name="ShopID")
     private int shopID;
     @Column(name="Created_date")
@@ -31,13 +29,12 @@ public class Product {
     private boolean status;
 
 
-    public Product(String productName, String description, int price, int quantity, int categoryID, int sellerID, int shopID, LocalDateTime createdDate, boolean status) {
+    public Product(String productName, String description, int price, int quantity, int categoryID, int shopID, LocalDateTime createdDate, boolean status) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.categoryID = categoryID;
-        this.sellerID = sellerID;
         this.shopID = shopID;
         this.createdDate = createdDate;
         this.status = status;
@@ -90,14 +87,6 @@ public class Product {
 
     public void setCategoryID(int categoryID) {
         this.categoryID = categoryID;
-    }
-
-    public int getSellerID() {
-        return sellerID;
-    }
-
-    public void setSellerID(int sellerID) {
-        this.sellerID = sellerID;
     }
 
     public int getShopID() {

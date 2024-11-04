@@ -75,4 +75,5 @@ public class SellerShopController {
         shopRepository.save(shop);
         return "seller/success";
     }
+
 }
