@@ -1,0 +1,98 @@
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #cccccc73;
+    font-size: 1.2em;
+  }
+  .nav-bar {
+    height: 70px;
+    background-color: #1f1f3d;
+  }
+  a,
+  button {
+    text-decoration: none;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+  }
+  img {
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .search input {
+    height: 40px;
+    width: 350px;
+    border-radius: 20px;
+    float: right;
+    margin-right: 20px;
+    font-size: 1em;
+    padding: 10px 20px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #d5d3d3b7;
+    border: none;
+    color: black;
+    width: 500px;
+    background-color: #fff;
+  }
+  .nav-bar {
+    display: flex;
+    align-items: center;
+  }
+  .home-page a,
+  .abt-product a,
+  .logo,
+  .user i,
+  .abt-cart a,
+  .title a {
+    color: #fff;
+    font-weight: 500;
+  }
+  .user i,
+  .delete {
+    cursor: pointer;
+  }
+  .logo {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+  }
+  .home-page,
+  .abt-product {
+    width: 150px;
+  }
+  .search {
+    width: 850px;
+    display: flex;
+    justify-content: center;
+  }
+  .user {
+    margin-left: 30px;
+    height: 100%;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .user a {
+    color: black;
+    display: block;
+  }
+  .option {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    width: 120px;
+    height: 60px;
+    left: -100px;
+    top: 55px;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+  .option a {
+    height: 30px;
+    line-height: 30px;
+  }
+  .user:hover .option {
+    display: block;
+  }
