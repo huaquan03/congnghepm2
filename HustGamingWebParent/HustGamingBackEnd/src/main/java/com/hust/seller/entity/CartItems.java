@@ -3,11 +3,11 @@ package com.hust.seller.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="CartItems")
+@Table(name="Cart_Items")
 public class CartItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="CartItemID")
+    @Column(name="Cart_itemID")
     private int cartItemID;
     @Column(name="CartID")
     private int cartID;

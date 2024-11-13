@@ -23,13 +23,17 @@ public class Order {
     private String shippingAddress;
     @Column(name="Payment")
     private String payment;
+    @Column(name="ShopID")
+    private int shopID;
 
-    public Order(int buyerID, LocalDateTime orderDate, int totalAmount, String status,String payment) {
+
+    public Order(int buyerID, LocalDateTime orderDate, int totalAmount, String status,String payment,int shopID) {
         this.buyerID = buyerID;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.status = status;
         this.payment=payment;
+        this.shopID=shopID;
     }
     public Order(){}
     public int getBuyerID() {
@@ -86,5 +90,13 @@ public class Order {
 
     public void setPayment(String payment) {
         this.payment = payment;
+    }
+
+    public int getShopID() {
+        return shopID;
+    }
+
+    public void setShopID(int shopID) {
+        this.shopID = shopID;
     }
 }

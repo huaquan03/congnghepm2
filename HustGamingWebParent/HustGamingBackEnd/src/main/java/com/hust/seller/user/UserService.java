@@ -41,7 +41,7 @@ public class UserService {
         String token = UUID.randomUUID().toString();
         // Lưu token vào database
         user.setToken(token);
-        user.setToken_expire(LocalDateTime.now().plusMinutes(1));
+        user.setToken_expire(LocalDateTime.now().plusMinutes(5));
         userRepository.save(user);
         return token;
     }
