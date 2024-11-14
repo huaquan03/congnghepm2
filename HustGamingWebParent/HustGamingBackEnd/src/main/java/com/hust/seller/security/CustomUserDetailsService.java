@@ -1,7 +1,7 @@
 package com.hust.seller.security;
 import com.hust.seller.entity.Role;
 import com.hust.seller.entity.User;
-import jakarta.servlet.http.HttpServletRequest;
+import com.hust.seller.repository.UserRepository;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

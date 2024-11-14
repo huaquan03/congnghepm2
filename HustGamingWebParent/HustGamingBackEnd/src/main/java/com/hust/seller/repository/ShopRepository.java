@@ -1,4 +1,4 @@
-package com.hust.seller.security;
+package com.hust.seller.repository;
 
 import com.hust.seller.entity.Shop;
 import com.hust.seller.entity.User;

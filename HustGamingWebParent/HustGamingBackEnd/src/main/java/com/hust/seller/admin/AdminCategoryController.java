@@ -1,10 +1,9 @@
 package com.hust.seller.admin;
 
 import com.hust.seller.entity.Category;
-import com.hust.seller.entity.Product;
-import com.hust.seller.security.CategoryRepository;
+import com.hust.seller.repository.CategoryRepository;
 import com.hust.seller.security.CustomUserDetailsService;
-import com.hust.seller.security.UserRepository;
+import com.hust.seller.repository.UserRepository;
 import com.hust.seller.user.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/categories")

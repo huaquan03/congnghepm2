@@ -2,8 +2,8 @@ package com.hust.seller.user;
 
 import com.hust.seller.entity.Role;
 import com.hust.seller.entity.User;
-import com.hust.seller.security.RoleRepository;
-import com.hust.seller.security.UserRepository;
+import com.hust.seller.repository.RoleRepository;
+import com.hust.seller.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;

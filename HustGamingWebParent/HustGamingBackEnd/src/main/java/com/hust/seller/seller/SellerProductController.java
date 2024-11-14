@@ -1,8 +1,11 @@
 package com.hust.seller.seller;
 import com.hust.seller.entity.*;
 import com.hust.seller.product.ProductService;
+import com.hust.seller.repository.CategoryRepository;
+import com.hust.seller.repository.ImageProductRepository;
+import com.hust.seller.repository.ProductRepository;
+import com.hust.seller.repository.ShopRepository;
 import com.hust.seller.security.*;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.swing.event.ListDataEvent;
 import java.util.UUID;
 import java.io.File;
 import java.io.IOException;
@@ -114,7 +116,8 @@ public class SellerProductController {
 
     @PostMapping("/edit/{id}")
     @Transactional
-    public String updateProductImages(@PathVariable("id") int productId, @RequestParam("productImages") List<MultipartFile> productImages, RedirectAttributes redirectAttributes) {
+    public String updateProductImages(@PathVariable("id") int productId, @RequestParam("productImages") List<MultipartFile> productImages, RedirectAttributes redirectAttributes, @ModelAttribute("product") Product product) {
+
         String rootDir = System.getProperty("user.dir");
         String uploadDirPath = rootDir + "/static/images/product/" + productId + "/";
         File dir = new File(uploadDirPath);
@@ -130,7 +133,6 @@ public class SellerProductController {
         }
 // xoa toan bo anh cu trong database
         productService.deleteAllProductImages(productId);
-
         for (MultipartFile image : productImages) {
             if (!image.isEmpty()) {
                 String fileName = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
@@ -147,6 +149,7 @@ public class SellerProductController {
         }
 
         redirectAttributes.addFlashAttribute("message", "Product images updated successfully!");
+        productRepository.save(product);
         return "redirect:/seller/products/edit/" + productId;
     }
 }

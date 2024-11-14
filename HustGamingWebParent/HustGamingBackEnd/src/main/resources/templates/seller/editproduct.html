@@ -58,7 +58,7 @@
     <form th:action="@{/seller/products/edit/{id}(id=${product.getProductID})}" th:object="${product}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="productID">Product ID</label>
-            <input type="text" class="form-control" id="productID" th:field="*{productID}" placeholder="Product ID" disabled>
+            <input type="text" class="form-control" id="productID" th:field="*{productID}" placeholder="Product ID" readonly>
         </div>
 
         <div class="form-group">
@@ -90,7 +90,7 @@
 
         <div class="form-group">
             <label for="shopID">Shop ID</label>
-            <input type="text" class="form-control" id="shopID" th:field="*{shopID}" placeholder="Shop ID" disabled>
+            <input type="text" class="form-control" id="shopID" th:field="*{shopID}" placeholder="Shop ID" readonly>
         </div>
 
         <div class="form-group">

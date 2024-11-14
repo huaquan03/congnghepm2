@@ -1,4 +1,4 @@
-package com.hust.seller.security;
+package com.hust.seller.repository;
 
 import com.hust.seller.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

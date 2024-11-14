@@ -1,7 +1,7 @@
 package com.hust.seller.admin;
 
 import com.hust.seller.entity.User;
-import com.hust.seller.security.UserRepository;
+import com.hust.seller.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

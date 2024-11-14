@@ -1,11 +1,8 @@
 package com.hust.seller.admin;
 
 import com.hust.seller.entity.User;
-import com.hust.seller.security.CustomUserDetailsService;
-import com.hust.seller.security.UserRepository;
+import com.hust.seller.repository.UserRepository;
 import com.hust.seller.user.UserDTO;
-import com.hust.seller.user.UserService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
