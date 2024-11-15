@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .requestMatchers("/seller/**").hasAnyRole("SELLER")
                         .requestMatchers("/customer/**").hasAnyRole("CUSTOMER")
-                        .requestMatchers("/login", "/register", "/forgot-password","/","/error/**","reset-password").permitAll()
+                        .requestMatchers("/login", "/register", "/forgot-password","/","/error/**","reset-password","/check-login-status").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -60,7 +60,7 @@ public class SecurityConfig {
                 )
                 .rememberMe(rememberMe -> rememberMe
                         .key("uniqueAndSecret")
-                        .tokenValiditySeconds(7 * 24 * 60)  // Remember me token 1 ngày
+                        .tokenValiditySeconds(5*60)  // Remember me token 1 ngày
                 );
 
         return http.build();

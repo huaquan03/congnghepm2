@@ -1,7 +1,9 @@
 package com.hust.seller.user;
 
+import com.hust.seller.entity.Cart;
 import com.hust.seller.entity.Role;
 import com.hust.seller.entity.User;
+import com.hust.seller.repository.CartRepository;
 import com.hust.seller.repository.RoleRepository;
 import com.hust.seller.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
@@ -29,15 +31,17 @@ public class RegistrationController {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private UserService userService;
+    private CartRepository cartRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
     private AuthenticationSuccessHandler successHandler; // Xử lý chuyển hướng sau khi đăng nhập thành công
 
-    public RegistrationController(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder,UserService userService) {
+    public RegistrationController(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder,UserService userService,CartRepository cartRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.userService=userService;
+        this.cartRepository=cartRepository;
     }
 
     @GetMapping("/register")
@@ -76,6 +80,7 @@ public class RegistrationController {
 //                break;
             default:
                 role = roleRepository.findByRoleName("ROLE_CUSTOMER").orElseThrow();
+
                 break;
         }
         user.setRoles(Set.of(role)); // Gán vai trò cho người dùng
@@ -84,6 +89,13 @@ public class RegistrationController {
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userRepository.save(user);
+       if(role.getRoleName().equals("ROLE_CUSTOMER")){
+           int customerID= user.getUserID();
+           Cart cart=new Cart();
+           cart.setCustomerID(customerID);
+           cartRepository.save(cart);
+       }
+       System.out.println(role.getRoleName());
 
         return "redirect:/login?success"; // Sau khi đăng ký, điều hướng sang trang đăng nhập
     }

@@ -1,34 +1,172 @@
 <!DOCTYPE html>
-<html lang="vi">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang sản phẩm</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Navbar Example</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.navbar {
+    background: linear-gradient(to right, #ff512f, #ffad00);
+    color: white;
+}
+
+.navbar-top, .navbar-middle, .navbar-bottom {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+
+.navbar-top .left, .navbar-top .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-middle .logo, .navbar-middle .search-bar, .navbar-middle .cart-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px 0 0 4px;
+    border: none;
+}
+
+.search-bar button {
+    padding: 8px;
+    background: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.cart-icon a {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-bottom a {
+    padding: 5px 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.auth-links, .user-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-info .cart-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+    </style>
 </head>
-
 <body>
-<div class="container mt-5">
-    <h1 class="text-center">Danh sách sản phẩm</h1>
-
-    <!-- Nút đăng nhập và đăng ký -->
-    <div class="text-right mb-3">
-        <a th:href="@{/login}" class="btn btn-primary">Đăng nhập</a>
-        <a th:href="@{/register}" class="btn btn-secondary">Đăng ký</a>
-        <a th:href="@{/forgot-password}" class="btn btn-secondary">Quen mat khau</a>
+<!-- Navbar -->
+<div class="navbar">
+    <!-- Navbar Top -->
+    <div class="navbar-top">
+        <div class="left">
+            <a href="#">Kênh Người Bán</a>
+            <a href="#">Trở thành Người Bán Shopee</a>
+            <a href="#">Tải ứng dụng</a>
+            <span>Kết nối</span>
+            <a href="#"><i class="icon-facebook"></i></a>
+            <a href="#"><i class="icon-instagram"></i></a>
+        </div>
+        <div class="right">
+            <a href="#">Thông Báo</a>
+            <a href="#">Hỗ Trợ</a>
+            <a href="#">Tiếng Việt</a>
+            <!-- Hiển thị điều kiện đăng nhập -->
+            <span class="auth-links">
+                    <a href="#" id="register">Đăng Ký</a> |
+                    <a href="#" id="login">Đăng Nhập</a>
+                </span>
+            <span class="user-info" style="display: none;">
+                    <span class="username">qunha353</span>
+                    <a href="#" class="cart">Giỏ hàng <span class="cart-count">9</span></a>
+                </span>
+        </div>
     </div>
 
-    <div class="row" id="product-list">
-        <!-- Sản phẩm sẽ được thêm vào đây thông qua JavaScript -->
+    <!-- Navbar Middle (Logo, Search Bar, Cart) -->
+    <div class="navbar-middle">
+        <div class="logo">
+            <img src="shopee-logo.png" alt="Shopee">
+            <span>Shopee</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Shopee bao ship 0₫ - Đăng ký ngay!">
+            <button>🔍</button>
+        </div>
+        <div class="cart-icon">
+            <a href="#">🛒</a>
+        </div>
+    </div>
+
+    <!-- Navbar Bottom (Categories) -->
+    <div class="navbar-bottom">
+        <a href="#">Giày Nữ</a>
+        <a href="#">Giày Nam</a>
+        <a href="#">Túi Mũ</a>
+        <a href="#">Dép</a>
+        <a href="#">Gấu Bông</a>
+        <a href="#">Giày Cao Gót</a>
+        <a href="#">Tai Nghe Bluetooth</a>
+        <a href="#">Áo Khoác</a>
+        <!-- Thêm các danh mục khác tùy thích -->
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="/js/script.js"></script>
-</body>
+<script >
+    document.addEventListener('DOMContentLoaded', function() {
+    fetch('/check-login-status')  // Gọi API kiểm tra đăng nhập
+        .then(response => response.json())
+        .then(data => {
+            const isLoggedIn = data.isLoggedIn;  // API trả về một giá trị xác thực
 
+            const authLinks = document.querySelector('.auth-links');
+            const userInfo = document.querySelector('.user-info');
+
+            if (isLoggedIn) {
+                authLinks.style.display = 'none';
+                userInfo.style.display = 'flex';
+            } else {
+                authLinks.style.display = 'flex';
+                userInfo.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi khi kiểm tra trạng thái đăng nhập:', error);
+        });
+});
+
+</script>
+</body>
 </html>
