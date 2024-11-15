@@ -12,11 +12,11 @@ public class Cart {
     @Column(name="CartID")
     private int cartID;
     @Column(name="CustomerID")
-    private String customerID;
+    private int customerID;
     @Column(name="Created_at")
     private LocalDateTime created_at;
     public Cart(){};
-    public Cart(String customerID, LocalDateTime created_at) {
+    public Cart(int customerID, LocalDateTime created_at) {
         this.customerID = customerID;
         this.created_at = created_at;
     }
@@ -26,11 +26,11 @@ public class Cart {
     public void setCartID(int cartID) {
         this.cartID = cartID;
     }
-    public String getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(String customerID) {
+    public void setCustomerID(int customerID) {
         this.customerID = customerID;
     }
 

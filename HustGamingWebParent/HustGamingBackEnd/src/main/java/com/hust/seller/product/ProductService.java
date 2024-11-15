@@ -1,9 +1,14 @@
 package com.hust.seller.product;
 
 import com.hust.seller.entity.ImageProduct;
+import com.hust.seller.entity.Product;
 import com.hust.seller.repository.ImageProductRepository;
+import com.hust.seller.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -19,11 +24,23 @@ public class ProductService {
     public void saveProductImage(int productId, String image) {
         // Tạo đối tượng ProductImage
         ImageProduct imageProduct = new ImageProduct();
-      imageProduct.setProductID(productId);  // Liên kết với ID sản phẩm
+
+        imageProduct.setProductID(productId);  // Liên kết với ID sản phẩm
        imageProduct.setImage(image);    // Lưu đường dẫn của ảnh
 
         // Lưu ProductImage vào database
         imageProductRepository.save(imageProduct);
+
+    }
+    @Autowired
+    private ProductRepository productRepository;
+
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    public Product getProductByProductID(int productID) {
+        return productRepository.findByProductID(productID) ;
     }
 
 }
