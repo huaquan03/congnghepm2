@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ admin</title>
-    <!-- Bootstrap CSS -->
+    <title>Category</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .navbar-custom {
@@ -24,7 +23,6 @@
     </style>
 </head>
 <body>
-<!-- Thanh điều hướng -->
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/admin/}">Hust Gaming</a>
@@ -54,7 +52,7 @@
             </ul>
             <span class="navbar-text user-info">
                     <!-- Hiển thị tên người dùng và vai trò với Thymeleaf -->
-                    Welcome, <a th:text="${nameuser}" class="text-light"></a>
+                    Welcome
                 </span>
             <!-- Dropdown thông tin người dùng -->
             <ul class="navbar-nav">
@@ -71,17 +69,62 @@
         </div>
     </div>
 </nav>
+<div class="container mt-5">
+    <h2 class="text-center">Edit Your Product Information</h2>
+    <form th:action="@{/admin/products/edit/{id}(id=${product.getProductID})}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="productID">Product ID</label>
+            <input type="text" class="form-control" id="productID" th:field="*{productID}" placeholder="Product ID" readonly>
+        </div>
 
-<!-- Phần nội dung chính -->
-<div class="container mt-4">
-    <h1 class="text-center">HustGaming Control Panel</h1>
-    <p class="text-center">Welcome , <a th:text="${nameuser}" class="text-light"></a> [<span th:text="${userRole}">Admin</span>]</p>
-    <!-- Nội dung khác có thể được hiển thị ở đây -->
-    <img th:src="@{/images/product/12/c9d05a3f-1cf3-40a7-880b-e56fc15a02f2_anh3.png}">
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" id="productName" th:field="*{productName}" placeholder="Product Name" readonly>
+        </div>
 
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Description" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" th:field="*{price}" placeholder="Price" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="text" class="form-control" id="quantity" th:field="*{quantity}" placeholder="Quantity" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryID">Category</label>
+            <select name="categoryID" id="categoryID" class="form-control" th:field="*{categoryID}" required disabled>
+                <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="shopID">Shop ID</label>
+            <input type="text" class="form-control" id="shopID" th:field="*{shopID}" placeholder="Shop ID" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status" th:field="*{status}" placeholder="Status">
+        </div>
+
+        <div class="form-group">
+            <label for="existingImages">Existing Product Images</label>
+            <div id="existingImages" style="display: flex; gap: 10px; margin-top: 10px;">
+                <!-- Hiển thị ảnh hiện có với Thymeleaf -->
+                <img th:each="productImage: ${productImages}" th:src="@{${productImage.getImage}}"
+                     style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);" />
+            </div>
+        </div>
+        <div id="imagePreview" style="display: flex; gap: 10px; margin-top: 10px;"></div>
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    </form>
 </div>
-
-<!-- Bootstrap JS và các thư viện phụ thuộc -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

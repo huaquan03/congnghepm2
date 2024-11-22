@@ -1,6 +1,7 @@
 package com.hust.seller.product;
 
 import com.hust.seller.entity.ImageProduct;
+import com.hust.seller.entity.Product;
 import com.hust.seller.repository.ImageProductRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;

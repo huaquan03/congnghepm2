@@ -1,172 +1,456 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Example</title>
+    <title>Navbar Shopee</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+             margin: 0;
+             padding: 0;
+             font-family: Arial, sans-serif;
+         }
+
+         /* Navbar Top Section */
+         .navbar-top {
+             background-color: #ff5722; /* Màu nền cam */
+             color: white;
+             padding: 10px 0;
+             font-size: 14px;
+         }
+
+         .navbar-top .container {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+         }
+
+         .navbar-top a {
+             color: white;
+             text-decoration: none;
+             margin-right: 15px;
+         }
+
+         .navbar-top a:hover {
+             text-decoration: underline;
+         }
+
+         /* Main Navbar Section */
+         .navbar-main {
+             background-color: #ff5722; /* Màu nền cam */
+             padding: 15px 0;
+         }
+
+         .navbar-main .container {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+         }
+
+         .navbar-main .logo img {
+             height: 40px;
+         }
+
+         .navbar-main .search-bar {
+             flex: 1;
+             margin: 0 20px;
+             display: flex;
+             align-items: center;
+         }
+
+         .navbar-main .search-bar input {
+             flex: 1;
+             padding: 10px;
+             border: none;
+             border-radius: 5px 0 0 5px;
+             font-size: 14px;
+         }
+
+         .navbar-main .search-bar button {
+             padding: 10px 20px;
+             background-color: white;
+             color: #ff5722;
+             border: none;
+             border-radius: 0 5px 5px 0;
+             cursor: pointer;
+         }
+
+         .navbar-main .cart-icon {
+             display: flex;
+             align-items: center;
+             color: white;
+             font-size: 18px;
+         }
+
+         .navbar-main .cart-icon .cart-count {
+             background-color: white;
+             color: #ff5722;
+             border-radius: 50%;
+             padding: 5px 10px;
+             font-size: 14px;
+             margin-left: 5px;
+         }
+
+         /* Submenu Below Search Bar */
+         .navbar-submenu {
+             background-color: #ff814c;
+             padding: 5px 0;
+             font-size: 14px;
+         }
+
+         .navbar-submenu a {
+             color: white;
+             text-decoration: none;
+             margin-right: 15px;
+         }
+
+         .navbar-submenu a:hover {
+             text-decoration: underline;
+         }
+        .banner-section {
+            background-color: #ffffff;
+            padding: 20px 0;
+        }
+
+        .banner-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner-container img {
+            width: 100%;
+            max-width: 33%; /* Ba cột ngang chia đều */
+            border-radius: 5px;
+        }
+
+        /* Voucher Section */
+        .voucher-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .voucher-item {
+            display: inline-block;
+            width: 120px;
+            margin: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .voucher-item img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .voucher-item span {
+            display: block;
+            margin-top: 5px;
+        }
+        .category-card {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .category-card img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+        .category-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .pagination a {
+            text-decoration: none;
+            padding: 8px 12px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .product-card {
+    border: 1px solid #eaeaea;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-card .card-title {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.2;
+    height: 40px; /* Đảm bảo chiều cao cố định */
+    overflow: hidden; /* Giới hạn text */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product-card .card-text {
+    font-size: 14px;
+}
+
+.product-card .card-footer {
+    background-color: #f9f9f9;
+    text-align: center;
+}
+<!--        test-->
 .navbar {
-    background: linear-gradient(to right, #ff512f, #ffad00);
-    color: white;
-}
+            display: flex; /* Căn ngang */
+            justify-content: flex-end; /* Đẩy toàn bộ mục sang bên phải */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            background-color: #ff6600; /* Màu nền */
+            padding: 10px 20px;
+            gap: 15px; /* Khoảng cách giữa các mục */
+        }
 
-.navbar-top, .navbar-middle, .navbar-bottom {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    justify-content: space-between;
-}
+        .navbar a, .navbar .dropdown {
+            text-decoration: none;
+            color: white; /* Màu chữ */
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-.navbar-top .left, .navbar-top .right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .auth-links {
+            margin-left: auto; /* Đẩy mục đăng nhập/đăng ký hoặc dropdown ra cuối */
+        }
 
-.navbar-middle .logo, .navbar-middle .search-bar, .navbar-middle .cart-icon {
-    display: inline-flex;
-    align-items: center;
-}
+        .dropdown-menu {
+            position: absolute;
+            top: 100%; /* Hiển thị dropdown ngay dưới nút */
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none; /* Ẩn menu thả xuống mặc định */
+        }
 
-.logo img {
-    height: 40px;
-    margin-right: 10px;
-}
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Hiển thị menu khi hover */
+        }
 
-.search-bar {
-    flex-grow: 1;
-    display: flex;
-}
+        .dropdown-menu a {
+            color: #333; /* Màu chữ của menu */
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+        }
 
-.search-bar input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px 0 0 4px;
-    border: none;
-}
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+        }
+<!--       test -->
+          .category-wrapper {
+            position: relative; /* Để đặt nút điều hướng */
+            width: 80%; /* Giới hạn chiều rộng */
+            margin: auto; /* Căn giữa trang */
+            overflow: hidden; /* Ẩn nội dung thừa */
+            background: #f8f8f8;
+            padding: 20px 0;
+            border-radius: 10px; /* Bo tròn góc */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
+        }
 
-.search-bar button {
-    padding: 8px;
-    background: white;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
+        .category-container {
+            display: flex; /* Hiển thị các mục nằm ngang */
+            transition: transform 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
+        }
 
-.cart-icon a {
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
-}
+        .category-item {
+            flex: 0 0 20%; /* Mỗi mục chiếm 20% chiều rộng container */
+            box-sizing: border-box;
+            text-align: center;
+            padding: 10px;
+        }
 
-.navbar-bottom a {
-    padding: 5px 15px;
-    color: white;
-    text-decoration: none;
-}
+        .category-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
 
-.auth-links, .user-info {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
+        .category-item p {
+            font-size: 14px;
+            margin: 0;
+            font-weight: bold;
+        }
 
-.user-info .cart-count {
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 0 5px;
-    font-size: 12px;
-}
+        /* Nút điều hướng */
+        .btn-slide {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        .btn-slide:hover {
+            background-color: #eaeaea;
+        }
+
+        .btn-prev {
+            left: 10px; /* Sát cạnh trái container */
+        }
+
+        .btn-next {
+            right: 10px; /* Sát cạnh phải container */
+        }
+
+        /* Icon mũi tên */
+        .btn-slide span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-<!-- Navbar -->
-<div class="navbar">
-    <!-- Navbar Top -->
-    <div class="navbar-top">
-        <div class="left">
+<div class="navbar-top">
+    <div class="container">
+        <div>
             <a href="#">Kênh Người Bán</a>
-            <a href="#">Trở thành Người Bán Shopee</a>
             <a href="#">Tải ứng dụng</a>
-            <span>Kết nối</span>
-            <a href="#"><i class="icon-facebook"></i></a>
-            <a href="#"><i class="icon-instagram"></i></a>
+            <span>Kết nối:</span>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
         </div>
-        <div class="right">
+        <div class="navbar">
             <a href="#">Thông Báo</a>
             <a href="#">Hỗ Trợ</a>
             <a href="#">Tiếng Việt</a>
-            <!-- Hiển thị điều kiện đăng nhập -->
-            <span class="auth-links">
-                    <a href="#" id="register">Đăng Ký</a> |
-                    <a href="#" id="login">Đăng Nhập</a>
-                </span>
-            <span class="user-info" style="display: none;">
-                    <span class="username">qunha353</span>
-                    <a href="#" class="cart">Giỏ hàng <span class="cart-count">9</span></a>
-                </span>
+
+            <span class="auth-links" th:unless="${user}">
+            <a th:href="@{/register}" id="register">Đăng Ký</a> |
+            <a th:href="@{/login}" id="login">Đăng Nhập</a>
+        </span>
+
+            <div class="dropdown auth-links" th:if="${user}">
+                <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${user.getFullName}">
+                    qunha353
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item text-dark" th:href="@{/profile}">Tài Khoản Của Tôi</a></li>
+                    <li><a class="dropdown-item text-dark" th:href="@{/orders}">Đơn Mua</a></li>
+                    <li><a class="dropdown-item text-danger" th:href="@{/logout}">Đăng Xuất</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-
-    <!-- Navbar Middle (Logo, Search Bar, Cart) -->
-    <div class="navbar-middle">
-        <div class="logo">
-            <img src="shopee-logo.png" alt="Shopee">
-            <span>Shopee</span>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Shopee bao ship 0₫ - Đăng ký ngay!">
-            <button>🔍</button>
-        </div>
-        <div class="cart-icon">
-            <a href="#">🛒</a>
+</div>
+    <!-- Main Navbar -->
+    <div class="navbar-main">
+        <div class="container">
+            <div class="logo">
+                <img src="shopee-logo.png" alt="Shopee Logo">
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
+                <button>🔍</button>
+            </div>
+            <div class="cart-icon">
+                <a th:href="@{/cart}">
+                🛒
+                </a>
+                <div class="cart-count"></div>
+            </div>
         </div>
     </div>
-
-    <!-- Navbar Bottom (Categories) -->
-    <div class="navbar-bottom">
-        <a href="#">Giày Nữ</a>
-        <a href="#">Giày Nam</a>
-        <a href="#">Túi Mũ</a>
-        <a href="#">Dép</a>
-        <a href="#">Gấu Bông</a>
-        <a href="#">Giày Cao Gót</a>
-        <a href="#">Tai Nghe Bluetooth</a>
-        <a href="#">Áo Khoác</a>
-        <!-- Thêm các danh mục khác tùy thích -->
+<!-- Banner Section -->
+<div class="banner-section">
+    <div class="container">
+        <div class="banner-container">
+            <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kj655hr3qy09_xxhdpi" alt="Banner 1">
+            <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kuu5oqoj3u1f_xhdpi" alt="Banner 2">
+            <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kp3wniqz2ed7_xhdpi" alt="Banner 3">
+        </div>
     </div>
 </div>
 
-<script >
-    document.addEventListener('DOMContentLoaded', function() {
-    fetch('/check-login-status')  // Gọi API kiểm tra đăng nhập
-        .then(response => response.json())
-        .then(data => {
-            const isLoggedIn = data.isLoggedIn;  // API trả về một giá trị xác thực
+<!-- Voucher Section -->
+<div class="voucher-section">
+    <div class="container">
+        <div class="voucher-item">
+            <img src="voucher1.png" alt="Voucher 1">
+            <span>Voucher Giảm Đến 1 Triệu</span>
+        </div>
+        <div class="voucher-item">
+            <img src="voucher2.png" alt="Voucher 2">
+            <span>Miễn Phí Ship - Có Shopee</span>
+        </div>
+        <div class="voucher-item">
+            <img src="voucher3.png" alt="Voucher 3">
+            <span>Mua Nhiều Giảm Sâu</span>
+        </div>
+        <div class="voucher-item">
+            <img src="voucher4.png" alt="Voucher 4">
+            <span>Shopee Style Voucher 30%</span>
+        </div>
+        <div class="voucher-item">
+            <img src="voucher5.png" alt="Voucher 5">
+            <span>Hàng Quốc Tế Ưu Đãi</span>
+        </div>
+        <div class="voucher-item">
+            <img src="voucher6.png" alt="Voucher 6">
+            <span>Nạp Thẻ, Dịch Vụ & Vé Phim</span>
+        </div>
+    </div>
+</div>
 
-            const authLinks = document.querySelector('.auth-links');
-            const userInfo = document.querySelector('.user-info');
+<div class="container my-5">
+    <h2 class="mb-4">DANH MỤC</h2>
+    <div class="row">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2" th:each="category : ${categories}">
+            <div class="category-card">
+<!--                <img th:src="@{${category.imageUrl}}" th:alt="${category.name}">-->
+                <a class="mt-2" th:text="${category.categoryName}"th:href="@{/{name}(name=${category.categoryName})}"></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-            if (isLoggedIn) {
-                authLinks.style.display = 'none';
-                userInfo.style.display = 'flex';
-            } else {
-                authLinks.style.display = 'flex';
-                userInfo.style.display = 'none';
-            }
-        })
-        .catch(error => {
-            console.error('Lỗi khi kiểm tra trạng thái đăng nhập:', error);
-        });
-});
 
-</script>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Lặp qua danh sách sản phẩm -->
+        <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${products}">
+            <div class="card product-card">
+                <img th:src="@{${product.image}}" class="card-img-top" alt="product-image">
+                <div class="card-body">
+                    <h6 class="card-title" th:text="${product.productName}"></h6>
+                    <p class="card-text text-danger" th:text="'₫' + ${product.price}"></p>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/products/{id}(id=${product.productID})}"><button class="btn btn-sm btn-primary">Mua ngay</button></a>
+                </div>
+            </div>
+            <a class="opacity-0 group-hover:opacity-100 duration-100 absolute z-[-1] top-[calc(100%-6px)] pt-[6px] -left-px  box-content w-full h-[1.875rem] bg-shopee-primary text-white text-center text-sm/[1.875rem] border border-shopee-primary rounded-bl-sm rounded-br-sm " th:href="@{/tim san pham tuong tu}">Tìm sản phẩm tương tự</a>
+        </div>
+    </div>
+</div>
+
+<!-- Link Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

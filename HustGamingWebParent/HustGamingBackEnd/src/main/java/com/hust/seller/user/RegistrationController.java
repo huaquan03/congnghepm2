@@ -6,14 +6,17 @@ import com.hust.seller.entity.User;
 import com.hust.seller.repository.CartRepository;
 import com.hust.seller.repository.RoleRepository;
 import com.hust.seller.repository.UserRepository;
+import com.hust.seller.security.CustomUserDetailsService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Controller;
@@ -32,6 +35,7 @@ public class RegistrationController {
     private final PasswordEncoder passwordEncoder;
     private UserService userService;
     private CartRepository cartRepository;
+    CustomUserDetailsService customUserDetailsService;
     @Autowired
     private AuthenticationManager authenticationManager;
     private AuthenticationSuccessHandler successHandler; // Xử lý chuyển hướng sau khi đăng nhập thành công
@@ -42,6 +46,7 @@ public class RegistrationController {
         this.passwordEncoder = passwordEncoder;
         this.userService=userService;
         this.cartRepository=cartRepository;
+
     }
 
     @GetMapping("/register")
@@ -100,22 +105,31 @@ public class RegistrationController {
         return "redirect:/login?success"; // Sau khi đăng ký, điều hướng sang trang đăng nhập
     }
     @PostMapping("/login")
-    public String loginPost(@RequestParam String username, @RequestParam String password, Model model) {
+    public String loginPost(
+            @RequestParam String username,
+            @RequestParam String password,
+            Model model
+           ) {
         try {
             // Tạo đối tượng xác thực
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(username, password);
+
             // Xác thực người dùng
             Authentication authentication = authenticationManager.authenticate(authenticationToken);
+
             // Lưu thông tin xác thực vào SecurityContext
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            // Chuyển hướng theo vai trò của người dùng
+            // Điều hướng theo vai trò của người dùng
             successHandler.onAuthenticationSuccess(null, null, authentication);
-            return "index";
+            return "redirect:/home";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid username or password.");
-            return "login"; // Nếu xác thực thất bại, trở lại trang đăng nhập
+            return "login";
         }
     }
+
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         // Lấy thông tin xác thực từ SecurityContext
@@ -188,6 +202,7 @@ public class RegistrationController {
         model.addAttribute("message", "Đặt lại mật khẩu thành công.");
         return "login"; // Chuyển hướng về trang đăng nhập sau khi đặt lại mật khẩu thành công
     }
+
 
 }
 

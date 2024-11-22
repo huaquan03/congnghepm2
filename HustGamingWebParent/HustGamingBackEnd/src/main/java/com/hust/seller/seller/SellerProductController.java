@@ -84,6 +84,7 @@ public class SellerProductController {
             uploadPath.mkdirs();
         }
         try {
+            int i=1;
             for (MultipartFile file : files) {
                 if (!file.isEmpty()) {
                     String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
@@ -93,6 +94,10 @@ public class SellerProductController {
                     imageProduct.setProductID(productId);
                     imageProduct.setImage("/images/product/" + productId + "/" + fileName);
                     imageProductRepository.save(imageProduct);
+                    if(i==1){
+                        product.setImage("/images/product/" + productId + "/" + fileName);
+                        i++;
+                    }
                 }
             }
             return "seller/success";
@@ -133,6 +138,7 @@ public class SellerProductController {
         }
 // xoa toan bo anh cu trong database
         productService.deleteAllProductImages(productId);
+        int i=1;
         for (MultipartFile image : productImages) {
             if (!image.isEmpty()) {
                 String fileName = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
@@ -140,6 +146,10 @@ public class SellerProductController {
                 try {
                     image.transferTo(filePath.toFile());
                     productService.saveProductImage(productId, "/images/product/" + productId + "/" + fileName);
+                    if(i==1){
+                        product.setImage("/images/product/" + productId + "/" + fileName);
+                        i++;
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     redirectAttributes.addFlashAttribute("message", "Failed to upload image: " + fileName);

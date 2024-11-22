@@ -1,48 +1,35 @@
-package com.hust.seller.entity;
+package com.hust.seller.product;
 
-import jakarta.persistence.*;
+import com.hust.seller.entity.ImageProduct;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name="Products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name="ProductID")
+public class ProductDTO {
+
     private int productID;
-    @Column(name="Product_name")
+
     private String productName;
-    @Column(name="Description")
+
     private String description;
-    @Column(name="Price")
+
     private int price;
-    @Column(name="Quantity")
+
     private int quantity;
-    @Column(name="CategoryID")
+
     private int categoryID;
-    @Column(name="ShopID")
+
     private int shopID;
-    @Column(name="Created_date")
+
     private LocalDateTime createdDate;
-    @Column(name="Status")
+
     private boolean status;
-    @Column(name="Image")
-    private String image;
 
-
-    public Product(String productName, String description, int price, int quantity, int categoryID, int shopID, LocalDateTime createdDate, boolean status) {
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
-        this.quantity = quantity;
-        this.categoryID = categoryID;
-        this.shopID = shopID;
-        this.createdDate = createdDate;
-        this.status = status;
-    }
-    public Product(){}
+    List<ImageProduct> imageProductList;
 
     public int getProductID() {
         return productID;
@@ -116,12 +103,11 @@ public class Product {
         this.status = status;
     }
 
-    public String getImage() {
-        return image;
+    public List<ImageProduct> getImageProductList() {
+        return imageProductList;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageProductList(List<ImageProduct> imageProductList) {
+        this.imageProductList = imageProductList;
     }
-
 }
