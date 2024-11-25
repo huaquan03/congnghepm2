@@ -358,24 +358,24 @@
         </div>
     </div>
 </div>
-    <!-- Main Navbar -->
-    <div class="navbar-main">
-        <div class="container">
-            <div class="logo">
-                <img src="shopee-logo.png" alt="Shopee Logo">
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
-                <button>🔍</button>
-            </div>
-            <div class="cart-icon">
-                <a th:href="@{/cart}">
+<!-- Main Navbar -->
+<div class="navbar-main">
+    <div class="container">
+        <div class="logo">
+            <img src="shopee-logo.png" alt="Shopee Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
+            <button>🔍</button>
+        </div>
+        <div class="cart-icon">
+            <a th:href="@{/cart}">
                 🛒
-                </a>
-                <div class="cart-count"></div>
-            </div>
+            </a>
+            <div class="cart-count"></div>
         </div>
     </div>
+</div>
 <!-- Banner Section -->
 <div class="banner-section">
     <div class="container">
@@ -422,7 +422,7 @@
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-lg-2" th:each="category : ${categories}">
             <div class="category-card">
-<!--                <img th:src="@{${category.imageUrl}}" th:alt="${category.name}">-->
+                <!--                <img th:src="@{${category.imageUrl}}" th:alt="${category.name}">-->
                 <a class="mt-2" th:text="${category.categoryName}"th:href="@{/{name}(name=${category.categoryName})}"></a>
             </div>
         </div>
