@@ -121,7 +121,7 @@ public class SellerProductController {
         String rootDir = System.getProperty("user.dir");
         String uploadDirPath = rootDir + "/static/images/product/" + productId + "/";
         File dir = new File(uploadDirPath);
-//kiem tra xem co thu mux hay chua, neu khong coi thi tao moi thu muc de luu tru anh
+//kiem tra xem co thu muc hay chua, neu khong coi thi tao moi thu muc de luu tru anh
         if (!dir.exists()) dir.mkdirs();
 // xoa toan bo anh cu
         if (dir.isDirectory() && dir.listFiles() != null) {

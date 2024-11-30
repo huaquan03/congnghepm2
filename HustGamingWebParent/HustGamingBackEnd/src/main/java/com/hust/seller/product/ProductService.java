@@ -24,9 +24,14 @@ public class ProductService {
     public void saveProductImage(int productId, String image) {
         // Tạo đối tượng ProductImage
         ImageProduct imageProduct = new ImageProduct();
+<<<<<<< Updated upstream
 
         imageProduct.setProductID(productId);  // Liên kết với ID sản phẩm
        imageProduct.setImage(image);    // Lưu đường dẫn của ảnh
+=======
+        imageProduct.setProductID(productId);  // Liên kết với ID sản phẩm
+        imageProduct.setImage(image);    // Lưu đường dẫn của ảnh
+>>>>>>> Stashed changes
 
         // Lưu ProductImage vào database
         imageProductRepository.save(imageProduct);

@@ -9,4 +9,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByShopID(int shopID);
     Product findByProductID(int productID);
+
 }
