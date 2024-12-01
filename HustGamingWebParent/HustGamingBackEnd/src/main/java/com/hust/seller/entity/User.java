@@ -5,6 +5,8 @@ import org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy;
 import org.springframework.data.repository.cdi.Eager;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,7 +48,15 @@ public class User {
         this.phone_number = phone_number;
     }
     public User(){};
-
+    public List<String> getAddressDetail() {
+        List<String> addressDetail = new ArrayList<>();
+        String address = this.address;
+        String[] rs = address.split("-");
+        for (String ad : rs) {
+            addressDetail.add(ad); // Thay addLast bằng add
+        }
+        return addressDetail;
+    }
     public int getUserID() {
         return this.userID;
     }
