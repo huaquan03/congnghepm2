@@ -1,21 +1,17 @@
 package com.hust.seller.customer;
 
-<<<<<<< Updated upstream
 import com.hust.seller.entity.User;
 import com.hust.seller.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-=======
 import com.hust.seller.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> Stashed changes
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
     @Autowired
-<<<<<<< Updated upstream
     private UserRepository userRepository;
 
     public Integer getCurrentCustomerID() {
@@ -40,10 +36,8 @@ public class CustomerService {
             return authentication.getName();
         }
         return null;
-=======
-    private UserRepository userRepository ;
+    }
     public void updateImageByUserID(int id,String image) {
         userRepository.updateImageByUserID(id,image);
->>>>>>> Stashed changes
     }
 }
