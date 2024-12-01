@@ -14,12 +14,12 @@ public class CartItems {
     @Column(name="ProductID")
     private int productID;
     @Column(name="QuantityID")
-    private int quantityID;
+    private int quantity;
 
-    public CartItems(int cartID, int productID, int quantityID) {
+    public CartItems(int cartID, int productID, int quantity) {
         this.cartID = cartID;
         this.productID = productID;
-        this.quantityID = quantityID;
+        this.quantity = quantity;
     }
     public CartItems(){}
 
@@ -47,11 +47,11 @@ public class CartItems {
         this.productID = productID;
     }
 
-    public int getQuantityID() {
-        return quantityID;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuantityID(int quantityID) {
-        this.quantityID = quantityID;
+    public void setQuantity(int quantityID) {
+        this.quantity = quantityID;
     }
 }

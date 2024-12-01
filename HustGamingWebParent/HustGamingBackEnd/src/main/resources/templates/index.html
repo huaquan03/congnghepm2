@@ -11,6 +11,7 @@
              margin: 0;
              padding: 0;
              font-family: Arial, sans-serif;
+             background-color:#f5f5f5;
          }
 
          /* Navbar Top Section */
@@ -26,7 +27,6 @@
              justify-content: space-between;
              align-items: center;
          }
-
          .navbar-top a {
              color: white;
              text-decoration: none;
@@ -41,6 +41,7 @@
          .navbar-main {
              background-color: #ff5722; /* Màu nền cam */
              padding: 15px 0;
+
          }
 
          .navbar-main .container {
@@ -109,8 +110,55 @@
          .navbar-submenu a:hover {
              text-decoration: underline;
          }
+         <!--        test-->
+.navbar {
+            display: flex; /* Căn ngang */
+            justify-content: flex-end; /* Đẩy toàn bộ mục sang bên phải */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            background-color: #ff6600; /* Màu nền */
+            padding: 10px 20px;
+            gap: 15px; /* Khoảng cách giữa các mục */
+        }
+
+        .navbar a, .navbar .dropdown {
+            text-decoration: none;
+            color: white; /* Màu chữ */
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .auth-links {
+            margin-left: auto; /* Đẩy mục đăng nhập/đăng ký hoặc dropdown ra cuối */
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%; /* Hiển thị dropdown ngay dưới nút */
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none; /* Ẩn menu thả xuống mặc định */
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Hiển thị menu khi hover */
+        }
+
+        .dropdown-menu a {
+            color: #333; /* Màu chữ của menu */
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+        }
+<!--       test -->
+<!--         navbar-->
         .banner-section {
-            background-color: #ffffff;
+            background-color:#ffffff;
             padding: 20px 0;
         }
 
@@ -131,6 +179,7 @@
         .voucher-section {
             margin-top: 20px;
             text-align: center;
+
         }
 
         .voucher-item {
@@ -205,52 +254,7 @@
     background-color: #f9f9f9;
     text-align: center;
 }
-<!--        test-->
-.navbar {
-            display: flex; /* Căn ngang */
-            justify-content: flex-end; /* Đẩy toàn bộ mục sang bên phải */
-            align-items: center; /* Căn giữa theo chiều dọc */
-            background-color: #ff6600; /* Màu nền */
-            padding: 10px 20px;
-            gap: 15px; /* Khoảng cách giữa các mục */
-        }
 
-        .navbar a, .navbar .dropdown {
-            text-decoration: none;
-            color: white; /* Màu chữ */
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .auth-links {
-            margin-left: auto; /* Đẩy mục đăng nhập/đăng ký hoặc dropdown ra cuối */
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%; /* Hiển thị dropdown ngay dưới nút */
-            right: 0;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            display: none; /* Ẩn menu thả xuống mặc định */
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block; /* Hiển thị menu khi hover */
-        }
-
-        .dropdown-menu a {
-            color: #333; /* Màu chữ của menu */
-            padding: 10px;
-            display: block;
-            text-decoration: none;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #f5f5f5;
-        }
-<!--       test -->
           .category-wrapper {
             position: relative; /* Để đặt nút điều hướng */
             width: 80%; /* Giới hạn chiều rộng */
@@ -350,8 +354,8 @@
                     qunha353
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item text-dark" th:href="@{/profile}">Tài Khoản Của Tôi</a></li>
-                    <li><a class="dropdown-item text-dark" th:href="@{/orders}">Đơn Mua</a></li>
+                    <li><a class="dropdown-item text-dark" th:href="@{/customer/profile}">Tài Khoản Của Tôi</a></li>
+                    <li><a class="dropdown-item text-dark" th:href="@{/customer/orders}">Đơn Mua</a></li>
                     <li><a class="dropdown-item text-danger" th:href="@{/logout}">Đăng Xuất</a></li>
                 </ul>
             </div>
@@ -369,7 +373,7 @@
             <button>🔍</button>
         </div>
         <div class="cart-icon">
-            <a th:href="@{/cart}">
+            <a th:href="@{/customer/cart}">
                 🛒
             </a>
             <div class="cart-count"></div>
@@ -378,8 +382,8 @@
 </div>
 <!-- Banner Section -->
 <div class="banner-section">
-    <div class="container">
-        <div class="banner-container">
+    <div class="container" style="padding:10px 10px;">
+        <div class="banner-container" >
             <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kj655hr3qy09_xxhdpi" alt="Banner 1">
             <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kuu5oqoj3u1f_xhdpi" alt="Banner 2">
             <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kp3wniqz2ed7_xhdpi" alt="Banner 3">
@@ -389,7 +393,7 @@
 
 <!-- Voucher Section -->
 <div class="voucher-section">
-    <div class="container">
+    <div class="container" style="background-color:#ffffff;">
         <div class="voucher-item">
             <img src="voucher1.png" alt="Voucher 1">
             <span>Voucher Giảm Đến 1 Triệu</span>
@@ -417,7 +421,7 @@
     </div>
 </div>
 
-<div class="container my-5">
+<div class="container my-5" style="background-color:#ffffff">
     <h2 class="mb-4">DANH MỤC</h2>
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-lg-2" th:each="category : ${categories}">
@@ -429,9 +433,7 @@
     </div>
 </div>
 
-
-
-<div class="container mt-4">
+<div class="container mt-4" >
     <div class="row">
         <!-- Lặp qua danh sách sản phẩm -->
         <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${products}">

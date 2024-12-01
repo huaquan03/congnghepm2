@@ -10,4 +10,6 @@ public interface ShopRepository extends JpaRepository<Shop, Integer> {
     Optional<Shop> findBySellerID(int sellerID);
 
 Optional<Shop> findByShopID(int shopID);
+
+
 }
