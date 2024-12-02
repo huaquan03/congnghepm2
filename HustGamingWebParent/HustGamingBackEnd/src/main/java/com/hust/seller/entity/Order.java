@@ -9,33 +9,53 @@ import java.time.LocalDateTime;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="OrderID")
+    @Column(name = "OrderID")
     private int orderID;
-    @Column(name="BuyerID")
+    @Column(name = "BuyerID")
     private int buyerID;
-    @Column(name="Order_date")
+    @Column(name = "Order_date")
     private LocalDateTime orderDate;
-    @Column(name="Total_amount")
+    @Column(name = "Total_amount")
     private int totalAmount;
-    @Column(name="Status")
+    @Column(name = "Status")
     private String status;
-    @Column(name="Shipping_address")
+    @Column(name = "Shipping_address")
     private String shippingAddress;
-    @Column(name="Payment")
+    @Column(name = "Payment")
     private String payment;
-    @Column(name="ShopID")
+    @Column(name = "ShopID")
     private int shopID;
+    @Column(name = "ProductID")
+    private int productID;
+    @Column(name = "Quantity")
+    private int quantity;
+    @Column(name = "Price")
+    private int price;
+    public Order(){};
 
 
-    public Order(int buyerID, LocalDateTime orderDate, int totalAmount, String status,String payment,int shopID) {
+    public Order(int orderID, int buyerID, LocalDateTime orderDate, int totalAmount, String status, String shippingAddress, String payment, int shopID, int productID, int quantity, int price) {
+        this.orderID = orderID;
         this.buyerID = buyerID;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.status = status;
-        this.payment=payment;
-        this.shopID=shopID;
+        this.shippingAddress = shippingAddress;
+        this.payment = payment;
+        this.shopID = shopID;
+        this.productID = productID;
+        this.quantity = quantity;
+        this.price = price;
     }
-    public Order(){}
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
     public int getBuyerID() {
         return buyerID;
     }
@@ -76,14 +96,6 @@ public class Order {
         this.shippingAddress = shippingAddress;
     }
 
-    public int getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
-    }
-
     public String getPayment() {
         return payment;
     }
@@ -98,5 +110,29 @@ public class Order {
 
     public void setShopID(int shopID) {
         this.shopID = shopID;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

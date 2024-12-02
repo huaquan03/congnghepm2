@@ -41,6 +41,7 @@ public class CustomerCartController {
         List<CartItems> cartItemsList=cartItemRepository.findByCartID(cart.getCartID());
         List<ProductDTO> productDTOS=new ArrayList<>();
         int totalmoney=0;
+        int totalproduct=0;
         for(CartItems item:cartItemsList) {
             ProductDTO productDTO = new ProductDTO();
             Product product=productRepository.findByProductID(item.getProductID());
@@ -53,9 +54,11 @@ public class CustomerCartController {
             productDTO.setTotal(product.getPrice()* item.getQuantity());
             productDTOS.add(productDTO);
             totalmoney = totalmoney + productDTO.getTotal();// tong gia tri gio hang
+            totalproduct+=1;
         }
         model.addAttribute("productDTOs",productDTOS);
         model.addAttribute("totalmoney",totalmoney);
+        model.addAttribute("totalproduct",totalproduct);
         model.addAttribute("user",user);
         return "cart";
     }
@@ -108,6 +111,7 @@ public class CustomerCartController {
        String referer = request.getHeader("Referer");
          return "redirect:" + referer;
      }
+
 
 
 
