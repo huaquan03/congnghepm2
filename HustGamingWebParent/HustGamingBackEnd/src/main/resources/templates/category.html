@@ -161,7 +161,6 @@
     text-align: center;
     line-height: 1.4;
 }
-
         .category-card img {
     transition: transform 0.3s ease-in-out;
 }
@@ -371,7 +370,7 @@
 <div class="navbar-main">
     <div class="container">
         <div class="logo">
-            <img src="https://freelogopng.com/images/all_img/1656180674shopee-logo-transparent.png" style="width: 70px; height:75px;" alt="Shopee Logo">
+            <img src="shopee-logo.png" alt="Shopee Logo">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
@@ -426,34 +425,11 @@
     </div>
 </div>
 
-<div class="container my-5">
-    <h2 class="mb-4 text-center">DANH MỤC</h2>
-    <div class="row">
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2" th:each="category : ${categories}">
-            <div class="category-card text-center">
-                <!-- Hình ảnh danh mục -->
-                <img th:src="@{/images/categories/{name}.png(name=${category.categoryName})}"
-                     th:alt="${category.categoryName}"
-                     class="img-fluid rounded-circle border"
-                     style="width: 100px; height: 100px; object-fit: cover;">
-
-                <!-- Tên danh mục -->
-                <a th:text="#{${category.categoryName}}"
-                   th:href="@{/categories/{name}(name=${category.categoryName})}"
-                   class="mt-2 d-block text-decoration-none text-dark font-weight-bold"
-                   style="font-size: 14px;"></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 
 <div class="container mt-4">
     <div class="row">
         <!-- Lặp qua danh sách sản phẩm -->
-        <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${products}">
+        <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${productList}">
             <div class="card product-card">
                 <img th:src="@{${product.image}}" class="card-img-top" alt="product-image">
                 <div class="card-body">
