@@ -3,10 +3,12 @@ package com.hust.seller.admin;
 import com.hust.seller.entity.Category;
 import com.hust.seller.entity.ImageProduct;
 import com.hust.seller.entity.Product;
+import com.hust.seller.product.ProductService;
 import com.hust.seller.repository.CartRepository;
 import com.hust.seller.repository.CategoryRepository;
 import com.hust.seller.repository.ImageProductRepository;
 import com.hust.seller.repository.ProductRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,27 +18,35 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/products")
 public class AdminProductController {
+    private final ProductService productService;
     private ProductRepository productRepository;
     private ImageProductRepository imageProductRepository;
     private CategoryRepository categoryRepository;
 
 
-    public AdminProductController(ProductRepository productRepository, ImageProductRepository imageProductRepository, CategoryRepository categoryRepository) {
+    public AdminProductController(ProductRepository productRepository, ImageProductRepository imageProductRepository, CategoryRepository categoryRepository, ProductService productService) {
         this.productRepository = productRepository;
         this.imageProductRepository = imageProductRepository;
         this.categoryRepository=categoryRepository;
+        this.productService = productService;
     }
 
     @GetMapping("")
-    public String showProduct(Model model) {
-        List<Product> products = productRepository.findAll();
+    public String showProduct(Model model, @Param("keyword") String keyword) {
+        List<Product> products = this.productRepository.findAll();
+
+        if(keyword != null){
+            products = this.productService.searchProduct(keyword);
+            model.addAttribute("keyword",keyword);
+        }
+
         model.addAttribute("products",products);
         return "admin/product";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditProduct(@PathVariable("id") int id, Model model) {
-        Product product = productRepository.findByProductID(id);
+        Product product = this.productRepository.findByProductID(id);
         List<ImageProduct> productImages = imageProductRepository.findByProductID(id);
         model.addAttribute("productImages", productImages);
         model.addAttribute("product", product);

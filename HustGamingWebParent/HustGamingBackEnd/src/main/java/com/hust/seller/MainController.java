@@ -7,6 +7,7 @@ import com.hust.seller.repository.ImageProductRepository;
 import com.hust.seller.repository.ProductRepository;
 import com.hust.seller.repository.ShopRepository;
 import com.hust.seller.security.CustomUserDetailsService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,15 +38,21 @@ import java.util.Optional;
     }
 
     @GetMapping("")
-    public String Viewindex(Model model){
+    public String Viewindex(Model model, @Param("keyword") String keyword) {
         User user=customUserDetailsService.getCurrentUser();
         List<Category> categories=categoryRepository.findAll();
         List<Product> products=productRepository.findAll();
+
+        if(keyword != null){
+            products = productRepository.searchProduct(keyword);
+            model.addAttribute("keyword",keyword);
+        }
+
         model.addAttribute("user",user);
         model.addAttribute("categories",categories);
         List<Product> finalProduct = new ArrayList<>();
         for(Product product:products){
-            if(product.isStatus()==true) finalProduct.add(product);
+            if(product.isStatus()) finalProduct.add(product);
         }
         model.addAttribute("products",finalProduct);
         return "index";
