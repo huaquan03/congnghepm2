@@ -111,6 +111,12 @@
         .navbar-submenu a:hover {
             text-decoration: underline;
         }
+        form {
+    margin: 0;
+    padding: 0;
+    display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
+    flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+}
 
         <!--
         test-- >
@@ -379,28 +385,24 @@
 <!-- Main Navbar -->
 <div class="navbar-main">
     <div class="container">
-            <div class="logo">
-                <img src="shopee-logo.png" alt="Shopee Logo">
-            </div>
-            <div class="search-bar">
-                <form>
-                    <label>
-                        <input type="text" name="keyword" placeholder="Tìm sản phẩm, thương hiệu và tên shop"
-                               th:value="${keyword}">
-                    </label>
-                </form>
-                <div>
-                    <button type="submit">🔍</button>
-                </div>
-            </div>
+        <div class="logo">
+            <img src="shopee-logo.png" alt="Shopee Logo">
+        </div>
+        <div class="search-bar">
+            <form th:action="@{/search}" method="GET">
+                <input type="text" name="keyword" placeholder="Tìm sản phẩm, thương hiệu và tên shop" required>
+                <button type="submit">🔍</button>
+            </form>
+        </div>
         <div class="cart-icon">
-            <a th:href="@{/customer/cart}">
+            <a th:href="@{/cart}">
                 🛒
             </a>
             <div class="cart-count"></div>
         </div>
     </div>
 </div>
+
 <!-- Banner Section -->
 <div class="banner-section">
     <div class="container" style="padding:10px 10px;">
