@@ -9,10 +9,7 @@ import com.hust.seller.repository.ShopRepository;
 import com.hust.seller.security.CustomUserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +63,26 @@ import java.util.Optional;
         Shop shop = shop1.get();
         model.addAttribute("shop", shop);
         return "product";
+    }
+
+    @GetMapping("categories/{id}")
+    public String viewProductwithCategory(@PathVariable("id") int id, Model model){
+        User user=customUserDetailsService.getCurrentUser();
+        List<Category> categories=categoryRepository.findAll();
+        List<Product> products=productRepository.findByCategoryID(id);
+        Category categoryname=categoryRepository.findByCategoryId(id);
+        model.addAttribute("user",user);
+        model.addAttribute("categories",categories);
+        List<Product> finalProduct = new ArrayList<>();
+        for(Product product:products){
+            if(product.isStatus()==true) finalProduct.add(product);
+        }
+        model.addAttribute("products",finalProduct);
+       model.addAttribute("categoryname",categoryname.getCategoryName());
+       boolean none=false;
+        if(finalProduct.size()==0) none=true;
+        model.addAttribute("none",none);
+         return "index";
     }
 
 }

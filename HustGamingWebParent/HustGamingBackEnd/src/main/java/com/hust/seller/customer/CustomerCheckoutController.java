@@ -4,6 +4,7 @@ import com.hust.seller.entity.*;
 import com.hust.seller.product.ProductDTO;
 import com.hust.seller.repository.*;
 import com.hust.seller.security.CustomUserDetailsService;
+import com.hust.seller.user.UserService;
 import org.hibernate.boot.model.source.spi.Orderable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +27,10 @@ public class CustomerCheckoutController {
     private ShopRepository shopRepository;
     private CategoryRepository categoryRepository;
     private OrderRepository orderRepository;
+    private UserService userService;
 
 
-    public CustomerCheckoutController(CustomUserDetailsService customUserDetailsService, CartItemRepository cartItemRepository, CartRepository cartRepository, ProductRepository productRepository, ShopRepository shopRepository, CategoryRepository categoryRepository,OrderRepository orderRepository) {
+    public CustomerCheckoutController(CustomUserDetailsService customUserDetailsService, CartItemRepository cartItemRepository, CartRepository cartRepository, ProductRepository productRepository, ShopRepository shopRepository, CategoryRepository categoryRepository,OrderRepository orderRepository,UserService userService) {
         this.customUserDetailsService = customUserDetailsService;
         this.cartItemRepository = cartItemRepository;
         this.cartRepository = cartRepository;
@@ -36,6 +38,7 @@ public class CustomerCheckoutController {
         this.shopRepository = shopRepository;
         this.categoryRepository = categoryRepository;
         this.orderRepository=orderRepository;
+        this.userService=userService;
     }
     @GetMapping("/checkout")
     public String viewCheckout(Model model){
@@ -110,8 +113,12 @@ public class CustomerCheckoutController {
             order.setOrderDate(LocalDateTime.now());
             order.setStatus("Cho xac nhan");
             orderRepository.save(order);
+            // cap nhat lai so luong san pham
             product.setQuantity(product.getQuantity()- item.getQuantity());
             productRepository.save(product);
+            // gui email thong bao
+            userService.sendOrderEmail(user, order);
+
         }
         cartItemRepository.deleteByCartID(cart.getCartID());
         status="Bạn vừa đặt hàng thành công, vui lòng theo dõi trạng thái của các đơn hàng vừa đặt. Xin cảm ơn.";

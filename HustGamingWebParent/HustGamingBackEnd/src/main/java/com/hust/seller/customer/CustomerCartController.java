@@ -112,10 +112,4 @@ public class CustomerCartController {
          return "redirect:" + referer;
      }
 
-
-
-
-
-
-
 }

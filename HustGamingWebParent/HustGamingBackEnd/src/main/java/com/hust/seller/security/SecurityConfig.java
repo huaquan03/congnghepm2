@@ -50,7 +50,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .requestMatchers("/seller/**").hasAnyRole("SELLER")
                         .requestMatchers("/customer/**").hasAnyRole("CUSTOMER")
-                        .requestMatchers("/login", "/register", "/forgot-password","/","/error/**","reset-password","/check-login-status","/products/**").permitAll()
+                        .requestMatchers("/login", "/register", "/forgot-password","/","/error/**","reset-password","/check-login-status","/products/**","/categories/**","").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/static/**").permitAll()
                         .anyRequest().authenticated()
                 )

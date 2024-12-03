@@ -366,7 +366,7 @@
 <div class="navbar-main">
     <div class="container">
         <div class="logo">
-            <img src="shopee-logo.png" alt="Shopee Logo">
+           <a th:href="@{/}"> <img src="shopee-logo.png" alt="Shopee Logo"></a>
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
@@ -427,18 +427,20 @@
         <div class="col-6 col-sm-4 col-md-3 col-lg-2" th:each="category : ${categories}">
             <div class="category-card">
                 <!--                <img th:src="@{${category.imageUrl}}" th:alt="${category.name}">-->
-                <a class="mt-2" th:text="${category.categoryName}"th:href="@{/{name}(name=${category.categoryName})}"></a>
+                <a class="mt-2"  th:text="${category.categoryName}"th:href="@{/categories/{id}(id=${category.categoryId})}"></a>
             </div>
         </div>
     </div>
 </div>
 
 <div class="container mt-4" >
+    <h2 class="mb-4" th:if="${categoryname}" th:text="'DANH MỤC THEO  '+${categoryname}">DANH MỤC</h2>
+    <p style="font-size: 18px; color: #ff5722; text-align: center; margin-top: 20px;" th:if="${none}">Không tìm thấy sản phẩm nào</p>
     <div class="row">
         <!-- Lặp qua danh sách sản phẩm -->
         <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${products}">
             <div class="card product-card">
-                <img th:src="@{${product.image}}" class="card-img-top" alt="product-image">
+                <img th:src="${product.image}" class="card-img-top" alt="product-image">
                 <div class="card-body">
                     <h6 class="card-title" th:text="${product.productName}"></h6>
                     <p class="card-text text-danger" th:text="'₫' + ${product.price}"></p>

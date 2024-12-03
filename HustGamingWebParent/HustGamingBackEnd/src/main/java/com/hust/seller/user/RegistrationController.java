@@ -174,7 +174,6 @@ public class RegistrationController {
         }
         model.addAttribute("token", token); // Thêm token vào model để gửi tới form
         return "reset-password"; // Trả về trang reset mật khẩu
-
     }
     @PostMapping("/reset-password")
     public String resetPassword(@RequestParam("token")String token,@RequestParam("password") String password,@RequestParam("confirmPassword") String confirmpassword,Model model){
