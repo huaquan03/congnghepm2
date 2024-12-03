@@ -13,13 +13,11 @@ import java.util.List;
 @Service
 public class ProductService {
     ImageProductRepository imageProductRepository;
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public ProductService(ImageProductRepository imageProductRepository) {
+    public ProductService(ImageProductRepository imageProductRepository, ProductRepository productRepository) {
         this.imageProductRepository = imageProductRepository;
-    }
-    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
@@ -39,4 +37,14 @@ public class ProductService {
     public List<Product> searchProduct(String keyword) {
         return this.productRepository.searchProduct(keyword);
     }
+    public List<Product> findAll() {
+        return this.productRepository.findAll();
+    }
+    public Product findByProductID(int productID) {
+        return this.productRepository.findByProductID(productID);
+    }
+    public List<Product> findByShopID(int shopID) {
+        return this.productRepository.findByShopID(shopID);
+    }
+
 }

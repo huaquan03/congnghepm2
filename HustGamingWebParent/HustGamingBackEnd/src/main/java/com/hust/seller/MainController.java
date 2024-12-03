@@ -1,6 +1,7 @@
 package com.hust.seller;
 
 import com.hust.seller.entity.*;
+import com.hust.seller.product.ProductService;
 import com.hust.seller.repository.CategoryRepository;
 import com.hust.seller.repository.ImageProductRepository;
 import com.hust.seller.repository.ProductRepository;
@@ -22,24 +23,24 @@ import java.util.Optional;
     public class MainController {
     private final CustomUserDetailsService customUserDetailsService;
     private final CategoryRepository categoryRepository;
-    private final ProductRepository productRepository;
     private final ImageProductRepository imageProductRepository;
     private final ShopRepository shopRepository;
+    private final ProductService productService;
 
 
-    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository,ProductRepository productRepository,ImageProductRepository imageProductRepository,ShopRepository shopRepository) {
+    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository, ImageProductRepository imageProductRepository,ShopRepository shopRepository, ProductService productService) {
         this.customUserDetailsService = customUserDetailsService;
         this.categoryRepository=categoryRepository;
-        this.productRepository=productRepository;
         this.imageProductRepository=imageProductRepository;
         this.shopRepository=shopRepository;
+        this.productService=productService;
     }
 
     @GetMapping("")
     public String viewIndex(Model model, @Param("keyword") String keyword) {
         User user=customUserDetailsService.getCurrentUser();
         List<Category> categories=categoryRepository.findAll();
-        List<Product> products=productRepository.findAll();
+        List<Product> products=this.productService.findAll();
         model.addAttribute("user",user);
         model.addAttribute("categories",categories);
         List<Product> finalProduct = new ArrayList<>();
@@ -61,7 +62,7 @@ import java.util.Optional;
         model.addAttribute("user", user);
         List<ImageProduct> imageProductList = imageProductRepository.findByProductID(id);
         model.addAttribute("images", imageProductList);
-        Product product = productRepository.findByProductID(id);
+        Product product = this.productService.findByProductID(id);
         model.addAttribute("product", product);
         Optional<Shop> shop1 = shopRepository.findByShopID(product.getShopID());
         Shop shop = shop1.get();
@@ -70,17 +71,18 @@ import java.util.Optional;
     }
 
     @GetMapping("/search")
-    public String searchProduct(Model model,@Param("keyword") String keyword) {
-        User user=customUserDetailsService.getCurrentUser();
-        List<Product> products=productRepository.findAll();
+    public String searchProduct(Model model, @Param("keyword") String keyword) {
+        List<Product> products = this.productService.findAll();
+        Optional<Shop> shop1;
+        if (keyword != null && !keyword.isEmpty()) {
+            products = this.productService.searchProduct(keyword);
+            model.addAttribute("keyword", keyword);
 
-        if(keyword != null){
-            products = productRepository.searchProduct(keyword);
-            model.addAttribute("keyword",keyword);
+            shop1 = shopRepository.searchFirstByName(keyword);
+            model.addAttribute("shop", shop1.orElse(null));
         }
 
-        model.addAttribute("user",user);
-        model.addAttribute("products",products);
+        model.addAttribute("products", products);
         return "search";
     }
 

@@ -18,17 +18,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/products")
 public class AdminProductController {
-    private final ProductService productService;
-    private ProductRepository productRepository;
-    private ImageProductRepository imageProductRepository;
-    private CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+    private final ImageProductRepository imageProductRepository;
+    private final CategoryRepository categoryRepository;
 
 
-    public AdminProductController(ProductRepository productRepository, ImageProductRepository imageProductRepository, CategoryRepository categoryRepository, ProductService productService) {
+    public AdminProductController(ProductRepository productRepository, ImageProductRepository imageProductRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.imageProductRepository = imageProductRepository;
         this.categoryRepository=categoryRepository;
-        this.productService = productService;
     }
 
     @GetMapping("")
@@ -36,7 +34,7 @@ public class AdminProductController {
         List<Product> products = this.productRepository.findAll();
 
         if(keyword != null){
-            products = this.productService.searchProduct(keyword);
+            products = this.productRepository.searchProduct(keyword);
             model.addAttribute("keyword",keyword);
         }
 
