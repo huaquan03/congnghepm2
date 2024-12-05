@@ -84,9 +84,11 @@ public class MainController {
         if (keyword != null && !keyword.isEmpty()) {
             products = this.productService.searchAndSortProducts(keyword, sortBy, minPrice, maxPrice, page);
             model.addAttribute("keyword", keyword);
+            model.addAttribute("minPrice", minPrice);
+            model.addAttribute("maxPrice", maxPrice);
+            model.addAttribute("sortBy", sortBy);
         }
 
-        model.addAttribute("keyword", keyword);
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", page);
         model.addAttribute("products", products);
