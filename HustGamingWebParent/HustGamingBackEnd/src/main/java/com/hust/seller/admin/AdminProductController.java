@@ -26,19 +26,13 @@ public class AdminProductController {
     public AdminProductController(ProductRepository productRepository, ImageProductRepository imageProductRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.imageProductRepository = imageProductRepository;
-        this.categoryRepository=categoryRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("")
     public String showProduct(Model model, @Param("keyword") String keyword) {
         List<Product> products = this.productRepository.findAll();
-
-        if(keyword != null){
-            products = this.productRepository.searchProduct(keyword);
-            model.addAttribute("keyword",keyword);
-        }
-
-        model.addAttribute("products",products);
+        model.addAttribute("products", products);
         return "admin/product";
     }
 
@@ -52,8 +46,9 @@ public class AdminProductController {
         model.addAttribute("categories", categories);
         return "admin/editproduct";
     }
+
     @PostMapping("/edit/{id}")
-    public String editProduct(@PathVariable("id")int id,@ModelAttribute("product") Product product){
+    public String editProduct(@PathVariable("id") int id, @ModelAttribute("product") Product product) {
         product.setCategoryID(productRepository.findByProductID(id).getCategoryID());
         productRepository.save(product);
         return "admin/success";

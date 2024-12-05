@@ -259,7 +259,7 @@
             <img src="shopee-logo.png" alt="Shopee Logo">
         </div>
         <div class="search-bar">
-            <form th:action="@{/search}" method="GET" id="searchForm">
+            <form>
                 <input type="text"
                        name="keyword"
                        placeholder="Tìm sản phẩm, thương hiệu và tên shop"
@@ -278,7 +278,7 @@
 </div>
 
 
-<!-- Product Navbar-->
+<!-- Search Result Navbar-->
 <div class="container mt-4">
     <div class="search-result">
         <h5>
@@ -287,6 +287,8 @@
     </div>
 </div>
 
+
+<!-- Product Navbar-->
 <div class="container mt-4">
     <div class="row">
         <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${products}">
@@ -303,6 +305,26 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Page Navbar -->
+<div class="container mt-4" th:if="${totalPages > 1}">
+    <div class="pagination">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/search(keyword=${keyword}, page=${currentPage - 1})}"
+                   tabindex="-1">Trang trước</a>
+            </li>
+            <li class="page-item" th:each="pageNumber : ${#numbers.sequence(1, products.totalPages)}"
+                th:classappend="${pageNumber == currentPage} ? 'active'">
+                <a class="page-link" th:href="@{/search(keyword=${keyword}, page=${pageNumber})}"
+                   th:text="${pageNumber}"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == products.totalPages} ? 'disabled'">
+                <a class="page-link" th:href="@{/search(keyword=${keyword}, page=${currentPage + 1})}">Trang sau</a>
+            </li>
+        </ul>
     </div>
 </div>
 

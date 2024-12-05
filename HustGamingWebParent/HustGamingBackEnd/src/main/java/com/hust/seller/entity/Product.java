@@ -6,29 +6,29 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name="Products")
+@Table(name = "Products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name="ProductID")
+    @Column(name = "ProductID")
     private int productID;
-    @Column(name="Product_name")
+    @Column(name = "Product_name")
     private String productName;
-    @Column(name="Description")
+    @Column(name = "Description")
     private String description;
-    @Column(name="Price")
+    @Column(name = "Price")
     private int price;
-    @Column(name="Quantity")
+    @Column(name = "Quantity")
     private int quantity;
-    @Column(name="CategoryID")
+    @Column(name = "CategoryID")
     private int categoryID;
-    @Column(name="ShopID")
+    @Column(name = "ShopID")
     private int shopID;
-    @Column(name="Created_date")
+    @Column(name = "Created_date")
     private LocalDateTime createdDate;
-    @Column(name="Status")
+    @Column(name = "Status")
     private boolean status;
-    @Column(name="Image")
+    @Column(name = "Image")
     private String image;
 
 
@@ -42,7 +42,9 @@ public class Product {
         this.createdDate = createdDate;
         this.status = status;
     }
-    public Product(){}
+
+    public Product() {
+    }
 
     public int getProductID() {
         return productID;

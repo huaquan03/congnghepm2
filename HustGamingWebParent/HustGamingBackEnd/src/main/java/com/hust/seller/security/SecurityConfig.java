@@ -31,6 +31,7 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();  // Mã hóa mật khẩu bằng BCrypt
     }
+
     // Cấu hình AuthenticationManager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -50,7 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .requestMatchers("/seller/**").hasAnyRole("SELLER")
                         .requestMatchers("/customer/**").hasAnyRole("CUSTOMER")
-                        .requestMatchers("/login", "/register", "/forgot-password","/","/error/**","reset-password","/check-login-status","/products/**").permitAll()
+                        .requestMatchers("/login", "/register", "/forgot-password", "/", "/error/**", "reset-password", "/check-login-status", "/products/**", "/search/**").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/static/**").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -64,12 +65,12 @@ public class SecurityConfig {
                         .logoutUrl("/logout")  // URL để đăng xuất
                         .logoutSuccessUrl("/login?logout")  // Chuyển hướng sau khi đăng xuất thành công
                         .invalidateHttpSession(true)  // Hủy session khi đăng xuất
-                        .deleteCookies("JSESSIONID","remember-me")  // Xóa cookie
+                        .deleteCookies("JSESSIONID", "remember-me")  // Xóa cookie
                         .permitAll()
                 )
                 .rememberMe(rememberMe -> rememberMe
                         .key("uniqueAndSecret")
-                        .tokenValiditySeconds(5*60)  // Remember me token 1 ngày
+                        .tokenValiditySeconds(5 * 60)  // Remember me token 1 ngày
                 );
 
         return http.build();

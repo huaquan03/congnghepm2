@@ -9,21 +9,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @Controller
 @RequestMapping("/admin/customers")
 public class AdminCustomerController {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
 
     public AdminCustomerController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @GetMapping("")
     public String showUsers(Model model) {
-        List<User> customer= userRepository.findByRoles_RoleName("ROLE_CUSTOMER");
-        model.addAttribute("customer",customer);
+        List<User> customer = userRepository.findByRoles_RoleName("ROLE_CUSTOMER");
+        model.addAttribute("customer", customer);
         return "admin/customer";
     }
+
     @GetMapping("/edit/{id}")
     public String editUserForm(@PathVariable("id") int userId, Model model) {
         Optional<User> userOptional = userRepository.findByUserID(userId);
@@ -59,20 +62,16 @@ public class AdminCustomerController {
             return "error/emailexsist";
         }
     }
+
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") int userId){
-        Optional<User> userOptional=userRepository.findByUserID(userId);
-        if(userOptional.isPresent()){
-            User user=userOptional.get();
+    public String deleteUser(@PathVariable("id") int userId) {
+        Optional<User> userOptional = userRepository.findByUserID(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
             userRepository.delete(user);
             return "/admin/home";
-        } else{
+        } else {
             return "error/emailexsist";
         }
     }
-
-
 }
-
-
-
