@@ -322,7 +322,7 @@
             <img src="shopee-logo.png" alt="Shopee Logo">
         </div>
         <div class="search-bar">
-            <form>
+            <form th:action="@{/search}" method="GET">
                 <input type="text"
                        name="keyword"
                        placeholder="Tìm sản phẩm, thương hiệu và tên shop"
@@ -351,11 +351,11 @@
                 <div class="price-inputs">
                     <div class="form-group">
                         <label>Giá từ:</label>
-                        <input type="number" class="form-control" name="minPrice" placeholder="Giá thấp nhất" th:value="${minPrice}" >
+                        <input type="number" class="form-control" name="minPrice" placeholder="Giá thấp nhất" th:value="${minPrice}" min="0" max="2147483647">
                     </div>
                     <div class="form-group">
                         <label>Đến:</label>
-                        <input type="number" class="form-control" name="maxPrice" placeholder="Giá cao nhất" th:value="${maxPrice}" >
+                        <input type="number" class="form-control" name="maxPrice" placeholder="Giá cao nhất" th:value="${maxPrice}" min="0" max="2147483647">
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Áp dụng</button>
                 </div>
