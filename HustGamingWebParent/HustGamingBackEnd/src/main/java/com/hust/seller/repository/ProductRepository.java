@@ -1,7 +1,6 @@
 package com.hust.seller.repository;
 
 import com.hust.seller.entity.Product;
-import com.hust.seller.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -18,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "AND (:minPrice IS NULL OR p.price >= :minPrice) " +
             "AND (:maxPrice IS NULL OR p.price <= :maxPrice) " +
             "ORDER BY " +
-            "CASE WHEN :sortField = 'name' THEN p.productName END ASC, " +
+            "CASE WHEN :sortField = 'popularity' THEN p.productName END ASC, " +
             "CASE WHEN :sortField = 'priceASC' THEN p.price END ASC, " +
             "CASE WHEN :sortField = 'priceDESC' THEN p.price END DESC, " +
             "CASE WHEN :sortField = 'date' THEN p.createdDate END ASC")
