@@ -1,6 +1,9 @@
 package com.hust.seller.product;
 
+import com.hust.seller.entity.Category;
 import com.hust.seller.entity.ImageProduct;
+import com.hust.seller.entity.Product;
+import com.hust.seller.entity.Shop;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,57 +13,35 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProductDTO {
+    public Product product;
+    public Shop shop;
+    public String categoryName;
+    public int quantity;
 
-    private int productID;
+    public int total;
 
-    private String productName;
-
-    private String description;
-
-    private int price;
-
-    private int quantity;
-
-    private int categoryID;
-
-    private int shopID;
-
-    private LocalDateTime createdDate;
-
-    private boolean status;
-
-    List<ImageProduct> imageProductList;
-
-    public int getProductID() {
-        return productID;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String getProductName() {
-        return productName;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public int getQuantity() {
@@ -71,43 +52,11 @@ public class ProductDTO {
         this.quantity = quantity;
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public int getTotal() {
+        return total;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
-    }
-
-    public int getShopID() {
-        return shopID;
-    }
-
-    public void setShopID(int shopID) {
-        this.shopID = shopID;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public List<ImageProduct> getImageProductList() {
-        return imageProductList;
-    }
-
-    public void setImageProductList(List<ImageProduct> imageProductList) {
-        this.imageProductList = imageProductList;
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

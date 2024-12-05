@@ -223,7 +223,12 @@
             padding: 10px 20px;
             gap: 15px; /* Khoảng cách giữa các mục */
         }
-
+        form {
+            margin: 0;
+            padding: 0;
+            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
+            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+        }
         .navbar a, .navbar .dropdown {
             text-decoration: none;
             color: white; /* Màu chữ */
@@ -374,11 +379,17 @@
             <img src="https://freelogopng.com/images/all_img/1656180674shopee-logo-transparent.png" style="width: 70px; height:75px;" alt="Shopee Logo">
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
-            <button>🔍</button>
+            <form th:action="@{/search}" method="GET" id="searchForm">
+                <input type="text"
+                       name="keyword"
+                       placeholder="Tìm sản phẩm, thương hiệu và tên shop"
+                       th:value="${keyword}"
+                       required>
+                <button type="submit">🔍</button>
+            </form>
         </div>
         <div class="cart-icon">
-            <a th:href="@{/cart}">
+            <a th:href="@{/customer/cart}">
                 🛒
             </a>
             <div class="cart-count"></div>
