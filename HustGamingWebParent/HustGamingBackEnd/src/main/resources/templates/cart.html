@@ -130,7 +130,7 @@
         }
 
 
-                .shop-container {
+        .shop-container {
             max-width: 1200px;
             margin: 20px auto;
             background-color: white;
@@ -235,17 +235,18 @@
         .product-actions a:hover {
             text-decoration: underline;
         }
-        .delete-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    }
 
-    .delete-button:hover {
-    background-color: darkred;
-    }
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: darkred;
+        }
 
 
         /* Thêm Shop Voucher */
@@ -288,6 +289,13 @@
             padding: 20px 0;
             text-transform: capitalize;
         }
+
+        form {
+            margin: 0;
+            padding: 0;
+            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
+            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+        }
     </style>
 </head>
 <body>
@@ -312,7 +320,8 @@
         </span>
 
             <div class="dropdown auth-links" th:if="${user}">
-                <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${user.getFullName}">
+                <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false" th:text="${user.getFullName}">
                     qunha353
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
@@ -331,8 +340,14 @@
             <img src="shopee-logo.png" alt="Shopee Logo">
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
-            <button>🔍</button>
+            <form th:action="@{/search}" method="GET">
+                <input type="text"
+                       name="keyword"
+                       placeholder="Tìm sản phẩm, thương hiệu và tên shop"
+                       th:value="${keyword}"
+                       required>
+                <button type="submit">🔍</button>
+            </form>
         </div>
         <div class="cart-icon">
             <a th:href="@{/customer/cart}">
@@ -355,82 +370,88 @@
             <div class="column" stlye="padding:0px 0px 0px 100px;">Thao Tác</div>
         </div>
         <div th:each="productDTO :${productDTOs}" class="shop-container">
-        <!-- Header Shop -->
-        <div class="shop-header">
-            <img th:src="mall-logo.png" alt="Mall Logo">
-            <div class="shop-name" th:text=${productDTO.shop.name}>XiaoZhuBangChu</div>
-        </div>
+            <!-- Header Shop -->
+            <div class="shop-header">
+                <img th:src="mall-logo.png" alt="Mall Logo">
+                <div class="shop-name" th:text=${productDTO.shop.name}>XiaoZhuBangChu</div>
+            </div>
 
-        <!-- Sản phẩm -->
-        <div class="product-row">
-            <img th:src="@{${productDTO.product.image}}" alt="Sản phẩm">
-            <div class="product-details">
-                <div class="product-name" th:text="${productDTO.product.productName}">Xiaozhubangchu Bộ keycap Mario 124 keycap chất lượng cao</div>
-                <div class="product-category" th:text="'Phân loại hàng:'+${productDTO.categoryName}" >Phân loại hàng: mario</div>
-            </div>
-            <div class="product-price">
-                <span class="new-price" th:text="${productDTO.product.price}">₫149.000</span>
-            </div>
-            <form th:action="@{/customer/cart/update}" method="post">
-                <input type="hidden" name="productId" th:value="${productDTO.product.productID}">
-                <div class="product-quantity">
-                    <button type="button" onclick="decreaseQuantity(this)">-</button>
-                    <input type="number" name="quantity" th:value="${productDTO.quantity}" min="1" onchange="submitForm(this)">
-                    <button type="button" onclick="increaseQuantity(this)">+</button>
+            <!-- Sản phẩm -->
+            <div class="product-row">
+                <img th:src="@{${productDTO.product.image}}" alt="Sản phẩm">
+                <div class="product-details">
+                    <div class="product-name" th:text="${productDTO.product.productName}">Xiaozhubangchu Bộ keycap Mario
+                        124 keycap chất lượng cao
+                    </div>
+                    <div class="product-category" th:text="'Phân loại hàng:'+${productDTO.categoryName}">Phân loại hàng:
+                        mario
+                    </div>
                 </div>
-            </form>
-            <div class="product-total" th:text="${productDTO.total}">
-                ₫298.000
-            </div>
-            <div class="product-actions">
-                <form th:action="@{/customer/cart/delete}" method="post" style="display: inline;">
+                <div class="product-price">
+                    <span class="new-price" th:text="${productDTO.product.price}">₫149.000</span>
+                </div>
+                <form th:action="@{/customer/cart/update}" method="post">
                     <input type="hidden" name="productId" th:value="${productDTO.product.productID}">
-                    <button type="submit" class="delete-button">Xóa</button>
+                    <div class="product-quantity">
+                        <button type="button" onclick="decreaseQuantity(this)">-</button>
+                        <input type="number" name="quantity" th:value="${productDTO.quantity}" min="1"
+                               onchange="submitForm(this)">
+                        <button type="button" onclick="increaseQuantity(this)">+</button>
+                    </div>
                 </form>
-                <br>
-                <a th:href="@{/categories/{name}(name=${productDTO.categoryName})}">Tìm sản phẩm tương tự</a>
+                <div class="product-total" th:text="${productDTO.total}">
+                    ₫298.000
+                </div>
+                <div class="product-actions">
+                    <form th:action="@{/customer/cart/delete}" method="post" style="display: inline;">
+                        <input type="hidden" name="productId" th:value="${productDTO.product.productID}">
+                        <button type="submit" class="delete-button">Xóa</button>
+                    </form>
+                    <br>
+                    <a th:href="@{/categories/{name}(name=${productDTO.categoryName})}">Tìm sản phẩm tương tự</a>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Thêm Shop Voucher -->
-    <div class="shop-container">
-        <div class="voucher-section">
-            <a href="#">+ Thêm Shop Voucher</a>
-        </div>
+        <!-- Thêm Shop Voucher -->
+        <div class="shop-container">
+            <div class="voucher-section">
+                <a href="#">+ Thêm Shop Voucher</a>
+            </div>
 
-        <!-- Khuyến mãi -->
-        <div class="promo-section">
-            <span class="free-ship">FREE SHIP</span> Giảm ₫300.000 phí vận chuyển đơn tối thiểu ₫0; Giảm ₫500.000 phí vận chuyển đơn tối thiểu ₫500.000.
-            <a href="#">Tìm hiểu thêm</a>
+            <!-- Khuyến mãi -->
+            <div class="promo-section">
+                <span class="free-ship">FREE SHIP</span> Giảm ₫300.000 phí vận chuyển đơn tối thiểu ₫0; Giảm ₫500.000
+                phí vận chuyển đơn tối thiểu ₫500.000.
+                <a href="#">Tìm hiểu thêm</a>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 <script>
     function decreaseQuantity(button) {
-    const input = button.nextElementSibling;
-    const currentQuantity = parseInt(input.value);
-    if (currentQuantity > 1) {
-        input.value = currentQuantity - 1;
+        const input = button.nextElementSibling;
+        const currentQuantity = parseInt(input.value);
+        if (currentQuantity > 1) {
+            input.value = currentQuantity - 1;
+            input.form.submit();
+        }
+    }
+
+    function increaseQuantity(button) {
+        const input = button.previousElementSibling;
+        const currentQuantity = parseInt(input.value);
+        input.value = currentQuantity + 1;
         input.form.submit();
     }
-}
 
-function increaseQuantity(button) {
-    const input = button.previousElementSibling;
-    const currentQuantity = parseInt(input.value);
-    input.value = currentQuantity + 1;
-    input.form.submit();
-}
+    function submitForm(input) {
+        if (parseInt(input.value) < 1) {
+            alert("Không thể số lượng nhỏ hơn 1");
+            input.value = 1;
 
-function submitForm(input) {
-    if (parseInt(input.value) < 1) {
-     alert("Không thể số lượng nhỏ hơn 1");
-        input.value = 1;
-
+        }
+        input.form.submit();
     }
-    input.form.submit();
-}
 
 </script>
 </body>

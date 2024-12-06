@@ -326,7 +326,8 @@
                 <input type="text"
                        name="keyword"
                        placeholder="Tìm sản phẩm, thương hiệu và tên shop"
-                       th:value="${keyword}">
+                       th:value="${keyword}"
+                       required>
                 <button type="submit">🔍</button>
             </form>
         </div>
@@ -347,15 +348,15 @@
         <!-- Filter Section -->
         <div class="filter-section">
             <h4>Lọc theo giá</h4>
-            <form th:action="@{/search}" method="get">
-                <input type="hidden" name="keyword" th:value="${keyword}"/>
+            <form th:action="@{/search}" method="GET">
+                <input type="hidden" name="" th:value="${keyword}"/>
                 <div class="price-inputs">
                     <div class="form-group">
                         <label>Giá từ:</label>
                         <input type="number" class="form-control" name="minPrice" placeholder="Giá thấp nhất"
                                th:value="${minPrice}" min="0" max="2147483647">
                     </div>
-                    <div class="form-group">
+                    <div class="form-groukeywordp">
                         <label>Đến:</label>
                         <input type="number" class="form-control" name="maxPrice" placeholder="Giá cao nhất"
                                th:value="${maxPrice}" min="0" max="2147483647">
@@ -405,7 +406,7 @@
                     <img th:src="@{${product.image}}" class="card-img-top" alt="product-image">
                     <div class="card-body">
                         <h6 class="card-title" th:text="${product.productName}"></h6>
-                        <p class="card-text text-danger" th:text="'₫' + ${product.price}"></p>
+                        <p class="card-text text-danger price" th:text="${product.price} + '₫'"></p>
                     </div>
                     <div class="card-footer">
                         <a th:href="@{/products/{id}(id=${product.productID})}">
@@ -415,6 +416,17 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll(".price").forEach(priceElement => {
+                    // Lấy giá trị thô từ nội dung của thẻ
+                    let rawPrice = parseInt(priceElement.textContent.replace('₫', '').trim());
+                    // Định dạng giá theo kiểu vi-VN
+                    priceElement.textContent = `${rawPrice.toLocaleString('vi-VN')}₫`;
+                });
+            });
+        </script>
     </div>
 </div>
 
@@ -436,7 +448,8 @@
             </li>
             <li class="page-item" th:classappend="${currentPage == products.totalPages} ? 'disabled'">
                 <a class="page-link"
-                   th:href="@{/search(keyword=${keyword}, page=${currentPage + 1}, sortBy=${sortBy}, minPrice=${minPrice}, maxPrice=${maxPrice})}">Trang sau</a>
+                   th:href="@{/search(keyword=${keyword}, page=${currentPage + 1}, sortBy=${sortBy}, minPrice=${minPrice}, maxPrice=${maxPrice})}">
+                    Trang sau</a>
             </li>
         </ul>
     </div>

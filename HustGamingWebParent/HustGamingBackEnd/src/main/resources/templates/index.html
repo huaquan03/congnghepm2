@@ -242,11 +242,6 @@
             border-radius: 4px;
         }
 
-        .pagination a.active {
-            background-color: #007bff;
-            color: white;
-        }
-
         .product-card {
             border: 1px solid #eaeaea;
             transition: transform 0.2s, box-shadow 0.2s;
@@ -276,29 +271,6 @@
             text-align: center;
         }
 
-        .category-wrapper {
-            position: relative; /* Để đặt nút điều hướng */
-            width: 80%; /* Giới hạn chiều rộng */
-            margin: auto; /* Căn giữa trang */
-            overflow: hidden; /* Ẩn nội dung thừa */
-            background: #f8f8f8;
-            padding: 20px 0;
-            border-radius: 10px; /* Bo tròn góc */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
-        }
-
-        .category-container {
-            display: flex; /* Hiển thị các mục nằm ngang */
-            transition: transform 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
-        }
-
-        .category-item {
-            flex: 0 0 20%; /* Mỗi mục chiếm 20% chiều rộng container */
-            box-sizing: border-box;
-            text-align: center;
-            padding: 10px;
-        }
-
         .category-item img {
             width: 80px;
             height: 80px;
@@ -310,36 +282,6 @@
             font-size: 14px;
             margin: 0;
             font-weight: bold;
-        }
-
-        /* Nút điều hướng */
-        .btn-slide {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-slide:hover {
-            background-color: #eaeaea;
-        }
-
-        .btn-prev {
-            left: 10px; /* Sát cạnh trái container */
-        }
-
-        .btn-next {
-            right: 10px; /* Sát cạnh phải container */
         }
 
         /* Icon mũi tên */
@@ -455,7 +397,7 @@
             <div class="category-card">
                 <!--                <img th:src="@{${category.imageUrl}}" th:alt="${category.name}">-->
                 <a class="mt-2" th:text="${category.categoryName}"
-                   th:href="@{/{name}(name=${category.categoryName})}"></a>
+                   th:href="@{/categories/{name}(name=${category.categoryName})}"></a>
             </div>
         </div>
     </div>
@@ -469,7 +411,7 @@
                 <img th:src="@{${product.image}}" class="card-img-top" alt="product-image">
                 <div class="card-body">
                     <h6 class="card-title" th:text="${product.productName}"></h6>
-                    <p class="card-text text-danger" th:text="'₫' + ${product.price}"></p>
+                    <p class="card-text text-danger price" th:text="${product.price} + '₫'"></p>
                 </div>
                 <div class="card-footer">
                     <a th:href="@{/products/{id}(id=${product.productID})}">
@@ -477,9 +419,18 @@
                     </a>
                 </div>
             </div>
-            <a class="opacity-0 group-hover:opacity-100 duration-100 absolute z-[-1] top-[calc(100%-6px)] pt-[6px] -left-px  box-content w-full h-[1.875rem] bg-shopee-primary text-white text-center text-sm/[1.875rem] border border-shopee-primary rounded-bl-sm rounded-br-sm "
-               th:href="@{/tim san pham tuong tu}">Tìm sản phẩm tương tự</a>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll(".price").forEach(priceElement => {
+                    // Lấy giá trị thô từ nội dung của thẻ
+                    let rawPrice = parseInt(priceElement.textContent.replace('₫', '').trim());
+                    // Định dạng giá theo kiểu vi-VN
+                    priceElement.textContent = `${rawPrice.toLocaleString('vi-VN')}₫`;
+                });
+            });
+        </script>
     </div>
 </div>
 
