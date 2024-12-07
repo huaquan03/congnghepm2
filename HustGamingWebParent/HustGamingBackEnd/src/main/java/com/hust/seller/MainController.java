@@ -2,10 +2,7 @@ package com.hust.seller;
 
 import com.hust.seller.entity.*;
 import com.hust.seller.product.ProductDTO;
-import com.hust.seller.repository.CategoryRepository;
-import com.hust.seller.repository.ImageProductRepository;
-import com.hust.seller.repository.ProductRepository;
-import com.hust.seller.repository.ShopRepository;
+import com.hust.seller.repository.*;
 import com.hust.seller.security.CustomUserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +20,16 @@ import java.util.Optional;
     private ProductRepository productRepository;
     private ImageProductRepository imageProductRepository;
     private ShopRepository shopRepository;
+    private ReviewRepository reviewRepository;
 
 
-    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository,ProductRepository productRepository,ImageProductRepository imageProductRepository,ShopRepository shopRepository) {
+    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository,ProductRepository productRepository,ImageProductRepository imageProductRepository,ShopRepository shopRepository,ReviewRepository reviewRepository) {
         this.customUserDetailsService = customUserDetailsService;
         this.categoryRepository=categoryRepository;
         this.productRepository=productRepository;
         this.imageProductRepository=imageProductRepository;
         this.shopRepository=shopRepository;
+        this.reviewRepository=reviewRepository;
     }
 
     @GetMapping("")
@@ -62,6 +61,15 @@ import java.util.Optional;
         Optional<Shop> shop1 = shopRepository.findByShopID(product.getShopID());
         Shop shop = shop1.get();
         model.addAttribute("shop", shop);
+        List<Review> reviews=reviewRepository.findByProductID(id);
+        model.addAttribute("reviews",reviews);
+    float averageRating=0;
+    for(Review review:reviews){
+        averageRating=+review.getRating();
+    }
+    if(reviews.size()==0) {averageRating=5;}else{averageRating=averageRating/reviews.size();}
+    model.addAttribute("averageRating",averageRating);
+
         return "product";
     }
 

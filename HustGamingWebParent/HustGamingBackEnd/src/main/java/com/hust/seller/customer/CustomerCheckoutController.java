@@ -111,7 +111,7 @@ public class CustomerCheckoutController {
             order.setShippingAddress(user.getAddress());
             order.setPayment("COD");
             order.setOrderDate(LocalDateTime.now());
-            order.setStatus("Cho xac nhan");
+            order.setStatus(1);
             orderRepository.save(order);
             // cap nhat lai so luong san pham
             product.setQuantity(product.getQuantity()- item.getQuantity());

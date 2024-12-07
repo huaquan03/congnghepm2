@@ -66,6 +66,7 @@ public class SellerProductController {
     }
 
     @PostMapping("/create")
+    @Transactional
     public String createProduct(
             @ModelAttribute("product") Product product,
             @RequestParam("productImages") List<MultipartFile> files,

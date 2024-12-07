@@ -171,7 +171,7 @@
 
 .image-slider {
     position: relative;
-    width: 5000px; /* Đặt kích thước chiều rộng của slider */
+    width: 500px; /* Đặt kích thước chiều rộng của slider */
     height: 500px; /* Đặt chiều cao cụ thể */
     overflow: hidden;
     margin: auto; /* Canh giữa */
@@ -357,6 +357,89 @@
     color: #f36;
     margin-top: 5px;
 }
+<!--        phan danh gia san pham-->
+        /* Toàn bộ khu vực đánh giá */
+#product-reviews {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Điểm trung bình */
+#overall-rating {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#overall-rating h4 {
+    font-size: 24px;
+    color: #ff9500;
+    margin-bottom: 8px;
+}
+
+#overall-rating .stars {
+    font-size: 24px;
+    color: #ffcc00; /* Màu vàng cho sao đầy */
+}
+
+/* Danh sách đánh giá */
+#reviews-list {
+    margin-top: 20px;
+}
+
+/* Từng đánh giá */
+.review-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Header của từng đánh giá */
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.review-author {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.review-time {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Ngôi sao trong từng đánh giá */
+.review-header .stars {
+    font-size: 18px;
+    color: #ffcc00;
+    display: flex;
+    gap: 2px;
+}
+
+/* Nội dung đánh giá */
+.review-content {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
 
     </style>
 </head>
@@ -489,7 +572,39 @@
         </div>
     </div>
     <div class="container" style="text-align: center; font-size: 20px; font-family: Arial, sans-serif; font-weight: bold;padding: 20px; border: 1px;background-color:#ffffff ">Mô tả chi tiết sản phẩm
-        <p th:text="${product.description}">Mô tả </p></div>
+        <p th:text="${product.description}">Mô tả </p>
+    </div>
+    <div class="container">
+        <div style="text-align: center; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold;padding: 20px; border: 1px ">
+            Đánh giá sản phẩm
+        </div>
+        <div id="product-reviews">
+            <!-- Điểm trung bình -->
+            <div id="overall-rating">
+                <h4 th:text="${averageRating} + ' trên 5'"></h4>
+                <div class="stars">
+            <span th:each="i : ${#numbers.sequence(1, 5)}"
+                  th:text="${i <=T(java.lang.Math).floor(averageRating) ? '★' : '☆'}"></span>
+                </div>
+            </div>
+
+            <!-- Danh sách đánh giá -->
+            <div id="reviews-list">
+                <div th:each="review : ${reviews}" class="review-item">
+                    <div class="review-header">
+                        <span class="review-author" th:text="'Mã bình luận: '+${review.reviewID}"></span>
+                        <span class="review-author" th:text="'Người mua: '+${review.buyerID}"></span>
+                        <span class="review-time" th:text="${review.reviewDate}"></span>
+                        <div class="stars">
+                    <span th:each="i : ${#numbers.sequence(1, 5)}"
+                          th:text="${i <= review.rating ? '★' : '☆'}"></span>
+                        </div>
+                    </div>
+                    <p class="review-content" th:text="${review.comment}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

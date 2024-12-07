@@ -18,7 +18,7 @@ public class Order {
     @Column(name = "Total_amount")
     private int totalAmount;
     @Column(name = "Status")
-    private String status;
+    private int status;
     @Column(name = "Shipping_address")
     private String shippingAddress;
     @Column(name = "Payment")
@@ -34,7 +34,7 @@ public class Order {
     public Order(){};
 
 
-    public Order(int orderID, int buyerID, LocalDateTime orderDate, int totalAmount, String status, String shippingAddress, String payment, int shopID, int productID, int quantity, int price) {
+    public Order(int orderID, int buyerID, LocalDateTime orderDate, int totalAmount, int status, String shippingAddress, String payment, int shopID, int productID, int quantity, int price) {
         this.orderID = orderID;
         this.buyerID = buyerID;
         this.orderDate = orderDate;
@@ -80,11 +80,11 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
