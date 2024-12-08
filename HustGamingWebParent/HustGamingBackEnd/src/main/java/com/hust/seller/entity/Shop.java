@@ -1,6 +1,10 @@
 package com.hust.seller.entity;
 
+import com.hust.seller.shop.ShopService;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 @Entity
 @Table(name="Shop")

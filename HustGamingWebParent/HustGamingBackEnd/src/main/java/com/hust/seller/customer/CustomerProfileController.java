@@ -1,17 +1,23 @@
 package com.hust.seller.customer;
 
-import com.hust.seller.customer.CustomerService;
+
 import com.hust.seller.entity.User;
 import com.hust.seller.repository.UserRepository;
 import com.hust.seller.security.CustomUserDetailsService;
-import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/profile")
@@ -34,43 +40,60 @@ public class CustomerProfileController {
         model.addAttribute("user", user);  // Add user to the model
         return "customer/profile";  // Return the view name for the profile page
     }
-
+    @PostMapping("/save-information")
+    public String saveInformationCustomer( @RequestParam("full_name") String fullName,
+                                           @RequestParam("phone_number") String phoneNumber,
+                                           @RequestParam("tinh")String tinh,
+                                           @RequestParam("quan")String huyen,
+                                           @RequestParam("phuong")String phuong,
+                                           @RequestParam("detailed_address")String address,
+                                           @ModelAttribute("user") User user) {
+        User user1 = customUserDetailsService.getCurrentUser() ;
+        user1.setAddress(tinh +"-"+huyen+"-"+ phuong+"-"+address);
+        userRepository.save(user1) ;
+        return "redirect:/profile" ;
+    }
     @PostMapping("/save-image")
-    @Transactional
-    public String saveImageCustomer(@ModelAttribute("user") User user, @RequestParam("avatar") MultipartFile image) {
-        // Kiểm tra nếu có tệp ảnh được chọn
-        if (image != null && !image.isEmpty()) {
-            // Lấy đường dẫn gốc và thư mục lưu trữ ảnh
-            String rootDir = System.getProperty("user.dir");
-            String uploadDirPath = rootDir + "/static/images/users/" + user.getUserID() + "/";
-
-            // Tạo thư mục nếu chưa tồn tại
-            File dir = new File(uploadDirPath);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-
-            // Xóa ảnh cũ nếu có
-            if (dir.isDirectory() && dir.listFiles() != null) {
-                for (File file : dir.listFiles()) {
-                    if (!file.isDirectory()) {
-                        file.delete();
-                    }
-                }
-            }
-
-            // Lưu ảnh mới
-            String filePath = uploadDirPath + image.getOriginalFilename();
-            try {
-                // Lưu tệp ảnh vào thư mục
-                image.transferTo(new File(filePath));
-                // Cập nhật thông tin ảnh cho người dùng
-                customerService.updateImageByUserID(user.getUserID(), "images/users/" + user.getUserID() + "/" + image.getOriginalFilename());
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "error"; // Xử lý lỗi nếu có
-            }
+    public String saveImageCustomer(@RequestParam("avatar") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "error/file-empty";
         }
-        return "redirect:/profile";  // Chuyển hướng về trang profile sau khi lưu ảnh
+
+        try {
+            // Validate file is an image
+            String contentType = file.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                return "error/invalid-file-type";
+            }
+
+            // Sanitize filename
+            String originalFilename = file.getOriginalFilename();
+            String safeFileName = UUID.randomUUID().toString() + "_" +
+                    originalFilename.replaceAll("[^a-zA-Z0-9.-]", "_");
+
+            // Secure directory path
+            User currentUser = customUserDetailsService.getCurrentUser();
+            String uploadDir = "static/images/users/" + currentUser.getUserID();
+
+            // Create directory safely
+            Path directory = Paths.get(uploadDir).toAbsolutePath().normalize();
+            Files.createDirectories(directory);
+
+            // Save file
+            Path targetLocation = directory.resolve(safeFileName);
+            file.transferTo(targetLocation.toFile());
+
+            // Save image URL to user
+            String imageUrl = "/images/users/" + currentUser.getUserID() + "/" + safeFileName;
+
+            currentUser.setImage(imageUrl);
+            userRepository.save(currentUser);
+
+            return "redirect:/profile";
+
+        } catch (IOException e) {
+            // Use proper logging
+            return "error/upload-failed";
+        }
     }
 }

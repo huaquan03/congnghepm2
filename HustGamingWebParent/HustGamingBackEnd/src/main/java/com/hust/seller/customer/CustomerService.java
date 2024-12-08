@@ -5,8 +5,7 @@ import com.hust.seller.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import com.hust.seller.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,7 +36,7 @@ public class CustomerService {
         }
         return null;
     }
-    public void updateImageByUserID(int id,String image) {
-        userRepository.updateImageByUserID(id,image);
+    public void updateInformationByUserID(String fullName,String phoneNumber,String address,int id) {
+        userRepository.updateInformationByUserID(fullName,phoneNumber,address,id);
     }
 }

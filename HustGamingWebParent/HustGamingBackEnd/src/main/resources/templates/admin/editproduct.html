@@ -116,7 +116,6 @@
         <div class="form-group">
             <label for="existingImages">Existing Product Images</label>
             <div id="existingImages" style="display: flex; gap: 10px; margin-top: 10px;">
-                <!-- Hiển thị ảnh hiện có với Thymeleaf -->
                 <img th:each="productImage: ${productImages}" th:src="@{${productImage.getImage}}"
                      style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);" />
             </div>

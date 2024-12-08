@@ -401,8 +401,9 @@
                    aria-expanded="false" th:text="${user.getFullName}">
                     dokiendz
                 </a>
+                <img style="border-radius:50%;max-width: 50px;" th:src="${user.image}">
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item text-dark" th:href="@{/customer/profile}">Tài Khoản Của Tôi</a></li>
+                    <li><a class="dropdown-item text-dark" th:href="@{/profile}">Tài Khoản Của Tôi</a></li>
                     <li><a class="dropdown-item text-dark" th:href="@{/customer/orders}">Đơn Mua</a></li>
                     <li><a class="dropdown-item text-danger" th:href="@{/logout}">Đăng Xuất</a></li>
                 </ul>
@@ -484,9 +485,11 @@
                 </div>
 
             </section>
-            <form th:action="@{/customer/cart/add/{id}(id=${product.productID})}" method="post" id="addToCartForm">
+            <form  th:action="@{/customer/cart/add/{id}(id=${product.productID})}" method="post" id="addToCartForm">
+                <div style="display:block;">
                 <div style="display: flex; align-items: center; justify-content: center;">
                     <div style="font-size: 18px; color:#B6B6B6 ;display: flex; margin-right:30px;">Số Lượng</div>
+
                     <button type="button" onclick="decrementValue()"
                             style="width: 35px; height: 35px;  color: #003366;  border-radius: 3px 0 0 3px; font-size: 16px;border-width:1.5px;  cursor: pointer;">
                         -
@@ -498,10 +501,11 @@
                         +
                     </button>
                 </div>
-                    <button type="submit" style="padding:15px;margin: 10px 0 0 0; border-width:1.5px  ;font-size:20px;color: #EE4D2D; gap:15px; padding:7px ;border-color:#EE4D2D;border-radius:3px;"   class="btn_add_to_cart  " aria-disabled="false">
+                    <button type="submit" style="padding:15px;margin: 50px 0 0px 0; border-width:1.5px  ;font-size:20px;color: #EE4D2D; gap:15px; padding:7px ;border-color:#EE4D2D;border-radius:3px;"   class="btn_add_to_cart  " aria-disabled="false">
                         <img alt="icon-add-to-cart" style="width:25px;margin : 0 10px 3px 0 ;" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/0f3bf6e431b6694a9aac.svg">
                       Thêm Vào Giỏ Hàng
                     </button>
+                </div>
             </form>
     </div>
 
@@ -512,7 +516,7 @@
     <div class="container">
         <div class="shop-info-container" style="margin:20px 0px;background-color:#ffffff">
             <div class="shop-profile">
-                <img src="shop-logo.png" alt="Shop Logo" class="shop-logo">
+                <img th:src="${Image}" alt="Shop Logo" class="shop-logo">
                 <div class="shop-name">
                     <h2 th:text="${shop.name}">❈ USA_Store ❈</h2>
                     <p>Online 3 Giờ Trước</p>

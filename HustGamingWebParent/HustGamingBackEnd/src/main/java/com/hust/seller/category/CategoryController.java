@@ -20,9 +20,11 @@ public class CategoryController {
     private  UserRepository userRepository;
     @Autowired
     CategoryService categoryService ;
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService ;
     @GetMapping("")
     public String getProductsByCategory(@PathVariable("name") String name, Model model) {
-        User user = new CustomUserDetailsService(userRepository).getCurrentUser() ;
+        User user = customUserDetailsService.getCurrentUser() ;
         List<Product> productList = categoryService.getProductByCategoryName(name) ;
         model.addAttribute("user",user) ;
         if(productList.isEmpty()){

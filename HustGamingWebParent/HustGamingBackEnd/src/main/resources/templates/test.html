@@ -112,13 +112,6 @@
             text-decoration: underline;
         }
 
-        form {
-            margin: 0;
-            padding: 0;
-            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
-            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
-        }
-
         <!--
         test-- >
         .navbar {
@@ -170,184 +163,216 @@
         test
 
         -->
-        <!--
-        navbar-- >
-        .banner-section {
-            background-color: #ffffff;
-            padding: 20px 0;
+        /* Nội dung sản phẩm */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0px;
         }
 
-        .banner-container {
+        .product-detail {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+            gap: 20px;
+            align-items: flex-start;
         }
 
-        .banner-container img {
-            width: 100%;
-            max-width: 33%; /* Ba cột ngang chia đều */
-            border-radius: 5px;
+        .image-slider {
+            position: relative;
+            width: 500px; /* Đặt kích thước chiều rộng của slider */
+            height: 300px; /* Đặt chiều cao cụ thể */
+            overflow: hidden;
+            margin: auto; /* Canh giữa */
         }
 
-        /* Voucher Section */
-        .voucher-section {
-            margin-top: 20px;
-            text-align: center;
-
+        .slider-wrapper {
+            display: flex; /* Cần dùng để xếp ảnh ngang hàng */
+            transition: transform 0.5s ease-in-out; /* Hiệu ứng chuyển động */
+            width: fit-content; /* Chiều rộng linh hoạt theo ảnh */
         }
 
-        .voucher-item {
-            display: inline-block;
-            width: 120px;
-            margin: 10px;
-            text-align: center;
-            font-size: 14px;
-            color: #333;
+        .slider-item {
+            flex: 0 0 500px; /* Mỗi ảnh chiếm đúng kích thước của slider */
         }
 
-        .voucher-item img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 10px;
+        .slider-image {
+            width: 100%; /* Đảm bảo ảnh lấp đầy slider */
+            height: auto;
+            object-fit: cover; /* Giữ nguyên tỷ lệ ảnh */
         }
 
-        .voucher-item span {
-            display: block;
-            margin-top: 5px;
-        }
-
-        .category-card {
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .category-card img {
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-        }
-
-        .category-card:hover {
-            transform: scale(1.05);
-            transition: transform 0.2s;
-        }
-
-        .pagination a {
-            text-decoration: none;
-            padding: 8px 12px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .pagination a.active {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .product-card {
-            border: 1px solid #eaeaea;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .product-card .card-title {
-            font-size: 14px;
-            font-weight: bold;
-            line-height: 1.2;
-            height: 40px; /* Đảm bảo chiều cao cố định */
-            overflow: hidden; /* Giới hạn text */
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .product-card .card-text {
-            font-size: 14px;
-        }
-
-        .product-card .card-footer {
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-
-        .category-wrapper {
-            position: relative; /* Để đặt nút điều hướng */
-            width: 80%; /* Giới hạn chiều rộng */
-            margin: auto; /* Căn giữa trang */
-            overflow: hidden; /* Ẩn nội dung thừa */
-            background: #f8f8f8;
-            padding: 20px 0;
-            border-radius: 10px; /* Bo tròn góc */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
-        }
-
-        .category-container {
-            display: flex; /* Hiển thị các mục nằm ngang */
-            transition: transform 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
-        }
-
-        .category-item {
-            flex: 0 0 20%; /* Mỗi mục chiếm 20% chiều rộng container */
-            box-sizing: border-box;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .category-item img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-
-        .category-item p {
-            font-size: 14px;
-            margin: 0;
-            font-weight: bold;
-        }
-
-        /* Nút điều hướng */
-        .btn-slide {
+        .arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.5); /* Nền mờ cho nút */
+            color: white;
             border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-size: 24px;
+            padding: 10px;
             cursor: pointer;
             z-index: 10;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-slide:hover {
-            background-color: #eaeaea;
+        .left-arrow {
+            left: 10px;
         }
 
-        .btn-prev {
-            left: 10px; /* Sát cạnh trái container */
+        .right-arrow {
+            right: 10px;
         }
 
-        .btn-next {
-            right: 10px; /* Sát cạnh phải container */
+        .product-info {
+            flex: 1;
+            max-width: 60%;
         }
 
-        /* Icon mũi tên */
-        .btn-slide span {
-            font-size: 18px;
-            font-weight: bold;
+        .product-info h2 {
+            margin: 0;
+            font-size: 24px;
             color: #333;
         }
+
+        .product-info p {
+            margin: 10px 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .price {
+            margin: 20px 0;
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+        }
+
+        .actions button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-to-cart {
+            background-color: #f60;
+        }
+
+        .buy-now {
+            background-color: #ff4500;
+        }
+
+        .add-to-cart:hover, .buy-now:hover {
+            opacity: 0.9;
+        }
+
+        /* Container tổng */
+        .shop-info-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            margin: 0;
+            padding: 0;
+            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
+            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+        }
+
+        /* Phần shop profile */
+        .shop-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .shop-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .shop-name h2 {
+            font-size: 18px;
+            margin: 0;
+            color: #333;
+            max-width: 150px;
+        }
+
+        .shop-name p {
+            font-size: 14px;
+            margin: 5px 0 0 0;
+            color: #999;
+        }
+
+        /* Phần hành động (nút bấm) */
+        .shop-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-button {
+            padding: 8px 15px;
+            background-color: #f36;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .chat-button:hover {
+            background-color: #e02a5d;
+        }
+
+        .view-shop-button {
+            padding: 8px 15px;
+            background-color: white;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .view-shop-button:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Phần chi tiết shop */
+        .shop-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex: 1; /* Đẩy phần này sang trái khi có không gian */
+            justify-content: flex-end;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-item span {
+            display: block;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .detail-item strong {
+            display: block;
+            font-size: 16px;
+            color: #f36;
+            margin-top: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -369,9 +394,11 @@
             <a th:href="@{/register}" id="register">Đăng Ký</a> |
             <a th:href="@{/login}" id="login">Đăng Nhập</a>
         </span>
+
             <div class="dropdown auth-links" th:if="${user}">
                 <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
                    aria-expanded="false" th:text="${user.getFullName}">
+                    qunha353
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item text-dark" th:href="@{/customer/profile}">Tài Khoản Của Tôi</a></li>
@@ -386,7 +413,7 @@
 <div class="navbar-main">
     <div class="container">
         <div class="logo">
-            <img src="shopee-logo.png" alt="Shopee Logo">
+            <img th:src="hello.png" alt="Shopee Logo">
         </div>
         <div class="search-bar">
             <form th:action="@{/search}" method="GET">
@@ -406,84 +433,159 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div style="text-align: center; font-size: 50px; font-family: Arial, sans-serif; font-weight: bold;padding: 20px; border: 1px ">
+        Thông tin sản phẩm
+    </div>
+    <div class="product-detail" style="background-color:#ffffff;padding:30px 0px">
+        <!-- Slider ảnh -->
+        <div class="image-slider" style="padding:0px 10px">
+            <button class="arrow left-arrow" onclick="prevSlide()">&#8249;</button>
+            <div class="slider-wrapper">
+                <div class="slider-item" th:each="image : ${images}">
+                    <img th:src="${image.image}" class="slider-image" alt="Ảnh Sản Phẩm">
+                </div>
+            </div>
+            <button class="arrow right-arrow" onclick="nextSlide()">&#8250;</button>
+        </div>
 
-<!-- Banner Section -->
-<div class="banner-section">
-    <div class="container" style="padding:10px 10px;">
-        <div class="banner-container">
-            <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kj655hr3qy09_xxhdpi" alt="Banner 1">
-            <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kuu5oqoj3u1f_xhdpi" alt="Banner 2">
-            <img src="https://cf.shopee.vn/file/vn-11134258-7ras8-m2kp3wniqz2ed7_xhdpi" alt="Banner 3">
+        <!-- Thông tin sản phẩm -->
+        <div class="product-info">
+            <h2 th:text="${product.productName}">Tên Sản Phẩm</h2>
+            <div class="price" th:text="'Giá: ' + ${product.price} + '₫'">Giá tiền</div>
+            <div class="display: flex;align-items: center;gap: 10px; ">
+                <div style="font-size: 18px; color: #555;font-weight: bold;display: flex;">SỐ LƯỢNG</div>
+                <div style="display:block;unicode:isolate;color:#757575"
+                     th:text="${product.quantity} +' sản phẩm có sẵn'"></div>
+            </div>
+            <form th:action="@{/customer/cart/add/{id}(id=${product.productID})}" method="post" id="addToCartForm">
+                <input style="display: flex;justify-content: center;align-items: center; width: 50px; height: 30px;background-color: #e0e0e0;color: #003366;border: 2px solid #003366;border-radius: 8px;font-size: 16px;font-weight: bold;"
+                       type="number" name="quantity" id="quantity" min="0" value="1">
+                <button type="submit" class="add-to-cart actions"
+                        style="padding:10px 0px; background: #ee4d2d; color: #fff; outline: 0; overflow: visible; position: relative;">
+                    Thêm Vào Giỏ Hàng
+                </button>
+            </form>
         </div>
     </div>
-</div>
-
-<!-- Voucher Section -->
-<div class="voucher-section">
-    <div class="container" style="background-color:#ffffff;">
-        <div class="voucher-item">
-            <img src="voucher1.png" alt="Voucher 1">
-            <span>Voucher Giảm Đến 1 Triệu</span>
-        </div>
-        <div class="voucher-item">
-            <img src="voucher2.png" alt="Voucher 2">
-            <span>Miễn Phí Ship - Có Shopee</span>
-        </div>
-        <div class="voucher-item">
-            <img src="voucher3.png" alt="Voucher 3">
-            <span>Mua Nhiều Giảm Sâu</span>
-        </div>
-        <div class="voucher-item">
-            <img src="voucher4.png" alt="Voucher 4">
-            <span>Shopee Style Voucher 30%</span>
-        </div>
-        <div class="voucher-item">
-            <img src="voucher5.png" alt="Voucher 5">
-            <span>Hàng Quốc Tế Ưu Đãi</span>
-        </div>
-        <div class="voucher-item">
-            <img src="voucher6.png" alt="Voucher 6">
-            <span>Nạp Thẻ, Dịch Vụ & Vé Phim</span>
-        </div>
-    </div>
-</div>
-
-<div class="container my-5" style="background-color:#ffffff">
-    <h2 class="mb-4">DANH MỤC</h2>
-    <div class="row">
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2" th:each="category : ${categories}">
-            <div class="category-card">
-                <!--                <img th:src="@{${category.imageUrl}}" th:alt="${category.name}">-->
-                <a class="mt-2" th:text="${category.categoryName}"
-                   th:href="@{/{name}(name=${category.categoryName})}"></a>
+    <!-- mo ta shop va san pham-->
+    <div class="container">
+        <div class="shop-info-container" style="margin:20px 0px;background-color:#ffffff">
+            <div class="shop-profile">
+                <img src="shop-logo.png" alt="Shop Logo" class="shop-logo">
+                <div class="shop-name">
+                    <h2 th:text="${shop.name}">❈ USA_Store ❈</h2>
+                    <p>Online 3 Giờ Trước</p>
+                </div>
+            </div>
+            <div class="shop-actions">
+                <button class="chat-button">Chat Ngay</button>
+                <a class="view-shop-button" th:href="@{/shop/{id}(id=${shop.shopID})}">
+                    Xem Shop
+                </a>
+            </div>
+            <div class="shop-details">
+                <div class="detail-item">
+                    <span>Đánh Giá</span>
+                    <strong>1,5tr</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Tỉ Lệ Phản Hồi</span>
+                    <strong>84%</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Tham Gia</span>
+                    <strong>8 năm trước</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Sản Phẩm</span>
+                    <strong>1,4k</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Thời Gian Phản Hồi</span>
+                    <strong>trong vài giờ</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Người Theo Dõi</span>
+                    <strong>557k</strong>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="container"
+         style="text-align: center; font-size: 20px; font-family: Arial, sans-serif; font-weight: bold;padding: 20px; border: 1px;background-color:#ffffff ">
+        Mô tả chi tiết sản phẩm
+        <p th:text="${product.description}">Mô tả </p></div>
 
-<div class="container mt-4">
-    <div class="row">
-        <!-- Lặp qua danh sách sản phẩm -->
-        <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${products}">
-            <div class="card product-card">
-                <img th:src="@{${product.image}}" class="card-img-top" alt="product-image">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${product.productName}"></h6>
-                    <p class="card-text text-danger" th:text="'₫' + ${product.price}"></p>
-                </div>
-                <div class="card-footer">
-                    <a th:href="@{/products/{id}(id=${product.productID})}">
-                        <button class="btn btn-sm btn-primary">Mua ngay</button>
-                    </a>
-                </div>
-            </div>
-            <a class="opacity-0 group-hover:opacity-100 duration-100 absolute z-[-1] top-[calc(100%-6px)] pt-[6px] -left-px  box-content w-full h-[1.875rem] bg-shopee-primary text-white text-center text-sm/[1.875rem] border border-shopee-primary rounded-bl-sm rounded-br-sm "
-               th:href="@{/tim san pham tuong tu}">Tìm sản phẩm tương tự</a>
-        </div>
-    </div>
 </div>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="image">Chọn ảnh:</label>
+        <input type="file" class="form-control-file" id="image" name="image" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
 
 <!-- Link Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('addToCartForm').addEventListener('submit', function (event) {
+        event.preventDefault();  // Ngừng gửi form mặc định
+
+        var quantity = document.getElementById('quantity').value;
+
+        // Kiểm tra xem người dùng đã nhập số lượng hợp lệ chưa
+        if (quantity <= 0) {
+            alert("Vui lòng nhập số lượng sản phẩm lớn hơn 0.");
+            return;
+        }
+
+        // Hiển thị alert cho người dùng xác nhận
+        var confirmMessage = "Bạn muốn thêm " + quantity + " sản phẩm vào giỏ hàng?";
+        var isConfirmed = confirm(confirmMessage);
+
+        if (isConfirmed) {
+            // Nếu người dùng xác nhận, gửi form để thêm sản phẩm vào giỏ hàng
+            this.submit();
+            alert("Bạn vừa thêm " + quantity + " sản phẩm vào giỏ hàng");
+        } else {
+            alert("Sản phẩm chưa được thêm vào giỏ hàng.");
+        }
+    });
+
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        const sliderWrapper = document.querySelector('.slider-wrapper');
+        const slides = document.querySelectorAll('.slider-item');
+        const totalSlides = slides.length;
+
+// Đảm bảo chỉ số slide nằm trong giới hạn
+        if (index >= totalSlides) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = totalSlides - 1;
+        } else {
+            currentSlide = index;
+        }
+
+// Cập nhật vị trí của slider
+        const slideWidth = slides[0].offsetWidth; // Lấy chiều rộng của một ảnh
+        sliderWrapper.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // Hiển thị slide đầu tiên khi tải trang
+    document.addEventListener('DOMContentLoaded', () => {
+        showSlide(0);
+    });
+</script>
 </body>
 </html>

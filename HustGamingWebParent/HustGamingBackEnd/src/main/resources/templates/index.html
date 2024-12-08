@@ -363,6 +363,7 @@
                 <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${user.getFullName}">
                     qunha353
                 </a>
+                <img style="border-radius:50%;max-width: 50px;" th:src="${user.image}">
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item text-dark" th:href="@{/profile}">Tài Khoản Của Tôi</a></li>
                     <li><a class="dropdown-item text-dark" th:href="@{/orders}">Đơn Mua</a></li>

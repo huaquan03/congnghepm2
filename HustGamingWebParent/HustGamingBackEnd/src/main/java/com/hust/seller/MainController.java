@@ -7,6 +7,7 @@ import com.hust.seller.repository.ImageProductRepository;
 import com.hust.seller.repository.ProductRepository;
 import com.hust.seller.repository.ShopRepository;
 import com.hust.seller.security.CustomUserDetailsService;
+import com.hust.seller.shop.ShopService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +27,16 @@ import java.util.Optional;
     private final ImageProductRepository imageProductRepository;
     private final ShopRepository shopRepository;
     private final ProductService productService;
+    private final ShopService shopService;
 
 
-    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository, ImageProductRepository imageProductRepository,ShopRepository shopRepository, ProductService productService) {
+    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository, ImageProductRepository imageProductRepository,ShopRepository shopRepository, ProductService productService, ShopService shopService) {
         this.customUserDetailsService = customUserDetailsService;
         this.categoryRepository=categoryRepository;
         this.imageProductRepository=imageProductRepository;
         this.shopRepository=shopRepository;
         this.productService=productService;
+        this.shopService= shopService;
     }
 
     @GetMapping("")
@@ -66,6 +69,7 @@ import java.util.Optional;
         model.addAttribute("product", product);
         Optional<Shop> shop1 = shopRepository.findByShopID(product.getShopID());
         Shop shop = shop1.get();
+        model.addAttribute("Image",shopService.getImageByShopId(product.getShopID()));
         model.addAttribute("shop", shop);
         return "product";
     }
