@@ -50,6 +50,8 @@ public class CustomerProfileController {
                                            @ModelAttribute("user") User user) {
         User user1 = customUserDetailsService.getCurrentUser() ;
         user1.setAddress(tinh +"-"+huyen+"-"+ phuong+"-"+address);
+        user1.setFullName(fullName);
+        user1.setPhoneNumber(phoneNumber);
         userRepository.save(user1) ;
         return "redirect:/profile" ;
     }
