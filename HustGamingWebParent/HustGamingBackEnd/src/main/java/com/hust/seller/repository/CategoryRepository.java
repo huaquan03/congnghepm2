@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     List<Category> findAll();
-    Category findByCategoryId(int categoryId);
+   Category findByCategoryId(int categoryId);
+   Category findByCategoryName(String categoryName);
 
     @Query("SELECT p FROM Product p JOIN Category c ON p.categoryID = c.categoryId WHERE  c.categoryName = :name")
     List<Product> findProductByCategoryName(@Param("name") String name);

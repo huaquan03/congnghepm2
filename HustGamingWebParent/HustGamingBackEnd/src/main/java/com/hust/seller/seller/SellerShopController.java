@@ -34,6 +34,7 @@ public class SellerShopController {
     @GetMapping("")
     public String viewOrCreateShop(Model model) {
         User currentUser = customUserDetailsService.getCurrentUser();
+        model.addAttribute("user",currentUser);
         // Kiểm tra xem shop đã tồn tại chưa bằng cách tìm theo sellerId
         Optional<Shop> optionalShop = shopRepository.findBySellerID(currentUser.getUserID());
         if (optionalShop.isPresent()) {
@@ -48,8 +49,9 @@ public class SellerShopController {
     }
 
     @PostMapping("/create")
-    public String createShop(@ModelAttribute("shop") Shop shop) {
+    public String createShop(@ModelAttribute("shop") Shop shop,Model model) {
         User currentUser = customUserDetailsService.getCurrentUser();
+        model.addAttribute("user",currentUser);
         shop.setSellerID(currentUser.getUserID());
         shopRepository.save(shop);
         return "seller/success";
@@ -58,6 +60,7 @@ public class SellerShopController {
     @GetMapping("/edit/{id}")
     public String showeditShop(@PathVariable("id") int id, Model model) {
         User currentUser = customUserDetailsService.getCurrentUser();
+        model.addAttribute("user",currentUser);
         Optional<Shop> shop1 = shopRepository.findByShopID(id);
         Shop shop = shop1.get();
         // Kiểm tra xem người dùng hiện tại có phải chủ sở hữu shop không,tranh truong hop nguoi khac sua api de truy cap trai phep
@@ -68,8 +71,10 @@ public class SellerShopController {
         return "seller/editshop";
     }
     @PostMapping("/edit/{id}")
-    public String editShop(@PathVariable("id") int id, @ModelAttribute("shop") Shop shop) {
+    public String editShop(@PathVariable("id") int id, @ModelAttribute("shop") Shop shop,Model model) {
         shopRepository.save(shop);
+        User currentUser = customUserDetailsService.getCurrentUser();
+        model.addAttribute("user",currentUser);
         return "seller/success";
     }
 

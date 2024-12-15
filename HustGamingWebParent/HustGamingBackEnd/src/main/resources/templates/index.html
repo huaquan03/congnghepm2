@@ -271,6 +271,29 @@
             text-align: center;
         }
 
+          .category-wrapper {
+            position: relative; /* Để đặt nút điều hướng */
+            width: 80%; /* Giới hạn chiều rộng */
+            margin: auto; /* Căn giữa trang */
+            overflow: hidden; /* Ẩn nội dung thừa */
+            background: #f8f8f8;
+            padding: 20px 0;
+            border-radius: 10px; /* Bo tròn góc */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
+        }
+
+        .category-container {
+            display: flex; /* Hiển thị các mục nằm ngang */
+            transition: transform 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
+        }
+
+        .category-item {
+            flex: 0 0 20%; /* Mỗi mục chiếm 20% chiều rộng container */
+            box-sizing: border-box;
+            text-align: center;
+            padding: 10px;
+        }
+
         .category-item img {
             width: 80px;
             height: 80px;
@@ -284,12 +307,7 @@
             font-weight: bold;
         }
 
-        /* Icon mũi tên */
-        .btn-slide span {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
+
     </style>
 </head>
 <body>
@@ -328,7 +346,7 @@
 <div class="navbar-main">
     <div class="container">
         <div class="logo">
-            <img src="shopee-logo.png" alt="Shopee Logo">
+           <a th:href="@{/}"> <img src="shopee-logo.png" alt="Shopee Logo"></a>
         </div>
         <div class="search-bar">
             <form th:action="@{/search}" method="GET">
@@ -403,12 +421,14 @@
     </div>
 </div>
 
-<div class="container mt-4">
+<div class="container mt-4" >
+    <h2 class="mb-4" th:if="${categoryname}" th:text="'DANH MỤC THEO  '+${categoryname}">DANH MỤC</h2>
+    <p style="font-size: 18px; color: #ff5722; text-align: center; margin-top: 20px;" th:if="${none}">Không tìm thấy sản phẩm nào</p>
     <div class="row">
         <!-- Lặp qua danh sách sản phẩm -->
         <div class="col-6 col-md-4 col-lg-3 mb-4" th:each="product : ${products}">
             <div class="card product-card">
-                <img th:src="@{${product.image}}" class="card-img-top" alt="product-image">
+                <img th:src="${product.image}" class="card-img-top" alt="product-image">
                 <div class="card-body">
                     <h6 class="card-title" th:text="${product.productName}"></h6>
                     <p class="card-text text-danger price" th:text="${product.price} + '₫'"></p>
