@@ -94,11 +94,6 @@
         }
 
         /* Submenu Below Search Bar */
-        .navbar-submenu {
-            background-color: #ff814c;
-            padding: 5px 0;
-            font-size: 14px;
-        }
 
         .navbar-submenu a {
             color: white;
@@ -276,28 +271,6 @@
         test
 
         -->
-        .category-wrapper {
-            position: relative; /* Để đặt nút điều hướng */
-            width: 80%; /* Giới hạn chiều rộng */
-            margin: auto; /* Căn giữa trang */
-            overflow: hidden; /* Ẩn nội dung thừa */
-            background: #f8f8f8;
-            padding: 20px 0;
-            border-radius: 10px; /* Bo tròn góc */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
-        }
-
-        .category-container {
-            display: flex; /* Hiển thị các mục nằm ngang */
-            transition: transform 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
-        }
-
-        .category-item {
-            flex: 0 0 20%; /* Mỗi mục chiếm 20% chiều rộng container */
-            box-sizing: border-box;
-            text-align: center;
-            padding: 10px;
-        }
 
         .category-item img {
             width: 80px;
@@ -343,7 +316,6 @@
             <div class="dropdown auth-links" th:if="${user}">
                 <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
                    aria-expanded="false" th:text="${user.getFullName}">
-                    qunha353
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item text-dark" th:href="@{/profile}">Tài Khoản Của Tôi</a></li>
@@ -354,6 +326,7 @@
         </div>
     </div>
 </div>
+
 <!-- Main Navbar -->
 <div class="navbar-main">
     <div class="container">
@@ -378,6 +351,7 @@
         </div>
     </div>
 </div>
+
 <!-- Banner Section -->
 <div class="banner-section">
     <div class="container">
