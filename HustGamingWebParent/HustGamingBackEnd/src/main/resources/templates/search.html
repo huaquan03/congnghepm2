@@ -348,14 +348,15 @@
         <div class="filter-section">
             <h4>Lọc theo giá</h4>
             <form th:action="@{/search}" method="GET">
-                <input type="hidden" name="" th:value="${keyword}"/>
+                <input type="hidden" name="keyword" th:value="${keyword}"/>
+                <input type="hidden" name="sortBy" th:value="${sortBy}"/>
                 <div class="price-inputs">
                     <div class="form-group">
                         <label>Giá từ:</label>
                         <input type="number" class="form-control" name="minPrice" placeholder="Giá thấp nhất"
                                th:value="${minPrice}" min="0" max="2147483647">
                     </div>
-                    <div class="form-groukeywordp">
+                    <div class="form-group">
                         <label>Đến:</label>
                         <input type="number" class="form-control" name="maxPrice" placeholder="Giá cao nhất"
                                th:value="${maxPrice}" min="0" max="2147483647">
@@ -363,6 +364,7 @@
                     <button type="submit" class="btn btn-primary mt-2">Áp dụng</button>
                 </div>
             </form>
+
         </div>
 
         <!-- Sort Section -->

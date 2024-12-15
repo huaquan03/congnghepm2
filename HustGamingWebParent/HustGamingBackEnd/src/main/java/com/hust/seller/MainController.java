@@ -120,6 +120,7 @@ public class MainController {
             model.addAttribute("sortBy", sortBy);
         }
 
+        model.addAttribute("user", customUserDetailsService.getCurrentUser());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", page);
         model.addAttribute("products", products);

@@ -16,7 +16,6 @@
     </properties>
 
     <modules>
-        <module>HustGamingCommon</module>
         <module>HustGamingWebParent</module>
     </modules>
 </project>

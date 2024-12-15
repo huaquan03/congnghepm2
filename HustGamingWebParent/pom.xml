@@ -87,12 +87,6 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.hust</groupId>
-			<artifactId>HustGamingCommon</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 </project>
