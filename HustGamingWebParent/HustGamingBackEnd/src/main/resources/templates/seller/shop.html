@@ -20,6 +20,24 @@
               color: #fff;
               margin-right: 15px;
           }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+        }
     </style>
 </head>
 <body>
@@ -67,6 +85,26 @@
 
 
 <div class="container mt-5">
+    <div class="profile-container">
+        <div class="profile-header">
+            <form style="display:block;" method="post" enctype="multipart/form-data" th:action=@{/seller/shop/save-image}>
+                <img id="avatarPreview"
+                     th:src="${shop.image} != null ? ${shop.image} : '/images/users/default-avatar.jpg'"
+                     alt="Ảnh Đại Diện"
+                     class="profile-avatar"
+                     style="max-width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+
+                <div style="display:block;">
+                    <input type="file"
+                           id="avatarInput"
+                           name="avatar"
+                           style="display: none;"
+                           accept="image/jpeg,image/png,image/gif"
+                           data-max-size="5242880">
+                </div>
+            </form>
+        </div>
+    </div>
     <h2 class="text-center"> thông tin cua hang cua ban</h2>
     <form th:action="@{/seller/shop/edit/{id}(id=${shop.getShopID})}" th:object="${shop}" method="post" >
         <div class="form-group">
@@ -90,6 +128,7 @@
             <input type="text" class="form-control" id="status" th:field="*{status}" placeholder="status" readonly>
         </div>
     </form>
+
     <a th:href="@{/seller/shop/edit/{id}(id=${shop.shopID})}" class="btn btn-primary">Edit Shop</a>
 </div>
 

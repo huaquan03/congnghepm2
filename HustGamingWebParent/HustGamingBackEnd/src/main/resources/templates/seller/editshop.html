@@ -20,6 +20,34 @@
               color: #fff;
               margin-right: 15px;
           }
+          .profile-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+        }
+
     </style>
 </head>
 <body>
@@ -67,7 +95,62 @@
 
 
 <div class="container mt-5">
-    <h2 class="text-center"> Hãy thay đổi thông tin cửa hàng của bạn</h2>
+    <h2 class="text-center"> Hãy thay đổi thông tin cửa hàng của bạn</h2>  <div class="profile-container">
+    <div class="profile-header">
+        <form style="display:block;" method="post" enctype="multipart/form-data" th:action=@{/seller/shop/save-image}>
+            <img id="avatarPreview"
+                 th:src="${shop.image} != null ? ${shop.image} : '/images/users/default-avatar.jpg'"
+                 alt="Ảnh Đại Diện"
+                 class="profile-avatar"
+                 style="max-width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+
+            <div style="display:block;">
+                <input type="file"
+                       id="avatarInput"
+                       name="avatar"
+                       style="display: none;"
+                       accept="image/jpeg,image/png,image/gif"
+                       data-max-size="5242880">
+
+                <!-- Nút chọn ảnh -->
+                <button type="button" class="btn-choose" onclick="document.getElementById('avatarInput').click();">
+                    Chọn Ảnh
+                </button>
+
+                <!-- Nút Lưu -->
+                <button type="submit" style="width: 120px;
+    height: 48px;
+    border-radius: 5px;
+    background-color: #FF5722;
+    color: #ffffff;
+    border-color: #FFFFFF;
+    margin-left: 20px;">
+                    Lưu Ảnh
+                </button>
+            </div>
+        </form>
+
+        <script>
+            const avatarInput = document.getElementById('avatarInput');
+            const avatarPreview = document.getElementById('avatarPreview');
+
+            // Hiển thị ảnh xem trước khi người dùng chọn ảnh
+            avatarInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        avatarPreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+
+        <!-- Thông báo lỗi -->
+        <div id="uploadError" style="color: red; margin-top: 10px;"></div>
+    </div>
+
     <form th:action="@{/seller/shop/edit/{id}(id=${shop.getShopID})}" th:object="${shop}" method="post" >
 
         <div class="form-group">
