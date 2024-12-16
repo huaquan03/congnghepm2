@@ -10,11 +10,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
-@RequestMapping("/seller/shop")
+@RequestMapping("/seller")
 public class SellerShopController {
     private UserService userService;
     private CustomUserDetailsService customUserDetailsService;
@@ -31,7 +37,7 @@ public class SellerShopController {
     }
 
 
-    @GetMapping("")
+    @GetMapping("/shop")
     public String viewOrCreateShop(Model model) {
         User currentUser = customUserDetailsService.getCurrentUser();
         model.addAttribute("user",currentUser);
@@ -48,7 +54,7 @@ public class SellerShopController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping("/shop/create")
     public String createShop(@ModelAttribute("shop") Shop shop,Model model) {
         User currentUser = customUserDetailsService.getCurrentUser();
         model.addAttribute("user",currentUser);
@@ -57,7 +63,7 @@ public class SellerShopController {
         return "seller/success";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/shop/edit/{id}")
     public String showeditShop(@PathVariable("id") int id, Model model) {
         User currentUser = customUserDetailsService.getCurrentUser();
         model.addAttribute("user",currentUser);
@@ -70,7 +76,7 @@ public class SellerShopController {
         model.addAttribute("shop", shop);
         return "seller/editshop";
     }
-    @PostMapping("/edit/{id}")
+    @PostMapping("/shop/edit/{id}")
     public String editShop(@PathVariable("id") int id, @ModelAttribute("shop") Shop shop,Model model) {
         shopRepository.save(shop);
         User currentUser = customUserDetailsService.getCurrentUser();
@@ -78,4 +84,51 @@ public class SellerShopController {
         return "seller/success";
     }
 
+    @PostMapping("/shop/save-image")
+    public String saveImageCustomer(@RequestParam("avatar") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "error/file-empty";
+        }
+        User currentUser = customUserDetailsService.getCurrentUser();
+       Optional<Shop> shop1=shopRepository.findBySellerID(currentUser.getUserID());
+      Shop shop=shop1.get();
+
+        try {
+            // Validate file is an image
+            String contentType = file.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                return "error/invalid-file-type";
+            }
+
+            // Sanitize filename
+            String originalFilename = file.getOriginalFilename();
+            String safeFileName = UUID.randomUUID().toString() + "_" +
+                    originalFilename.replaceAll("[^a-zA-Z0-9.-]", "_");
+
+            // Secure directory path
+
+            String uploadDir = "static/images/shops/" + shop.getShopID();
+
+            // Create directory safely
+            Path directory = Paths.get(uploadDir).toAbsolutePath().normalize();
+            Files.createDirectories(directory);
+
+            // Save file
+            Path targetLocation = directory.resolve(safeFileName);
+            file.transferTo(targetLocation.toFile());
+
+            // Save image URL to user
+            String imageUrl = "/images/shops/" + shop.getShopID() + "/" + safeFileName;
+
+            shop.setImage(imageUrl);
+            shopRepository.save(shop);
+
+            return "redirect:/seller/shop";
+
+        } catch (IOException e) {
+            // Use proper logging
+            return "error/upload-failed";
+        }
+    }
 }
+

@@ -168,4 +168,14 @@ public class User {
     public void setImage(String image) {
         this.image = image;
     }
+    public List<String> getAddressDetail() {
+        List<String> addressDetail = new ArrayList<>();
+        String address = this.address;
+        String[] rs = address.split("-");
+        for (String ad : rs) {
+            addressDetail.add(ad); // Thay addLast bằng add
+        }
+        return addressDetail;
+    }
+
 }
