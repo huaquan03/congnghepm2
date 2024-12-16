@@ -1,11 +1,10 @@
 package com.hust.seller.entity;
 
 import jakarta.persistence.*;
-import org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy;
-import org.springframework.data.repository.cdi.Eager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -49,13 +48,9 @@ public class User {
     }
     public User(){};
     public List<String> getAddressDetail() {
-        List<String> addressDetail = new ArrayList<>();
         String address = this.address;
         String[] rs = address.split("-");
-        for (String ad : rs) {
-            addressDetail.add(ad); // Thay addLast bằng add
-        }
-        return addressDetail;
+        return new ArrayList<>(Arrays.asList(rs));
     }
     public int getUserID() {
         return this.userID;
@@ -168,14 +163,4 @@ public class User {
     public void setImage(String image) {
         this.image = image;
     }
-    public List<String> getAddressDetail() {
-        List<String> addressDetail = new ArrayList<>();
-        String address = this.address;
-        String[] rs = address.split("-");
-        for (String ad : rs) {
-            addressDetail.add(ad); // Thay addLast bằng add
-        }
-        return addressDetail;
-    }
-
 }
