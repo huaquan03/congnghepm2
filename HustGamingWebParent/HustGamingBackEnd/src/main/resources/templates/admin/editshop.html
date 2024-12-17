@@ -7,22 +7,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .navbar-custom {
-            background-color: #1f1f3d; /* Màu tối cho navbar */
+              background-color: #1f1f3d; /* Màu tối cho navbar */
+          }
+          .navbar-custom .navbar-brand,
+          .navbar-custom .nav-link {
+              color: #fff;
+          }
+          .navbar-custom .nav-link:hover {
+              color: #ccc;
+          }
+          .navbar-custom .user-info {
+              color: #fff;
+              margin-right: 15px;
+          }
+          .profile-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
         }
-        .navbar-custom .navbar-brand,
-        .navbar-custom .nav-link {
-            color: #fff;
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+            flex-direction: column;
+            text-align: center;
         }
-        .navbar-custom .nav-link:hover {
-            color: #ccc;
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
         }
-        .navbar-custom .user-info {
-            color: #fff;
-            margin-right: 15px;
-        }
+
     </style>
 </head>
 <body>
+<!-- Thanh điều hướng -->
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/admin/}">Hust Gaming</a>
@@ -73,53 +102,67 @@
     </div>
 </nav>
 
+
 <div class="container mt-5">
-    <h2 class="text-center">Chỉnh sửa thông tin tài khoản của Seller</h2>
-    <form th:action="@{/admin/sellers/edit/{id}(id=${user.getUserID})}" th:object="${userDTO}" method="post">
+    <h2 class="text-center"> Hãy thay đổi thông tin cửa hàng của bạn</h2>  <div class="profile-container">
+    <div class="profile-header">
+        <form style="display:block;" method="post" enctype="multipart/form-data" th:action=@{/admin/shop/save-image}>
+            <img id="avatarPreview"
+                 th:src="${shop.image} != null ? ${shop.image} : '/images/users/default-avatar.jpg'"
+                 alt="Ảnh Đại Diện"
+                 class="profile-avatar"
+                 style="max-width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
 
-        <!-- Username Field (disabled for non-editable) -->
+        </form>
+
+        <script>
+            const avatarInput = document.getElementById('avatarInput');
+            const avatarPreview = document.getElementById('avatarPreview');
+
+            // Hiển thị ảnh xem trước khi người dùng chọn ảnh
+            avatarInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        avatarPreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+
+    <form th:action="@{/admin/shop/edit/{id}(id=${shop.getShopID})}" th:object="${shop}" method="post" >
+
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Username" disabled>
+            <label for="shopID">ID Shop</label>
+            <input type="text" class="form-control" id="shopID" th:field="*{shopID}" placeholder="shopID" readonly>
         </div>
 
-        <!-- Password Field -->
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" disabled>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="name" readonly>
         </div>
 
-        <!-- Email Field -->
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email" disabled>
+            <label for="sellerID">Seller ID</label>
+            <input type="text" class="form-control" id="sellerID" th:field="*{sellerID}" placeholder="sellerID" readonly >
         </div>
 
-        <!-- Full Name Field -->
-        <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" class="form-control" id="fullName" th:field="*{fullName}" placeholder="Full Name" disabled>
-        </div>
-
-        <!-- Address Field -->
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="Address" disabled>
+            <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="address" readonly>
         </div>
 
-        <!-- Phone Number Field -->
         <div class="form-group">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Phone Number" disabled>
-        </div>
-        <div class="form-group">
-            <label for="Active">Is_Active</label>
-            <input type="text" class="form-control" id="Active" th:field="*{Active}" placeholder="Is_Active" >
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status" th:field="*{status}" placeholder="status"  >
         </div>
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
+</div>
 </div>
 
 </body>

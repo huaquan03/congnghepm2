@@ -167,12 +167,7 @@
             background-color: #f5f5f5;
         }
 
-        <!--
-        test
 
-        -->
-        <!--
-        navbar-- >
         .banner-section {
             background-color: #ffffff;
             padding: 20px 0;
@@ -387,13 +382,37 @@
 </div>
 
 <div class="container my-5" style="background-color:#ffffff">
-    <h2 class="mb-4">DANH MỤC</h2>
-    <div class="row">
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2" th:each="category : ${categories}">
-            <div class="category-card">
-                <!--                <img th:src="@{${category.imageUrl}}" th:alt="${category.name}">-->
-                <a class="mt-2" th:text="${category.categoryName}"
-                   th:href="@{/categories/{id}(id=${category.categoryId})}"></a>
+    <!-- Tiêu đề danh mục -->
+    <h2 class="mb-4 text-uppercase font-weight-bold">DANH MỤC</h2>
+
+    <!-- Bắt đầu lưới danh mục -->
+    <div class="row text-center">
+        <!-- Lặp qua danh sách categories -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4" th:each="category : ${categories}">
+            <div class="category-card d-flex flex-column align-items-center">
+                <!-- Hình ảnh danh mục -->
+                <div class="category-icon" style="
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #f8f8f8;">
+                    <img th:src="@{${category.image}}" th:alt="${category.categoryName}"
+                         style="max-width: 100%; height: auto; object-fit: contain;">
+                </div>
+
+                <!-- Tên danh mục -->
+                <a th:href="@{/categories/{id}(id=${category.categoryId})}"
+                   th:text="${category.categoryName}"
+                   style="margin-top: 10px;
+                          font-size: 14px;
+                          font-weight: 500;
+                          color: #333;
+                          text-decoration: none;">
+                </a>
             </div>
         </div>
     </div>

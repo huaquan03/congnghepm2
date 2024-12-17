@@ -12,6 +12,8 @@ public class Category {
     private int categoryId;
     @Column(name="Category_name")
     private String categoryName;
+    @Column(name = "Image")
+    private String image;
 
     public Category(String categoryName) {
         this.categoryName = categoryName;
@@ -34,4 +36,11 @@ public class Category {
         this.categoryName = categoryName;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

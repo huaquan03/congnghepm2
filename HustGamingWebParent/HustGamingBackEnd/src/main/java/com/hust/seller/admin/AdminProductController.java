@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 @Controller
@@ -53,6 +54,14 @@ public class AdminProductController {
         productRepository.save(product);
         return "admin/success";
     }
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") int id){
+        Product product=productRepository.findByProductID(id);
+        imageProductRepository.deleteByProductId(id);
+        productRepository.delete(product);
+        return "admin/success";
+    }
+
 
 
 }

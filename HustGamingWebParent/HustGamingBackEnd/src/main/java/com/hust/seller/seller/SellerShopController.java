@@ -99,36 +99,28 @@ public class SellerShopController {
             if (contentType == null || !contentType.startsWith("image/")) {
                 return "error/invalid-file-type";
             }
-
             // Sanitize filename
             String originalFilename = file.getOriginalFilename();
             String safeFileName = UUID.randomUUID().toString() + "_" +
                     originalFilename.replaceAll("[^a-zA-Z0-9.-]", "_");
-
             // Secure directory path
-
             String uploadDir = "static/images/shops/" + shop.getShopID();
-
             // Create directory safely
             Path directory = Paths.get(uploadDir).toAbsolutePath().normalize();
             Files.createDirectories(directory);
-
             // Save file
             Path targetLocation = directory.resolve(safeFileName);
             file.transferTo(targetLocation.toFile());
-
             // Save image URL to user
             String imageUrl = "/images/shops/" + shop.getShopID() + "/" + safeFileName;
-
             shop.setImage(imageUrl);
             shopRepository.save(shop);
-
             return "redirect:/seller/shop";
-
         } catch (IOException e) {
             // Use proper logging
             return "error/upload-failed";
         }
     }
+
 }
 

@@ -1,11 +1,11 @@
 package com.hust.seller;
 
 import com.hust.seller.entity.*;
+import com.hust.seller.product.ProductDTO;
 import com.hust.seller.product.ProductService;
 import com.hust.seller.repository.*;
 import com.hust.seller.security.CustomUserDetailsService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +17,14 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("")
-public class MainController {
-    private final CustomUserDetailsService customUserDetailsService;
-    private final CategoryRepository categoryRepository;
-    private final ProductRepository productRepository;
-    private final ImageProductRepository imageProductRepository;
-    private final ShopRepository shopRepository;
-    private final ReviewRepository reviewRepository;
-    private final ProductService productService;
+    public class MainController {
+    private CustomUserDetailsService customUserDetailsService;
+    private CategoryRepository categoryRepository;
+    private ProductRepository productRepository;
+    private ImageProductRepository imageProductRepository;
+    private ShopRepository shopRepository;
+    private ReviewRepository reviewRepository;
+    private ProductService productService;
 
 
     public MainController(CustomUserDetailsService customUserDetailsService, CategoryRepository categoryRepository, ProductRepository productRepository, ImageProductRepository imageProductRepository, ShopRepository shopRepository, ReviewRepository reviewRepository, ProductService productService) {

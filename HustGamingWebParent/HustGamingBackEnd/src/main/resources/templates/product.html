@@ -605,7 +605,7 @@
     <div class="container">
         <div class="shop-info-container" style="margin:20px 0px;background-color:#ffffff">
             <div class="shop-profile">
-                <img src="shop-logo.png" alt="Shop Logo" class="shop-logo">
+                <img th:src="@{${shop.image}}" alt="Shop Logo" class="shop-logo">
                 <div class="shop-name">
                     <h2 th:text="${shop.name}">❈ USA_Store ❈</h2>
                     <p th:if="${shop.status}">Shop đang hoạt động, có thể mua hàng</p>

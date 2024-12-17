@@ -32,6 +32,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();  // Mã hóa mật khẩu bằng BCrypt
     }
 
+
     // Cấu hình AuthenticationManager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -51,7 +52,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .requestMatchers("/seller/**").hasAnyRole("SELLER")
                         .requestMatchers("/customer/**").hasAnyRole("CUSTOMER")
-                        .requestMatchers("/login", "/register", "/forgot-password", "/", "/error/**", "reset-password", "/check-login-status", "/products/**", "/search/**", "/categories/**", "", "/shop/**").permitAll()
+                        .requestMatchers("/login", "/register", "/forgot-password", "/", "/error/**", "reset-password", "/check-login-status", "/products/**", "/categories/**", "/shop/**", "/search/**", "").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/static/**").permitAll()
                         .anyRequest().authenticated()
                 )

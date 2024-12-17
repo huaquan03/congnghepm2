@@ -50,7 +50,4 @@ private ReviewRepository reviewRepository;
     return "seller/review";
         }
 
-
-
-
 }
