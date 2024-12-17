@@ -71,7 +71,7 @@
 </nav>
 
 <div class="container mt-5">
-    <h2 class="text-center">Chỉnh sửa thông tin tài khoản cuar Seller</h2>
+    <h2 class="text-center">Chỉnh sửa thông tin tài khoản của Seller</h2>
     <form th:action="@{/admin/sellers/edit/{id}(id=${user.getUserID})}" th:object="${userDTO}" method="post">
 
         <!-- Username Field (disabled for non-editable) -->

@@ -2,12 +2,15 @@ package com.hust.seller;
 
 import com.hust.seller.entity.*;
 import com.hust.seller.product.ProductDTO;
+import com.hust.seller.product.ProductService;
 import com.hust.seller.repository.*;
 import com.hust.seller.security.CustomUserDetailsService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,15 +24,17 @@ import java.util.Optional;
     private ImageProductRepository imageProductRepository;
     private ShopRepository shopRepository;
     private ReviewRepository reviewRepository;
+    private ProductService productService;
 
 
-    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository,ProductRepository productRepository,ImageProductRepository imageProductRepository,ShopRepository shopRepository,ReviewRepository reviewRepository) {
+    public MainController(CustomUserDetailsService customUserDetailsService,CategoryRepository categoryRepository,ProductRepository productRepository,ImageProductRepository imageProductRepository,ShopRepository shopRepository,ReviewRepository reviewRepository,ProductService productService) {
         this.customUserDetailsService = customUserDetailsService;
         this.categoryRepository=categoryRepository;
         this.productRepository=productRepository;
         this.imageProductRepository=imageProductRepository;
         this.shopRepository=shopRepository;
         this.reviewRepository=reviewRepository;
+        this.productService=productService;
     }
 
     @GetMapping("")
@@ -91,6 +96,28 @@ import java.util.Optional;
         if(finalProduct.size()==0) none=true;
         model.addAttribute("none",none);
          return "index";
+    }
+    @GetMapping("/search")
+    public String searchProduct(Model model,
+                                @RequestParam(value = "keyword", required = false) String keyword,
+                                @RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
+                                @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice,
+                                @RequestParam(value = "sortBy", required = false) String sortBy,
+                                @RequestParam(name = "page", defaultValue = "1") Integer page) {
+
+        Page<Product> products = this.productService.getAllProducts(page);
+        if (keyword != null && !keyword.isEmpty()) {
+            products = this.productService.searchAndSortProducts(keyword, sortBy, minPrice, maxPrice, page);
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("minPrice", minPrice);
+            model.addAttribute("maxPrice", maxPrice);
+            model.addAttribute("sortBy", sortBy);
+        }
+
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("products", products);
+        return "search";
     }
 
 }

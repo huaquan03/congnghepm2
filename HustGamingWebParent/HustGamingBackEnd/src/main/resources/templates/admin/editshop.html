@@ -54,28 +54,34 @@
 <!-- Thanh điều hướng -->
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/seller/}">Seller HOME</a>
+        <a class="navbar-brand" th:href="@{/admin/}">Hust Gaming</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/seller/shop}">Shop</a>
+                    <a class="nav-link" th:href="@{/admin/sellers}">Seller</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/seller/products}">Products</a>
+                    <a class="nav-link" th:href="@{/admin/categories}">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/seller/orders}">Orders</a>
+                    <a class="nav-link" th:href="@{/admin/products}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/seller/reviews}">Reviews</a>
+                    <a class="nav-link" th:href="@{/admin/customers}">Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/orders}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/shop}">Shops</a>
                 </li>
             </ul>
             <span class="navbar-text user-info">
                     <!-- Hiển thị tên người dùng và vai trò với Thymeleaf -->
-                    Welcome, <a th:text="${user.getFullName}" class="text-light"></a>
+                    Welcome
                 </span>
             <!-- Dropdown thông tin người dùng -->
             <ul class="navbar-nav">
@@ -84,7 +90,7 @@
                         <i class="bi bi-person"></i> <span >Option</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" th:href="@{/seller/profile}">Profile</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/profile}">Profile</a></li>
                         <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </li>
@@ -93,40 +99,17 @@
     </div>
 </nav>
 
+
 <div class="container mt-5">
     <h2 class="text-center"> Hãy thay đổi thông tin cửa hàng của bạn</h2>  <div class="profile-container">
     <div class="profile-header">
-        <form style="display:block;" method="post" enctype="multipart/form-data" th:action=@{/seller/shop/save-image}>
+        <form style="display:block;" method="post" enctype="multipart/form-data" th:action=@{/admin/shop/save-image}>
             <img id="avatarPreview"
                  th:src="${shop.image} != null ? ${shop.image} : '/images/users/default-avatar.jpg'"
                  alt="Ảnh Đại Diện"
                  class="profile-avatar"
                  style="max-width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
 
-            <div style="display:block;">
-                <input type="file"
-                       id="avatarInput"
-                       name="avatar"
-                       style="display: none;"
-                       accept="image/jpeg,image/png,image/gif"
-                       data-max-size="5242880">
-
-                <!-- Nút chọn ảnh -->
-                <button type="button" class="btn-choose" onclick="document.getElementById('avatarInput').click();">
-                    Chọn Ảnh
-                </button>
-
-                <!-- Nút Lưu -->
-                <button type="submit" style="width: 120px;
-    height: 48px;
-    border-radius: 5px;
-    background-color: #FF5722;
-    color: #ffffff;
-    border-color: #FFFFFF;
-    margin-left: 20px;">
-                    Lưu Ảnh
-                </button>
-            </div>
         </form>
 
         <script>
@@ -146,11 +129,7 @@
             });
         </script>
 
-        <!-- Thông báo lỗi -->
-        <div id="uploadError" style="color: red; margin-top: 10px;"></div>
-    </div>
-
-    <form th:action="@{/seller/shop/edit/{id}(id=${shop.getShopID})}" th:object="${shop}" method="post" >
+    <form th:action="@{/admin/shop/edit/{id}(id=${shop.getShopID})}" th:object="${shop}" method="post" >
 
         <div class="form-group">
             <label for="shopID">ID Shop</label>
@@ -159,7 +138,7 @@
 
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="name">
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="name" readonly>
         </div>
 
         <div class="form-group">
@@ -169,17 +148,19 @@
 
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="address" >
+            <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="address" readonly>
         </div>
 
         <div class="form-group">
             <label for="status">Status</label>
-            <input type="text" class="form-control" id="status" th:field="*{status}" placeholder="status" >
+            <input type="text" class="form-control" id="status" th:field="*{status}" placeholder="status"  >
         </div>
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
 </div>
+</div>
+
 </body>
 </html>
