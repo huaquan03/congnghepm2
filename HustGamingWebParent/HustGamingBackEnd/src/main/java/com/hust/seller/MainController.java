@@ -1,7 +1,6 @@
 package com.hust.seller;
 
 import com.hust.seller.entity.*;
-import com.hust.seller.product.ProductDTO;
 import com.hust.seller.product.ProductService;
 import com.hust.seller.repository.*;
 import com.hust.seller.security.CustomUserDetailsService;
@@ -17,14 +16,14 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("")
-    public class MainController {
-    private CustomUserDetailsService customUserDetailsService;
-    private CategoryRepository categoryRepository;
-    private ProductRepository productRepository;
-    private ImageProductRepository imageProductRepository;
-    private ShopRepository shopRepository;
-    private ReviewRepository reviewRepository;
-    private ProductService productService;
+public class MainController {
+    private final CustomUserDetailsService customUserDetailsService;
+    private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+    private final ImageProductRepository imageProductRepository;
+    private final ShopRepository shopRepository;
+    private final ReviewRepository reviewRepository;
+    private final ProductService productService;
 
 
     public MainController(CustomUserDetailsService customUserDetailsService, CategoryRepository categoryRepository, ProductRepository productRepository, ImageProductRepository imageProductRepository, ShopRepository shopRepository, ReviewRepository reviewRepository, ProductService productService) {
@@ -38,7 +37,7 @@ import java.util.Optional;
     }
 
     @GetMapping("")
-    public String viewIndex(Model model, @Param("keyword") String keyword) {
+    public String viewIndex(Model model) {
         User user = customUserDetailsService.getCurrentUser();
         List<Category> categories = categoryRepository.findAll();
         List<Product> products = this.productService.findAll();
@@ -66,7 +65,7 @@ import java.util.Optional;
         Product product = this.productService.findByProductID(id);
         model.addAttribute("product", product);
         Optional<Shop> shop1 = shopRepository.findByShopID(product.getShopID());
-        Shop shop = shop1.get();
+        Shop shop = shop1.orElse(null);
         model.addAttribute("shop", shop);
         List<Review> reviews = reviewRepository.findByProductID(id);
         model.addAttribute("reviews", reviews);

@@ -218,7 +218,8 @@
                    aria-expanded="false" th:text="${user.getFullName}">
                     qunha353
                 </a>
-                <img style="border-radius:50%;max-width: 50px;" th:src="${user.image}">
+                <img th:src="${user.image}"
+                     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item text-dark" th:href="@{/customer/profile}">Tài Khoản Của Tôi</a></li>
                     <li><a class="dropdown-item text-dark" th:href="@{/customer/orders}">Đơn Mua</a></li>
