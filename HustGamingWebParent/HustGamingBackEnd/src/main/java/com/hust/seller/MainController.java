@@ -117,6 +117,8 @@ import java.util.Optional;
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", page);
         model.addAttribute("products", products);
+        User user=customUserDetailsService.getCurrentUser();
+        model.addAttribute("user",user);
         return "search";
     }
 

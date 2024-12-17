@@ -93,22 +93,7 @@
              margin-left: 5px;
          }
 
-
-
-        .category-card img {
-    transition: transform 0.3s ease-in-out;
-    }
-
-    .category-card img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .category-card a:hover {
-    color: #007bff;
-    }
-
-        .pagination a {
+       .pagination a {
             text-decoration: none;
             padding: 8px 12px;
             margin: 0 5px;
@@ -199,12 +184,6 @@
         }
     <!--       test -->
 
-
-
-
-
-
-
     </style>
 </head>
 <body>
@@ -231,7 +210,7 @@
                 <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${user.getFullName}">
                     qunha353
                 </a>
-                <img style="border-radius:50%;max-width: 50px;" th:src="${user.image}">
+
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item text-dark" th:href="@{/customer/profile}">Tài Khoản Của Tôi</a></li>
                     <li><a class="dropdown-item text-dark" th:href="@{/customer/orders}">Đơn Mua</a></li>
@@ -245,7 +224,7 @@
 <div class="navbar-main">
     <div class="container">
         <div class="logo">
-            <img src="shopee-logo.png" alt="Shopee Logo">
+            <a th:href="@{/}"><img src="shopee-logo.png" alt="Shopee Logo"></a>
         </div>
         <div class="search-bar">
             <form th:action="@{/search}" method="GET" id="searchForm">
