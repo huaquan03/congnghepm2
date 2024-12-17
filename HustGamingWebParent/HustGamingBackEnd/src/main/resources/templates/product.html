@@ -501,7 +501,7 @@
 <div class="navbar-main">
     <div class="container">
         <div class="logo">
-            <a th:href="@{/}"><img src="shopee-logo.png" alt="Shopee Logo"></a>
+            <a th:href="@{/}"><img style="width:50px; height:50px; margin-bottom : 5px ;" src="https://tse1.mm.bing.net/th?id=OIP.ConYhRSyYcq4oGfxts6lTAHaHa&pid=Api&P=0&h=180" alt="Shopee Logo"></a>
         </div>
         <div class="search-bar">
             <form th:action="@{/search}" method="GET">
@@ -576,7 +576,7 @@
 
             </section>
             <form th:action="@{/customer/cart/add/{id}(id=${product.productID})}" method="post" id="addToCartForm">
-                <div style="display: flex; align-items: center; justify-content: center;">
+                <div style="display: flex; align-items: center; ">
                     <div style="font-size: 18px; color:#B6B6B6 ;display: flex; margin-right:30px;">Số Lượng</div>
                     <button type="button" onclick="decrementValue()"
                             style="width: 35px; height: 35px;  color: #003366;  border-radius: 3px 0 0 3px; font-size: 16px;border-width:1.5px;  cursor: pointer;">
@@ -590,7 +590,7 @@
                     </button>
                 </div>
                 <button type="submit"
-                        style="padding:15px;margin: 10px 0 0 0; border-width:1.5px  ;font-size:20px;color: #EE4D2D; gap:15px; padding:7px ;border-color:#EE4D2D;border-radius:3px;"
+                        style="padding:15px;margin: 90px 0 0 0; border-width:1.5px  ;font-size:20px;color: #EE4D2D; gap:15px; padding:7px ;border-color:#EE4D2D;border-radius:3px;"
                         class="btn_add_to_cart  " aria-disabled="false">
                     <img alt="icon-add-to-cart" style="width:25px;margin : 0 10px 3px 0 ;"
                          src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/0f3bf6e431b6694a9aac.svg">

@@ -543,7 +543,7 @@
 <div class="navbar-main">
     <div class="container">
         <div class="logo">
-            <a th:href="@{/}"><img src="shopee-logo.png" alt="Shopee Logo"></a>
+            <a th:href="@{/}"><img style="width:50px; height:50px; margin-bottom : 5px ;" src="https://tse1.mm.bing.net/th?id=OIP.ConYhRSyYcq4oGfxts6lTAHaHa&pid=Api&P=0&h=180" alt="Shopee Logo"></a>
         </div>
         <div class="search-bar">
             <form th:action="@{/search}" method="GET">
@@ -585,34 +585,37 @@
     <div class="product-container">
         <div class="product-row">
             <div class="column">Sản Phẩm</div>
-            <div class="column" style="padding-left:440px;">Đơn Giá</div>
+            <div class="column" style="padding-left:550px;">Đơn Giá</div>
             <div class="column" style="padding-left:50px;">Số Lượng</div>
             <div class="column" style="padding-left:60px;">Số Tiền</div>
         </div>
         <div class="shop-container">
             <div class="shop-header">
                 <img th:src="mall-logo.png" alt="Mall Logo">
-                <div class="shop-name" th:text=${shop.name}>XiaoZhuBangChu</div>
+                <div class="shop-name" style="margin-left:10px;" th:text=${shop.name}>XiaoZhuBangChu</div>
             </div>
-            <div class="product-row">
+            <div class="product-row" >
                 <img th:src="@{${product.image}}" alt="Sản phẩm">
-                <div class="product-details">
-                    <div class="product-name" th:text="${product.productName}">Xiaozhubangchu Bộ keycap Mario 124 keycap
+                <div style="margin-left:0px;" class="product-details">
+                    <div class="product-name"   th:text="${product.productName}">Xiaozhubangchu Bộ keycap Mario 124 keycap
                         chất lượng cao
                     </div>
                     <div class="product-category" th:text="'Phân loại hàng:'+${category.categoryName}">Phân loại hàng:
                         mario
                     </div>
                 </div>
-                <div class="product-price">
-                    <span class="new-price" th:text="${product.price}+'₫'">₫149.000</span>
+                <div style="gap:125px; display:flex ;">
+                    <div class="product-price">
+                        <span  class="new-price" th:text="${product.price}+'₫'">₫149.000</span>
+                    </div>
+                    <div class="product-quantity">
+                        <input type="" name="quantity" th:value="${order.quantity}" readonly>
+                    </div>
+                    <div style="margin-right:60px;" class="product-total" th:text="${order.totalAmount}+'₫'">
+                        ₫298.000
+                    </div>
                 </div>
-                <div class="product-quantity">
-                    <input type="" name="quantity" th:value="${order.quantity}" readonly>
-                </div>
-                <div class="product-total" th:text="${order.totalAmount}+'₫'">
-                    ₫298.000
-                </div>
+
 
             </div>
         </div>
