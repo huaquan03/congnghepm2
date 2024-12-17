@@ -615,14 +615,25 @@
                         mario
                     </div>
                 </div>
-                <div class="product-price">
-                    <span class="new-price" th:text="${productDTO.product.price}+'₫'">₫149.000</span>
-                </div>
-                <div class="product-quantity">
-                    <input type="" name="quantity" th:value="${productDTO.quantity}" readonly>
-                </div>
-                <div class="product-total" th:text="${productDTO.total}+'₫'">
-                    ₫298.000
+<!--                <div class="product-price">-->
+<!--                    <span class="new-price" th:text="${productDTO.product.price}+'₫'">₫149.000</span>-->
+<!--                </div>-->
+<!--                <div class="product-quantity">-->
+<!--                    <input type="" name="quantity" th:value="${productDTO.quantity}" readonly>-->
+<!--                </div>-->
+<!--                <div class="product-total" th:text="${productDTO.total}+'₫'">-->
+<!--                    ₫298.000-->
+<!--                </div>-->
+                <div style="gap:140px; display:flex ;">
+                    <div class="product-price">
+                        <span  class="new-price" th:text="${productDTO.product.price}+'₫'">₫149.000</span>
+                    </div>
+                    <div class="product-quantity">
+                        <input type="" name="quantity" th:value="${productDTO.quantity}" readonly>
+                    </div>
+                    <div style="margin-right:90px;" class="product-total" th:text="${productDTO.total}+'₫'">
+                        ₫298.000
+                    </div>
                 </div>
 
             </div>
