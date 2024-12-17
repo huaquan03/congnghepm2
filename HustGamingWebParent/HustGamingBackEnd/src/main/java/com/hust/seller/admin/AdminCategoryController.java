@@ -1,6 +1,8 @@
 package com.hust.seller.admin;
 
 import com.hust.seller.entity.Category;
+import com.hust.seller.entity.Shop;
+import com.hust.seller.entity.User;
 import com.hust.seller.repository.CategoryRepository;
 import com.hust.seller.security.CustomUserDetailsService;
 import com.hust.seller.repository.UserRepository;
@@ -9,8 +11,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/categories")
@@ -68,6 +77,43 @@ public class AdminCategoryController {
         Category category1=categoryRepository.findByCategoryId(categoryId);
         categoryRepository.delete(category1);
         return "admin/success";
+    }
+    @PostMapping("/save-image")
+    public String saveImageCustomer(@RequestParam("avatar") MultipartFile file,@RequestParam("categoryId") int categoryId) {
+        if (file.isEmpty()) {
+            return "error/file-empty";
+        }
+        User currentUser = customUserDetailsService.getCurrentUser();
+Category category=categoryRepository.findByCategoryId(categoryId);
+
+        try {
+            // Validate file is an image
+            String contentType = file.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                return "error/invalid-file-type";
+            }
+            // Sanitize filename
+            String originalFilename = file.getOriginalFilename();
+            String safeFileName = UUID.randomUUID().toString() + "_" +
+                    originalFilename.replaceAll("[^a-zA-Z0-9.-]", "_");
+            // Secure directory path
+            String uploadDir = "static/images/categories/" + category.getCategoryId();
+            // Create directory safely
+            Path directory = Paths.get(uploadDir).toAbsolutePath().normalize();
+            Files.createDirectories(directory);
+            // Save file
+            Path targetLocation = directory.resolve(safeFileName);
+            file.transferTo(targetLocation.toFile());
+            // Save image URL to user
+            String imageUrl = "/images/categories/" + category.getCategoryId() + "/" + safeFileName;
+            category.setImage(imageUrl);
+            categoryRepository.save(category);
+
+            return "admin/success";
+        } catch (IOException e) {
+            // Use proper logging
+            return "error/upload-failed";
+        }
     }
 
 }
