@@ -328,11 +328,28 @@
             flex-direction: column;
         }
 
-        form {
+        .search-bar form {
             margin: 0;
             padding: 0;
-            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
-            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+            display: flex;
+            flex: 1;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .search-bar button {
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
         }
 
         .total-text {

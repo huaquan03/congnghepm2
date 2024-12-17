@@ -96,11 +96,6 @@
         }
 
         /* Submenu Below Search Bar */
-        .navbar-submenu {
-            background-color: #ff814c;
-            padding: 5px 0;
-            font-size: 14px;
-        }
 
         .navbar-submenu a {
             color: white;
@@ -112,11 +107,28 @@
             text-decoration: underline;
         }
 
-        form {
+        .search-bar form {
             margin: 0;
             padding: 0;
-            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
-            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+            display: flex;
+            flex: 1;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .search-bar button {
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
         }
 
         <!--
@@ -276,29 +288,6 @@
             text-align: center;
         }
 
-        .category-wrapper {
-            position: relative; /* Để đặt nút điều hướng */
-            width: 80%; /* Giới hạn chiều rộng */
-            margin: auto; /* Căn giữa trang */
-            overflow: hidden; /* Ẩn nội dung thừa */
-            background: #f8f8f8;
-            padding: 20px 0;
-            border-radius: 10px; /* Bo tròn góc */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
-        }
-
-        .category-container {
-            display: flex; /* Hiển thị các mục nằm ngang */
-            transition: transform 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
-        }
-
-        .category-item {
-            flex: 0 0 20%; /* Mỗi mục chiếm 20% chiều rộng container */
-            box-sizing: border-box;
-            text-align: center;
-            padding: 10px;
-        }
-
         .category-item img {
             width: 80px;
             height: 80px;
@@ -313,34 +302,6 @@
         }
 
         /* Nút điều hướng */
-        .btn-slide {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-slide:hover {
-            background-color: #eaeaea;
-        }
-
-        .btn-prev {
-            left: 10px; /* Sát cạnh trái container */
-        }
-
-        .btn-next {
-            right: 10px; /* Sát cạnh phải container */
-        }
 
         /* Icon mũi tên */
         .btn-slide span {

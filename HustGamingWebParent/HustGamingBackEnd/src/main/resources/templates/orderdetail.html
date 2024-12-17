@@ -97,7 +97,8 @@
             font-size: 14px;
             margin-left: 5px;
         }
-                .dropdown-menu {
+
+        .dropdown-menu {
             position: absolute;
             top: 100%; /* Hiển thị dropdown ngay dưới nút */
             right: 0;
@@ -121,6 +122,7 @@
         .dropdown-menu a:hover {
             background-color: #f5f5f5;
         }
+
         /* Tiêu đề giỏ hàng */
         .cart-title {
             color: #ee4d2d;
@@ -130,95 +132,99 @@
             padding: 20px 0;
             text-transform: capitalize;
         }
-<!--        phần địa chỉ nhận hàng -->
-       .payment-info-container {
-        background-color: #fff;
-         border: 1px solid #ddd;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 800px;
-        margin: auto;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
+
+        <!--
+        phần địa chỉ nhận hàng
+
+        -->
+        .payment-info-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
 
-    .address-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    border-bottom: 2px dashed #f15a22;
-    padding-bottom: 10px;
-    }
+        .address-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 2px dashed #f15a22;
+            padding-bottom: 10px;
+        }
 
-    .address-icon {
-    color: #ee4d2d;
-    font-size: 24px;
-    margin-right: 8px;
-    }
+        .address-icon {
+            color: #ee4d2d;
+            font-size: 24px;
+            margin-right: 8px;
+        }
 
-    .address-title {
-    color: #ee4d2d;
-    font-size: 18px;
-    font-weight: bold;
-    }
-
-
-    .user-info {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    font-size: 16px;
-    }
-
-    .user-info .user-name {
-    font-size: 18px;
-    color: #000;
-    margin-right: 10px;
-    margin-left:10px;
-    }
-
-    .user-info .user-phone {
-    color: #555;
-    }
+        .address-title {
+            color: #ee4d2d;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
 
-    .address-details {
-    margin: 10px 0;
-    font-size: 14px;
-    color: #333;
-    padding-left:20px;
-    }
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .user-info .user-name {
+            font-size: 18px;
+            color: #000;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .user-info .user-phone {
+            color: #555;
+        }
 
 
-    .address-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    }
+        .address-details {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+            padding-left: 20px;
+        }
 
-    .default-label {
-    background-color: #fff5f5;
-    color: #ee4d2d;
-    border: 1px solid #ee4d2d;
-    padding: 2px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-left:200px;
-    }
 
-    .change-address {
-    color: #007bff;
-    font-size: 14px;
-    text-decoration: none;
-    cursor: pointer;
-    padding-left:20px;
-    }
+        .address-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .change-address:hover {
-    text-decoration: underline;
-    }
+        .default-label {
+            background-color: #fff5f5;
+            color: #ee4d2d;
+            border: 1px solid #ee4d2d;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 200px;
+        }
+
+        .change-address {
+            color: #007bff;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            padding-left: 20px;
+        }
+
+        .change-address:hover {
+            text-decoration: underline;
+        }
 
         /* Phần sản phẩm */
         .product-container {
@@ -243,7 +249,8 @@
             font-size: 14px;
             color: #555;
         }
-                .shop-container {
+
+        .shop-container {
             max-width: 1200px;
             margin: 20px auto;
             background-color: white;
@@ -278,7 +285,29 @@
             border-bottom: 1px solid #e0e0e0;
         }
 
+        .search-bar form {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex: 1;
+        }
 
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .search-bar button {
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
 
         .product-row img {
             height: 80px;
@@ -301,21 +330,6 @@
         .product-details .product-category {
             font-size: 12px;
             color: #888;
-        }
-
-        .product-price,
-        .product-quantity,
-        .product-total,
-        .product-actions {
-            flex: 1;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .product-price .old-price {
-            text-decoration: line-through;
-            color: #aaa;
-            display: block;
         }
 
         .product-price .new-price {
@@ -346,26 +360,9 @@
         .product-actions a:hover {
             text-decoration: underline;
         }
-        .delete-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    }
-
-    .delete-button:hover {
-    background-color: darkred;
-    }
 
 
         /* Thêm Shop Voucher */
-        .voucher-section {
-            padding: 15px 20px;
-            border-top: 1px solid #e0e0e0;
-            font-size: 14px;
-            color: #ff5722;
-        }
 
         .voucher-section a {
             color: #ff5722;
@@ -378,191 +375,131 @@
         }
 
         /* Khuyến mãi */
-        .promo-section {
-            padding: 15px 20px;
-            background-color: #f9f9f9;
-            font-size: 14px;
-            color: #555;
-        }
 
-        .promo-section .free-ship {
-            color: #28a745;
-            font-weight: bold;
-        }
         /* Footer Section */
-.payment-container {
-    background-color: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 1400px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+        .payment-container {
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 1400px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-/* Payment Method Section */
-.payment-method-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
+        /* Payment Method Section */
+        .payment-method-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-.payment-method-title {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333333;
-}
+        .payment-method-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333333;
+        }
 
-.payment-method-details {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #555555;
-}
+        .payment-method-details {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #555555;
+        }
 
-.change-payment-method {
-    margin-left: 10px;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-}
+        /* Payment Summary Section */
+        .payment-summary-section {
+            border-top: 1px solid #e5e5e5;
+            padding-top: 15px;
+            margin-bottom: 20px;
+        }
 
-.change-payment-method:hover {
-    text-decoration: underline;
-}
+        .payment-summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
 
-/* Payment Summary Section */
-.payment-summary-section {
-    border-top: 1px solid #e5e5e5;
-    padding-top: 15px;
-    margin-bottom: 20px;
-}
+        .payment-summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #f56c6c;
+            padding: 15px 0;
+            border-top: 1px solid #e5e5e5;
+        }
 
-.payment-summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
+        .summary-label {
+            font-size: 14px;
+            color: #666666;
+        }
 
-.payment-summary-total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    color: #f56c6c;
-    padding: 15px 0;
-    border-top: 1px solid #e5e5e5;
-}
+        .summary-value {
+            font-size: 14px;
+            color: #333333;
+        }
 
-.summary-label {
-    font-size: 14px;
-    color: #666666;
-}
+        .total-value {
+            font-size: 18px;
+        }
 
-.summary-value {
-    font-size: 14px;
-    color: #333333;
-}
+        /* Order Button Section */
 
-.total-value {
-    font-size: 18px;
-}
+        .comment-section h2 {
+            font-size: 20px;
+            color: #ff5722;
+            margin-bottom: 15px;
+        }
 
-/* Order Button Section */
-.order-button-section {
-    display: flex; /* Sử dụng Flexbox */
-    align-items: center; /* Canh giữa theo chiều dọc */
-    justify-content: space-between; /* Tạo khoảng cách giữa các phần tử */
-}
+        .comment-section .form-group {
+            margin-bottom: 15px;
+        }
 
-.place-order-button {
-    background-color: #ff5722;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px; /* Khoảng cách giữa nút và văn bản */
-    width:200px;
-}
+        .comment-section .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-.place-order-button:hover {
-    background-color: #e64a19;
-}
+        .comment-section .btn {
+            background-color: #ff5722;
+            border-color: #ff5722;
+            color: white;
+        }
 
-.order-terms {
-    font-size: 12px;
-    color: #888888;
-    margin: 0;
-}
+        .comment-section .btn:hover {
+            background-color: #e64a19;
+            border-color: #e64a19;
+        }
 
-.terms-link {
-    color: #007bff;
-    text-decoration: none;
-}
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+            direction: rtl; /* Đảo hướng để hiển thị sao từ phải sang trái */
+        }
 
-.terms-link:hover {
-    text-decoration: underline;
-}
-<!--        binh luan-->
-        .comment-section {
-    margin-top: 30px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-.comment-section h2 {
-    font-size: 20px;
-    color: #ff5722;
-    margin-bottom: 15px;
-}
-.comment-section .form-group {
-    margin-bottom: 15px;
-}
-.comment-section .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.comment-section .btn {
-    background-color: #ff5722;
-    border-color: #ff5722;
-    color: white;
-}
-.comment-section .btn:hover {
-    background-color: #e64a19;
-    border-color: #e64a19;
-}
- .rating-stars {
-    display: flex;
-    gap: 5px;
-    direction: rtl; /* Đảo hướng để hiển thị sao từ phải sang trái */
-}
+        .rating-stars input[type="radio"] {
+            display: none; /* Ẩn nút radio */
+        }
 
-.rating-stars input[type="radio"] {
-    display: none; /* Ẩn nút radio */
-}
+        .rating-stars label {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+        }
 
-.rating-stars label {
-    font-size: 30px;
-    color: #ccc;
-    cursor: pointer;
-}
+        .rating-stars input[type="radio"]:checked ~ label {
+            color: #ffc107; /* Màu sao vàng khi được chọn */
+        }
 
-.rating-stars input[type="radio"]:checked ~ label {
-    color: #ffc107; /* Màu sao vàng khi được chọn */
-}
-
-.rating-stars label:hover,
-.rating-stars label:hover ~ label {
-    color: #ffc107; /* Hiệu ứng hover */
-}
-
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label {
+            color: #ffc107; /* Hiệu ứng hover */
+        }
 
 
     </style>
@@ -589,7 +526,8 @@
         </span>
 
             <div class="dropdown auth-links" th:if="${user}">
-                <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${user.getFullName}">
+                <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false" th:text="${user.getFullName}">
                     qunha353
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
@@ -608,8 +546,14 @@
             <a th:href="@{/}"><img src="shopee-logo.png" alt="Shopee Logo"></a>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Tìm sản phẩm, thương hiệu và tên shop">
-            <button>🔍</button>
+            <form th:action="@{/search}" method="GET">
+                <input type="text"
+                       name="keyword"
+                       placeholder="Tìm sản phẩm, thương hiệu và tên shop"
+                       th:value="${keyword}"
+                       required>
+                <button type="submit">🔍</button>
+            </form>
         </div>
         <div class="cart-icon">
             <a th:href="@{/customer/cart}">
@@ -645,7 +589,7 @@
             <div class="column" style="padding-left:50px;">Số Lượng</div>
             <div class="column" style="padding-left:60px;">Số Tiền</div>
         </div>
-        <div  class="shop-container">
+        <div class="shop-container">
             <div class="shop-header">
                 <img th:src="mall-logo.png" alt="Mall Logo">
                 <div class="shop-name" th:text=${shop.name}>XiaoZhuBangChu</div>
@@ -653,8 +597,12 @@
             <div class="product-row">
                 <img th:src="@{${product.image}}" alt="Sản phẩm">
                 <div class="product-details">
-                    <div class="product-name" th:text="${product.productName}">Xiaozhubangchu Bộ keycap Mario 124 keycap chất lượng cao</div>
-                    <div class="product-category" th:text="'Phân loại hàng:'+${category.categoryName}" >Phân loại hàng: mario</div>
+                    <div class="product-name" th:text="${product.productName}">Xiaozhubangchu Bộ keycap Mario 124 keycap
+                        chất lượng cao
+                    </div>
+                    <div class="product-category" th:text="'Phân loại hàng:'+${category.categoryName}">Phân loại hàng:
+                        mario
+                    </div>
                 </div>
                 <div class="product-price">
                     <span class="new-price" th:text="${product.price}+'₫'">₫149.000</span>
@@ -682,7 +630,7 @@
             <div class="payment-summary-section">
                 <div class="payment-summary-item">
                     <span class="summary-label">Tổng tiền hàng</span>
-                    <span class="summary-value"th:text="'₫'+${order.totalAmount}">₫125.070</span>
+                    <span class="summary-value" th:text="'₫'+${order.totalAmount}">₫125.070</span>
                 </div>
                 <div class="payment-summary-item">
                     <span class="summary-label">Tổng tiền phí vận chuyển</span>
@@ -690,7 +638,8 @@
                 </div>
                 <div class="payment-summary-total">
                     <span class="summary-label">Tổng thanh toán</span>
-                    <span class="summary-value total-value" style="color:#FF5722;" th:text="'₫'+${order.totalAmount}"></span>
+                    <span class="summary-value total-value" style="color:#FF5722;"
+                          th:text="'₫'+${order.totalAmount}"></span>
                 </div>
                 <div class="payment-summary-total">
                     <span class="summary-label">Trạng thái hiện tại</span>
@@ -715,25 +664,26 @@
         <div class="comment-section">
             <h2>Viết Bình Luận</h2>
             <form th:action="@{/customer/comment}" method="POST">
-                <input type="hidden" name="orderId" th:value="${order.orderID}" />
+                <input type="hidden" name="orderId" th:value="${order.orderID}"/>
                 <!-- Phần chọn số sao -->
                 <div class="form-group">
                     <div class="rating-stars">
-                        <input type="radio" id="star5" name="rating" value="5" required />
+                        <input type="radio" id="star5" name="rating" value="5" required/>
                         <label for="star5" title="5 sao">★</label>
-                        <input type="radio" id="star4" name="rating" value="4" />
+                        <input type="radio" id="star4" name="rating" value="4"/>
                         <label for="star4" title="4 sao">★</label>
-                        <input type="radio" id="star3" name="rating" value="3" />
+                        <input type="radio" id="star3" name="rating" value="3"/>
                         <label for="star3" title="3 sao">★</label>
-                        <input type="radio" id="star2" name="rating" value="2" />
+                        <input type="radio" id="star2" name="rating" value="2"/>
                         <label for="star2" title="2 sao">★</label>
-                        <input type="radio" id="star1" name="rating" value="1" />
+                        <input type="radio" id="star1" name="rating" value="1"/>
                         <label for="star1" title="1 sao">★</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="comment">Nội dung bình luận</label>
-                    <textarea id="comment" name="comment" class="form-control" rows="5" placeholder="Viết bình luận của bạn tại đây..." required></textarea>
+                    <textarea id="comment" name="comment" class="form-control" rows="5"
+                              placeholder="Viết bình luận của bạn tại đây..." required></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Gửi đánh giá</button>

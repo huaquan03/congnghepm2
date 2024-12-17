@@ -8,105 +8,104 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-             margin: 0;
-             padding: 0;
-             font-family: Arial, sans-serif;
-         }
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
-         /* Navbar Top Section */
-         .navbar-top {
-             background-color: #ff5722; /* Màu nền cam */
-             color: white;
-             padding: 10px 0;
-             font-size: 14px;
-         }
+        /* Navbar Top Section */
+        .navbar-top {
+            background-color: #ff5722; /* Màu nền cam */
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
 
-         .navbar-top .container {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-         }
+        .navbar-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-         .navbar-top a {
-             color: white;
-             text-decoration: none;
-             margin-right: 15px;
-         }
+        .navbar-top a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
 
-         .navbar-top a:hover {
-             text-decoration: underline;
-         }
+        .navbar-top a:hover {
+            text-decoration: underline;
+        }
 
-         /* Main Navbar Section */
-         .navbar-main {
-             background-color: #ff5722; /* Màu nền cam */
-             padding: 15px 0;
-         }
+        /* Main Navbar Section */
+        .navbar-main {
+            background-color: #ff5722; /* Màu nền cam */
+            padding: 15px 0;
+        }
 
-         .navbar-main .container {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-         }
+        .navbar-main .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-         .navbar-main .logo img {
-             height: 40px;
-         }
+        .navbar-main .logo img {
+            height: 40px;
+        }
 
-         .navbar-main .search-bar {
-             flex: 1;
-             margin: 0 20px;
-             display: flex;
-             align-items: center;
-         }
+        .navbar-main .search-bar {
+            flex: 1;
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+        }
 
-         .navbar-main .search-bar input {
-             flex: 1;
-             padding: 10px;
-             border: none;
-             border-radius: 5px 0 0 5px;
-             font-size: 14px;
-         }
+        .navbar-main .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+        }
 
-         .navbar-main .search-bar button {
-             padding: 10px 20px;
-             background-color: white;
-             color: #ff5722;
-             border: none;
-             border-radius: 0 5px 5px 0;
-             cursor: pointer;
-         }
+        .navbar-main .search-bar button {
+            padding: 10px 20px;
+            background-color: white;
+            color: #ff5722;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
 
-         .navbar-main .cart-icon {
-             display: flex;
-             align-items: center;
-             color: white;
-             font-size: 18px;
-         }
+        .navbar-main .cart-icon {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+        }
 
-         .navbar-main .cart-icon .cart-count {
-             background-color: white;
-             color: #ff5722;
-             border-radius: 50%;
-             padding: 5px 10px;
-             font-size: 14px;
-             margin-left: 5px;
-         }
-
+        .navbar-main .cart-icon .cart-count {
+            background-color: white;
+            color: #ff5722;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-left: 5px;
+        }
 
 
         .category-card img {
-    transition: transform 0.3s ease-in-out;
-    }
+            transition: transform 0.3s ease-in-out;
+        }
 
-    .category-card img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+        .category-card img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-    .category-card a:hover {
-    color: #007bff;
-    }
+        .category-card a:hover {
+            color: #007bff;
+        }
 
         .pagination a {
             text-decoration: none;
@@ -115,46 +114,39 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
         .pagination a.active {
             background-color: #007bff;
             color: white;
         }
+
         .product-card {
-    border: 1px solid #eaeaea;
-    transition: transform 0.2s, box-shadow 0.2s;
-    }
+            border: 1px solid #eaeaea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-    .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-    .product-card .card-title {
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1.2;
-    height: 40px; /* Đảm bảo chiều cao cố định */
-    overflow: hidden; /* Giới hạn text */
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    }
+        .product-card .card-title {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.2;
+            height: 40px; /* Đảm bảo chiều cao cố định */
+            overflow: hidden; /* Giới hạn text */
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
-    .product-card .card-text {
-    font-size: 14px;
-    }
+        .product-card .card-text {
+            font-size: 14px;
+        }
 
-    .product-card .card-footer {
-    background-color: #f9f9f9;
-    text-align: center;
-    }
-    <!--        test-->
-    .navbar {
-            display: flex; /* Căn ngang */
-            justify-content: flex-end; /* Đẩy toàn bộ mục sang bên phải */
-            align-items: center; /* Căn giữa theo chiều dọc */
-            background-color: #ff6600; /* Màu nền */
-            padding: 10px 20px;
-            gap: 15px; /* Khoảng cách giữa các mục */
+        .product-card .card-footer {
+            background-color: #f9f9f9;
+            text-align: center;
         }
 
         .navbar a, .navbar .dropdown {
@@ -188,21 +180,39 @@
             display: block;
             text-decoration: none;
         }
-        form {
+
+        .search-bar form {
             margin: 0;
             padding: 0;
-            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
-            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+            display: flex;
+            flex: 1;
         }
+
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .search-bar button {
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
         .dropdown-menu a:hover {
             background-color: #f5f5f5;
         }
-    <!--       test -->
 
+        <!--
+        test
 
-
-
-
+        -->
 
 
     </style>
@@ -228,7 +238,8 @@
         </span>
 
             <div class="dropdown auth-links" th:if="${user}">
-                <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${user.getFullName}">
+                <a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false" th:text="${user.getFullName}">
                     qunha353
                 </a>
                 <img style="border-radius:50%;max-width: 50px;" th:src="${user.image}">
@@ -270,35 +281,42 @@
     <div style="display: flex;  align-items: center; gap:30px;">
         <!-- Phần thông tin cửa hàng -->
         <div style="display: flex; align-items: center;">
-            <img th:src="${shop.image}" alt="Logo Shop" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 15px;">
+            <img th:src="${shop.image}" alt="Logo Shop"
+                 style="width: 80px; height: 80px; border-radius: 50%; margin-right: 15px;">
             <div>
                 <h2 th:text="${shop.name}" style="font-size: 24px; font-weight: bold; margin: 0;">Tín Tâm Pharma</h2>
                 <p style="color: #3B3D3E; font-size: 14px; margin: 5px 0;">
                     <span style="font-size: 18px;"></span> Online 1 giờ trước
                 </p>
                 <div>
-                    <button style="margin: 5px; padding: 10px 20px; border: none; border-radius: 5px; background: #FF5722; color: #fff; cursor: pointer;">+ Theo Dõi</button>
-                    <button style="margin: 5px; padding: 10px 20px; border: 1px solid #007bff; border-radius: 5px; background: #fff; color: #007bff; cursor: pointer;">Chat</button>
+                    <button style="margin: 5px; padding: 10px 20px; border: none; border-radius: 5px; background: #FF5722; color: #fff; cursor: pointer;">
+                        + Theo Dõi
+                    </button>
+                    <button style="margin: 5px; padding: 10px 20px; border: 1px solid #007bff; border-radius: 5px; background: #fff; color: #007bff; cursor: pointer;">
+                        Chat
+                    </button>
                 </div>
             </div>
         </div>
 
         <!-- Phần thông tin bổ sung -->
         <div style="">
-            <p th:value="${productCount}" style="margin: 5px 0; font-size: 14px;" >Sản Phẩm: <span style="font-weight: bold;">18</span></p>
+            <p th:value="${productCount}" style="margin: 5px 0; font-size: 14px;">Sản Phẩm: <span
+                    style="font-weight: bold;">18</span></p>
             <p style="margin: 5px 0; font-size: 14px;">Đang Theo: <span style="font-weight: bold;">223</span></p>
-            <p style="margin: 5px 0; font-size: 14px;">Tỉ Lệ Phản Hồi Chat: <span style="font-weight: bold; color: #f00;">Chưa Có Dữ Liệu (Trong Vài Ngày)</span></p>
+            <p style="margin: 5px 0; font-size: 14px;">Tỉ Lệ Phản Hồi Chat: <span
+                    style="font-weight: bold; color: #f00;">Chưa Có Dữ Liệu (Trong Vài Ngày)</span></p>
         </div>
         <div>
             <p style="margin: 5px 0; font-size: 14px;">Người Theo Dõi: <span style="font-weight: bold;">441</span></p>
-            <p style="margin: 5px 0; font-size: 14px;">Đánh Giá: <span style="font-weight: bold;">5.0</span> (<span style="color: #f00;">1,3k Đánh Giá</span>)</p>
+            <p style="margin: 5px 0; font-size: 14px;">Đánh Giá: <span style="font-weight: bold;">5.0</span> (<span
+                    style="color: #f00;">1,3k Đánh Giá</span>)</p>
             <p style="margin: 5px 0; font-size: 14px;">Tham Gia: <span style="font-weight: bold;">5 Năm Trước</span></p>
         </div>
     </div>
 
 
 </div>
-
 
 
 <div class="container mt-4">
@@ -318,7 +336,8 @@
                     </a>
                 </div>
             </div>
-            <a class="opacity-0 group-hover:opacity-100 duration-100 absolute z-[-1] top-[calc(100%-6px)] pt-[6px] -left-px box-content w-full h-[1.875rem] bg-shopee-primary text-white text-center text-sm/[1.875rem] border border-shopee-primary rounded-bl-sm rounded-br-sm" th:href="@{/tim san pham tuong tu}">Tìm sản phẩm tương tự</a>
+            <a class="opacity-0 group-hover:opacity-100 duration-100 absolute z-[-1] top-[calc(100%-6px)] pt-[6px] -left-px box-content w-full h-[1.875rem] bg-shopee-primary text-white text-center text-sm/[1.875rem] border border-shopee-primary rounded-bl-sm rounded-br-sm"
+               th:href="@{/tim san pham tuong tu}">Tìm sản phẩm tương tự</a>
         </div>
     </div>
 </div>
@@ -327,9 +346,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".price").forEach(priceElement => {
-            // Lấy giá trị thô từ nội dung của thẻ
             let rawPrice = parseInt(priceElement.textContent.replace('₫', '').trim());
-            // Định dạng giá theo kiểu vi-VN
             priceElement.textContent = `₫${rawPrice.toLocaleString('vi-VN')}`;
         });
     });

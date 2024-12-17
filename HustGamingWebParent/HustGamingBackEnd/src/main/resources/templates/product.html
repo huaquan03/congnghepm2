@@ -96,11 +96,6 @@
         }
 
         /* Submenu Below Search Bar */
-        .navbar-submenu {
-            background-color: #ff814c;
-            padding: 5px 0;
-            font-size: 14px;
-        }
 
         .navbar-submenu a {
             color: white;
@@ -254,18 +249,6 @@
             border-radius: 5px;
         }
 
-        .add-to-cart {
-            background-color: #f60;
-        }
-
-        .buy-now {
-            background-color: #ff4500;
-        }
-
-        .add-to-cart:hover, .buy-now:hover {
-            opacity: 0.9;
-        }
-
         /* Container tổng */
         .shop-info-container {
             display: flex;
@@ -278,11 +261,28 @@
             font-family: Arial, sans-serif;
         }
 
-        form {
+        .search-bar form {
             margin: 0;
             padding: 0;
-            display: flex; /* Đảm bảo form hoạt động tốt trong Flexbox */
-            flex: 1; /* Form chiếm toàn bộ không gian còn lại nếu cần */
+            display: flex;
+            flex: 1;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .search-bar button {
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
         }
 
         /* Phần shop profile */
@@ -370,95 +370,97 @@
             color: #999;
         }
 
-.detail-item strong {
-    display: block;
-    font-size: 16px;
-    color: #f36;
-    margin-top: 5px;
-}
-<!--        phan danh gia san pham-->
-        /* Toàn bộ khu vực đánh giá */
-#product-reviews {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .detail-item strong {
+            display: block;
+            font-size: 16px;
+            color: #f36;
+            margin-top: 5px;
+        }
 
-/* Điểm trung bình */
-#overall-rating {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        <!--
+        phan danh gia san pham-- >
+            /* Toàn bộ khu vực đánh giá */
+        #product-reviews {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-#overall-rating h4 {
-    font-size: 24px;
-    color: #ff9500;
-    margin-bottom: 8px;
-}
+        /* Điểm trung bình */
+        #overall-rating {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-#overall-rating .stars {
-    font-size: 24px;
-    color: #ffcc00; /* Màu vàng cho sao đầy */
-}
+        #overall-rating h4 {
+            font-size: 24px;
+            color: #ff9500;
+            margin-bottom: 8px;
+        }
 
-/* Danh sách đánh giá */
-#reviews-list {
-    margin-top: 20px;
-}
+        #overall-rating .stars {
+            font-size: 24px;
+            color: #ffcc00; /* Màu vàng cho sao đầy */
+        }
 
-/* Từng đánh giá */
-.review-item {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        /* Danh sách đánh giá */
+        #reviews-list {
+            margin-top: 20px;
+        }
 
-.review-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
+        /* Từng đánh giá */
+        .review-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-/* Header của từng đánh giá */
-.review-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+        .review-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
 
-.review-author {
-    font-weight: bold;
-    font-size: 16px;
-    color: #333;
-}
+        /* Header của từng đánh giá */
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
 
-.review-time {
-    font-size: 14px;
-    color: #888;
-}
+        .review-author {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+        }
 
-/* Ngôi sao trong từng đánh giá */
-.review-header .stars {
-    font-size: 18px;
-    color: #ffcc00;
-    display: flex;
-    gap: 2px;
-}
+        .review-time {
+            font-size: 14px;
+            color: #888;
+        }
 
-/* Nội dung đánh giá */
-.review-content {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.6;
-}
+        /* Ngôi sao trong từng đánh giá */
+        .review-header .stars {
+            font-size: 18px;
+            color: #ffcc00;
+            display: flex;
+            gap: 2px;
+        }
+
+        /* Nội dung đánh giá */
+        .review-content {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
 
     </style>
 </head>
@@ -606,8 +608,8 @@
                 <img src="shop-logo.png" alt="Shop Logo" class="shop-logo">
                 <div class="shop-name">
                     <h2 th:text="${shop.name}">❈ USA_Store ❈</h2>
-                    <p th:if="${shop.status}" >Shop đang hoạt động, có thể mua hàng</p>
-                    <p th:unless="${shop.status}" >Shop đang tạm nghỉ</p>
+                    <p th:if="${shop.status}">Shop đang hoạt động, có thể mua hàng</p>
+                    <p th:unless="${shop.status}">Shop đang tạm nghỉ</p>
                 </div>
             </div>
             <div class="shop-actions">
@@ -645,7 +647,9 @@
         </div>
     </div>
 
-    <div class="container" style="text-align: center; font-size: 20px; font-family: Arial, sans-serif; font-weight: bold;padding: 20px; border: 1px;background-color:#ffffff ">Mô tả chi tiết sản phẩm
+    <div class="container"
+         style="text-align: center; font-size: 20px; font-family: Arial, sans-serif; font-weight: bold;padding: 20px; border: 1px;background-color:#ffffff ">
+        Mô tả chi tiết sản phẩm
         <p th:text="${product.description}">Mô tả </p>
     </div>
     <div class="container">
