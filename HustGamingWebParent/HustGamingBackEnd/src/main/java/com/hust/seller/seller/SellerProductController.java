@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 import java.io.File;
 import java.io.IOException;
@@ -75,6 +76,7 @@ public class SellerProductController {
         Optional<Shop> shop1 = shopRepository.findBySellerID(currentUser.getUserID());
         Shop shop = shop1.get();
         product.setShopID(shop.getShopID());
+        product.setCreatedDate(LocalDateTime.now());
         productRepository.save(product);
         Integer productId = product.getProductID();
         String rootDir = System.getProperty("user.dir");
