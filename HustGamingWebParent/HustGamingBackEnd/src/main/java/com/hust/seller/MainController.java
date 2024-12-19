@@ -70,9 +70,10 @@ import java.util.Optional;
         model.addAttribute("reviews",reviews);
     float averageRating=0;
     for(Review review:reviews){
-        averageRating=+review.getRating();
+        averageRating+=review.getRating();
     }
     if(reviews.size()==0) {averageRating=5;}else{averageRating=averageRating/reviews.size();}
+    System.out.println(averageRating);
     model.addAttribute("averageRating",averageRating);
 
         return "product";
